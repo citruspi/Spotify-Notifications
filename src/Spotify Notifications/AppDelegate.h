@@ -10,6 +10,7 @@
 @property (assign) IBOutlet NSWindow *window;
 @property (strong, nonatomic) NSStatusItem *statusBar;
 @property (strong, nonatomic) IBOutlet NSMenu *statusMenu;
+@property (strong, nonatomic) IBOutlet NSMenuItem *soundToggle;
 
 - (IBAction)showAbout:(id)sender;
 

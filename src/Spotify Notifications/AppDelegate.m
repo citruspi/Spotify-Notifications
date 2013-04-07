@@ -9,8 +9,10 @@
 
 @synthesize statusBar;
 @synthesize statusMenu;
+@synthesize soundToggle;
 
-- (void)applicationDidFinishLaunching:(NSNotification *)aNotification{
+- (void)applicationDidFinishLaunching:(NSNotification *)notification{
+        
     [[NSUserNotificationCenter defaultUserNotificationCenter] setDelegate:self];
     
     [[NSDistributedNotificationCenter defaultCenter] addObserver:self
@@ -40,15 +42,28 @@
         notification.title = [information objectForKey: @"Name"];
         notification.subtitle = [information objectForKey: @"Album"];
         notification.informativeText = [information objectForKey: @"Artist"];
-        notification.soundName = NSUserNotificationDefaultSoundName;
+        
+        if (soundToggle.state == 1){
+            notification.soundName = NSUserNotificationDefaultSoundName;
+        }
         
         [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
         
     }
 }
 
+- (IBAction)toggleSound:(id)sender{
+    if (soundToggle.state == 1){
+        [soundToggle setState:0];
+    }
+    
+    else{
+        [soundToggle setState:1];
+    }
+}
+
 - (IBAction)showAbout:(id)sender{
-    [[NSWorkspace sharedWorkspace] openURL: [NSURL URLWithString:@"http://spotifynotifications.mihirsingh.com"]];
+    [[NSWorkspace sharedWorkspace] openURL: [NSURL URLWithString:@"http://citruspi.github.io/Spotify-Notifications"]];
 }
 
 @end

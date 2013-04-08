@@ -15,6 +15,8 @@
 		04A77BB9170FC75300A50173 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04A77BB7170FC75300A50173 /* MainMenu.xib */; };
 		04A77BC0170FC7CF00A50173 /* icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 04A77BBF170FC7CF00A50173 /* icon.icns */; };
 		04A77BC317104FEE00A50173 /* status_bar.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 04A77BC217104FEE00A50173 /* status_bar.tiff */; };
+		AEAFCD771712CD1200F61F8D /* status_bar_black.tiff in Resources */ = {isa = PBXBuildFile; fileRef = AEAFCD751712CD1200F61F8D /* status_bar_black.tiff */; };
+		AEAFCD7C1712D50B00F61F8D /* status_bar_black@2x.tiff in Resources */ = {isa = PBXBuildFile; fileRef = AEAFCD7B1712D50B00F61F8D /* status_bar_black@2x.tiff */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +36,8 @@
 		04A77BBF170FC7CF00A50173 /* icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = icon.icns; sourceTree = "<group>"; };
 		04A77BC1170FC7E600A50173 /* Spotify Notifications.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Spotify Notifications.entitlements"; sourceTree = "<group>"; };
 		04A77BC217104FEE00A50173 /* status_bar.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = status_bar.tiff; sourceTree = "<group>"; };
+		AEAFCD751712CD1200F61F8D /* status_bar_black.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = status_bar_black.tiff; sourceTree = "<group>"; };
+		AEAFCD7B1712D50B00F61F8D /* status_bar_black@2x.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = "status_bar_black@2x.tiff"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +92,8 @@
 		04A77BA8170FC75200A50173 /* Spotify Notifications */ = {
 			isa = PBXGroup;
 			children = (
+				AEAFCD7B1712D50B00F61F8D /* status_bar_black@2x.tiff */,
+				AEAFCD751712CD1200F61F8D /* status_bar_black.tiff */,
 				04A77BC217104FEE00A50173 /* status_bar.tiff */,
 				04A77BC1170FC7E600A50173 /* Spotify Notifications.entitlements */,
 				04A77BB4170FC75200A50173 /* AppDelegate.h */,
@@ -166,6 +172,8 @@
 				04A77BB9170FC75300A50173 /* MainMenu.xib in Resources */,
 				04A77BC0170FC7CF00A50173 /* icon.icns in Resources */,
 				04A77BC317104FEE00A50173 /* status_bar.tiff in Resources */,
+				AEAFCD771712CD1200F61F8D /* status_bar_black.tiff in Resources */,
+				AEAFCD7C1712D50B00F61F8D /* status_bar_black@2x.tiff in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

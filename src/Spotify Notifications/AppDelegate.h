@@ -11,6 +11,7 @@
 @property (strong, nonatomic) NSStatusItem *statusBar;
 @property (strong, nonatomic) IBOutlet NSMenu *statusMenu;
 @property (strong, nonatomic) IBOutlet NSMenuItem *soundToggle;
+@property (strong, nonatomic) IBOutlet NSMenuItem *blackIcon;
 
 - (IBAction)showAbout:(id)sender;
 

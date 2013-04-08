@@ -10,6 +10,7 @@
 @synthesize statusBar;
 @synthesize statusMenu;
 @synthesize soundToggle;
+@synthesize blackIcon;
 
 - (void)applicationDidFinishLaunching:(NSNotification *)notification{
         
@@ -22,7 +23,7 @@
     
     self.statusBar = [[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength];
     
-    self.statusBar.image = [NSImage imageNamed:@"status_bar.tiff"];
+    [self setIcon];
     self.statusBar.menu = self.statusMenu;
     self.statusBar.highlightMode = YES;
 }
@@ -64,6 +65,27 @@
 
 - (IBAction)showAbout:(id)sender{
     [[NSWorkspace sharedWorkspace] openURL: [NSURL URLWithString:@"http://citruspi.github.io/Spotify-Notifications"]];
+}
+
+- (IBAction)changeIcon:(id)sender{
+    if (blackIcon.state == 1){
+        [blackIcon setState:0];
+    }
+
+    else{
+        [blackIcon setState:1];
+    }
+    [self setIcon];
+}
+
+- (void)setIcon{
+    if (blackIcon.state == 1){
+        self.statusBar.image = [NSImage imageNamed:@"status_bar_black.tiff"];
+    }
+
+    else{
+        self.statusBar.image = [NSImage imageNamed:@"status_bar.tiff"];
+    }
 }
 
 @end

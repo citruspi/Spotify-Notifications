@@ -5,14 +5,6 @@ Spotify Notifications does nothing more than display a notification every time
 - a song goes from "paused" to "playing"
 - a new song is played
 
-## App
-
-I have included a prebuilt `Spotify Notifications.app` in `/app`. It
-
-- is code signed
-- is in a sandbox
-- weighs in at 496 KB
-
 ## License
 
 __The code is licensed under the MIT license. The icon - the `icon.icns` file is not, however. That is licensed to Spotify AB Inc.__

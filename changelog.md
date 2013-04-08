@@ -1,3 +1,7 @@
+## v0.3.1 (March 8, 2013)
+
+- Added Retina version of colored icon
+
 ## v0.3 (March 8, 2013)
 
 - Added black menu bar icon (thanks @raphaa!)

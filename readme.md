@@ -5,6 +5,14 @@ Spotify Notifications does nothing more than display a notification every time
 - a song goes from "paused" to "playing"
 - a new song is played
 
+## Authors
+
+- Mihir Singh ([citruspi](http://github.com/citruspi))
+
+## Contributors
+
+- Raphael Jasjukaitis ([raphaa](http://github.com/raphaa))
+
 ## License
 
 __The code is licensed under the MIT license. The icon - the `icon.icns` file is not, however. That is licensed to Spotify AB Inc.__

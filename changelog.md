@@ -1,3 +1,8 @@
+## v0.4 (September 17, 2013)
+
+- Moved preferences from menu bar to window
+- Added option to run without a menu bar
+
 ## v0.3.1 (March 8, 2013)
 
 - Added Retina version of colored icon

@@ -9,8 +9,10 @@
 
 @synthesize statusBar;
 @synthesize statusMenu;
+@synthesize openPrefences;
 @synthesize soundToggle;
-@synthesize blackIcon;
+@synthesize window;
+@synthesize iconToggle;
 
 - (void)applicationDidFinishLaunching:(NSNotification *)notification{
         
@@ -21,23 +23,24 @@
                                                             name:@"com.spotify.client.PlaybackStateChanged"
                                                           object:nil];
     
-    self.statusBar = [[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength];
-    
     [self setIcon];
-    self.statusBar.menu = self.statusMenu;
-    self.statusBar.highlightMode = YES;
+    
+    [soundToggle selectItemAtIndex:[self getProperty:@"notificationSound"]];
+    [iconToggle selectItemAtIndex:[self getProperty:@"iconSelection"]];
+    
+}
 
-    if ([self getProperty:@"Sound"]){
-        [soundToggle setState:1];
-    }
+- (IBAction)showAbout:(id)sender{
+    [[NSWorkspace sharedWorkspace] openURL: [NSURL URLWithString:@"http://citruspi.github.io/Spotify-Notifications"]];
+}
 
-    if ([self getProperty:@"Black Icon"]){
-        [blackIcon setState:1];
-    }
+- (IBAction)showPrefences:(id)sender{
+    [NSApp activateIgnoringOtherApps:YES];
+    [window makeKeyAndOrderFront:nil];
 }
 
 - (BOOL)userNotificationCenter:(NSUserNotificationCenter *)center
-     shouldPresentNotification:(NSUserNotification *)notification{
+    shouldPresentNotification:(NSUserNotification *)notification{
     return YES;
 }
 
@@ -52,7 +55,7 @@
         notification.subtitle = [information objectForKey: @"Album"];
         notification.informativeText = [information objectForKey: @"Artist"];
 
-        if ([self getProperty:@"Sound"]){
+        if ([self getProperty:@"notificationSound"] == 0){
             notification.soundName = NSUserNotificationDefaultSoundName;
         }
 
@@ -62,57 +65,59 @@
 }
 
 - (IBAction)toggleSound:(id)sender{
-    if (soundToggle.state == 1){
-        [soundToggle setState:0];
-    }
-
-    else{
-        [soundToggle setState:1];
-    }
-    [self saveProperty:@"Sound":(soundToggle.state == 1)];
+    
+    [self saveProperty:@"notificationSound" :(int)[soundToggle indexOfSelectedItem]];
+    
 }
 
-- (IBAction)showAbout:(id)sender{
-    [[NSWorkspace sharedWorkspace] openURL: [NSURL URLWithString:@"http://citruspi.github.io/Spotify-Notifications"]];
-}
-
-- (IBAction)changeIcon:(id)sender{
-    if (blackIcon.state == 1){
-        [blackIcon setState:0];
-    }
-
-    else{
-        [blackIcon setState:1];
-    }
-    [self saveProperty:@"Black Icon":(blackIcon.state == 1)];
-    [self setIcon];
-}
 
 - (void)setIcon{
-    if ([self getProperty:@"Black Icon"]){
+    
+    if ([self getProperty:@"iconSelection"] == 0){
+        self.statusBar = nil;
+        self.statusBar = [[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength];
+        self.statusBar.image = [NSImage imageNamed:@"status_bar_colour.tiff"];
+        self.statusBar.menu = self.statusMenu;
+        self.statusBar.highlightMode = YES;
+    }
+    
+    if ([self getProperty:@"iconSelection"] == 1){
+        self.statusBar = nil;
+        self.statusBar = [[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength];
         self.statusBar.image = [NSImage imageNamed:@"status_bar_black.tiff"];
+        self.statusBar.menu = self.statusMenu;
+        self.statusBar.highlightMode = YES;
     }
-
-    else{
-        self.statusBar.image = [NSImage imageNamed:@"status_bar.tiff"];
-    }
+    
+    if ([self getProperty:@"iconSelection"] == 2){
+        self.statusBar = nil;
+     }
 }
 
-- (void)saveProperty:(NSString*)key:(Boolean)value{
-	NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
+- (IBAction)toggleIcons:(id)sender{
+    
+    [self saveProperty:@"iconSelection" :(int)[iconToggle indexOfSelectedItem]];
+    [self setIcon];
+    
+}
 
+- (void)saveProperty:(NSString*)key:(int)value{
+	NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
+    
 	if (standardUserDefaults) {
-		[standardUserDefaults setBool:value forKey:key];
+		[standardUserDefaults setInteger:value forKey:key];
 		[standardUserDefaults synchronize];
 	}
 }
 
 - (Boolean)getProperty:(NSString*)key{
 	NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
-	Boolean val = false;
-
-	if (standardUserDefaults)
-		val = [standardUserDefaults boolForKey:key];
+	int val = 0;
+    
+	if (standardUserDefaults){
+		val = (int)[standardUserDefaults integerForKey:key];
+    }
+    
 	return val;
 }
 

@@ -1,3 +1,7 @@
+## v0.4.1 (October 19, 2013)
+
+- Implemented start on login 
+
 ## v0.4 (September 17, 2013)
 
 - Moved preferences from menu bar to window

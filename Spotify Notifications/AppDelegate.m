@@ -4,6 +4,7 @@
 //
 
 #import "AppDelegate.h"
+#import "GBLaunchAtLogin.h"
 
 @implementation AppDelegate
 
@@ -13,6 +14,7 @@
 @synthesize soundToggle;
 @synthesize window;
 @synthesize iconToggle;
+@synthesize startupToggle;
 
 - (void)applicationDidFinishLaunching:(NSNotification *)notification{
         
@@ -27,7 +29,16 @@
     
     [soundToggle selectItemAtIndex:[self getProperty:@"notificationSound"]];
     [iconToggle selectItemAtIndex:[self getProperty:@"iconSelection"]];
+    [startupToggle selectItemAtIndex:[self getProperty:@"startupSelection"]];
     
+    if ([self getProperty:@"startupSelection"] == 0){
+        [GBLaunchAtLogin addAppAsLoginItem];
+    }
+    
+    if ([self getProperty:@"startupSelection"] == 1){
+        [GBLaunchAtLogin removeAppFromLoginItems];
+    }
+
 }
 
 - (IBAction)showAbout:(id)sender{
@@ -70,6 +81,19 @@
     
 }
 
+- (IBAction)toggleStartup:(id)sender{
+    
+    [self saveProperty:@"startupSelection" :(int)[startupToggle indexOfSelectedItem]];
+    
+    if ([self getProperty:@"startupSelection"] == 0){
+        [GBLaunchAtLogin addAppAsLoginItem];
+    }
+    
+    if ([self getProperty:@"startupSelection"] == 1){
+        [GBLaunchAtLogin removeAppFromLoginItems];
+    }
+
+}
 
 - (void)setIcon{
     

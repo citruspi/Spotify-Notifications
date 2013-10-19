@@ -13,9 +13,11 @@
 @property (strong, nonatomic) IBOutlet NSMenuItem *openPrefences;
 @property (strong, nonatomic) IBOutlet NSPopUpButton *soundToggle;
 @property (strong, nonatomic) IBOutlet NSPopUpButton *iconToggle;
+@property (strong, nonatomic) IBOutlet NSPopUpButton *startupToggle;
 
 - (IBAction)showAbout:(id)sender;
 - (IBAction)toggleIcons:(id)sender;
 - (IBAction)toggleSound:(id)sender;
+- (IBAction)toggleStartup:(id)sender;
 
 @end

@@ -29,11 +29,11 @@ THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR I
 
 ### GBLaunchAtLogin
 
-__GBLaunchAtLogin__ was used to implement the start on login and was written by @lmirosevic
+__GBLaunchAtLogin was used to implement the start on login and was written by @lmirosevic__
 
-                                 Apache License
-                           Version 2.0, January 2004
-                        http://www.apache.org/licenses/
+   Apache License
+   Version 2.0, January 2004
+   http://www.apache.org/licenses/
 
    TERMS AND CONDITIONS FOR USE, REPRODUCTION, AND DISTRIBUTION
 

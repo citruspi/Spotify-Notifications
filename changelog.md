@@ -1,3 +1,11 @@
+## v0.4.3 (October 20, 2013)
+
+- Disabled preference window visibility on startup
+
+## v0.4.2 (October 20, 2013)
+
+- Implemented open Spotify when the notification is clicked
+
 ## v0.4.1 (October 19, 2013)
 
 - Implemented start on login 

@@ -41,8 +41,16 @@
 
 }
 
-- (IBAction)showAbout:(id)sender{
-    [[NSWorkspace sharedWorkspace] openURL: [NSURL URLWithString:@"http://citruspi.github.io/Spotify-Notifications"]];
+- (IBAction)showSource:(id)sender{
+    [[NSWorkspace sharedWorkspace] openURL: [NSURL URLWithString:@"http://github.com/citruspi/Spotify-Notifications"]];
+}
+
+- (IBAction)showHome:(id)sender{
+    [[NSWorkspace sharedWorkspace] openURL: [NSURL URLWithString:@"http://mihirsingh.com/Spotify-Notifications"]];
+}
+
+- (IBAction)showAuthor:(id)sender{
+    [[NSWorkspace sharedWorkspace] openURL: [NSURL URLWithString:@"http://mihirsingh.com"]];
 }
 
 - (IBAction)showPrefences:(id)sender{

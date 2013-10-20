@@ -15,7 +15,10 @@
 @property (strong, nonatomic) IBOutlet NSPopUpButton *iconToggle;
 @property (strong, nonatomic) IBOutlet NSPopUpButton *startupToggle;
 
-- (IBAction)showAbout:(id)sender;
+- (IBAction)showHome:(id)sender;
+- (IBAction)showAuthor:(id)sender;
+- (IBAction)showSource:(id)sender;
+
 - (IBAction)toggleIcons:(id)sender;
 - (IBAction)toggleSound:(id)sender;
 - (IBAction)toggleStartup:(id)sender;

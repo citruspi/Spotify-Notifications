@@ -652,6 +652,7 @@
                 <outlet property="iconToggle" destination="36k-RY-ycT" id="iqL-uS-Kh5"/>
                 <outlet property="openPrefences" destination="61H-gV-eIG" id="GBH-Wk-wmZ"/>
                 <outlet property="soundToggle" destination="jB5-XW-fCl" id="Q6q-bI-u2H"/>
+                <outlet property="startupToggle" destination="rMI-2V-W99" id="Oc9-Ow-nwg"/>
                 <outlet property="statusMenu" destination="536" id="541"/>
                 <outlet property="window" destination="XjB-tk-5rO" id="MPl-O4-amO"/>
             </connections>
@@ -683,14 +684,14 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yJj-ud-kWM">
-                        <rect key="frame" x="191" y="7" width="84" height="32"/>
+                        <rect key="frame" x="191" y="7" width="83" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <buttonCell key="cell" type="push" title="GitHub" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="b1D-6Z-mU0">
+                        <buttonCell key="cell" type="push" title="Source" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="b1D-6Z-mU0">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
                         <connections>
-                            <action selector="showAbout:" target="494" id="9pG-GA-ttR"/>
+                            <action selector="showSource:" target="494" id="0eV-Gj-17K"/>
                         </connections>
                     </button>
                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mFp-lS-USE">
@@ -701,7 +702,7 @@
                             <font key="font" metaFont="system"/>
                         </buttonCell>
                         <connections>
-                            <action selector="showAbout:" target="494" id="A5c-BT-L9z"/>
+                            <action selector="showAuthor:" target="494" id="MjA-8T-a8A"/>
                         </connections>
                     </button>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nr8-cn-xxJ">
@@ -812,16 +813,19 @@
                             </menu>
                         </popUpButtonCell>
                         <connections>
-                            <action selector="toggleSound:" target="494" id="iIP-BA-Hxu"/>
+                            <action selector="toggleStartup:" target="494" id="D8d-Xy-UuL"/>
                         </connections>
                     </popUpButton>
                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1fO-7v-1tp">
                         <rect key="frame" x="6" y="7" width="78" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <buttonCell key="cell" type="push" title="Spotify" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="ewW-T4-CbL">
+                        <buttonCell key="cell" type="push" title="Home" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="ewW-T4-CbL">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
+                        <connections>
+                            <action selector="showHome:" target="494" id="nQ4-1S-77x"/>
+                        </connections>
                     </button>
                 </subviews>
             </view>

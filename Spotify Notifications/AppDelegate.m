@@ -63,6 +63,12 @@
     return YES;
 }
 
+- (void) userNotificationCenter:(NSUserNotificationCenter *)center didActivateNotification:(NSUserNotification *)notification
+{
+    NSLog(@"Clicked");
+    [[NSWorkspace sharedWorkspace] launchApplication:@"Spotify"];
+}
+
 - (void)eventOccured:(NSNotification *)notification{
     
     NSDictionary *information = [notification userInfo];

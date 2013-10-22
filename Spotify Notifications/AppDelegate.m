@@ -36,7 +36,7 @@ NSString *album;
     
     [self setIcon];
     
-    NSString *const kPreferenceGlobalShortcut = @"ShowCurrentSong";
+    NSString *const kPreferenceGlobalShortcut = @"ShowCurrentTrack";
     self.shortcutView.associatedUserDefaultsKey = kPreferenceGlobalShortcut;
     
     [MASShortcut registerGlobalShortcutWithUserDefaultsKey:kPreferenceGlobalShortcut handler:^{

@@ -32,3 +32,9 @@ THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR I
 __GBLaunchAtLogin was used to implement the start on login option and was written by @lmirosevic__
 
 It is published under the Apache 2.0 License, a copy of which is included.
+
+### MASShortcut
+
+__MASShortcut was used to implement the global shortcut and was written by @shpakovski__
+
+It is published under the 2-clause BSD license, a copy of which is included.

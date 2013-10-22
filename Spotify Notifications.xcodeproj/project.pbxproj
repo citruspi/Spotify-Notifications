@@ -62,6 +62,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		049BCBF318170F8E00743860 /* GBLaunchAtLogin */ = {
+			isa = PBXGroup;
+			children = (
+				04C5E40B1813445600956039 /* GBLaunchAtLogin.h */,
+				04C5E40C1813445600956039 /* GBLaunchAtLogin.m */,
+			);
+			name = GBLaunchAtLogin;
+			sourceTree = "<group>";
+		};
 		04A77B96170FC75200A50173 = {
 			isa = PBXGroup;
 			children = (
@@ -103,8 +112,7 @@
 		04A77BA8170FC75200A50173 /* Spotify Notifications */ = {
 			isa = PBXGroup;
 			children = (
-				04C5E40B1813445600956039 /* GBLaunchAtLogin.h */,
-				04C5E40C1813445600956039 /* GBLaunchAtLogin.m */,
+				049BCBF318170F8E00743860 /* GBLaunchAtLogin */,
 				AEAFCD7B1712D50B00F61F8D /* status_bar_black@2x.tiff */,
 				AEAFCD751712CD1200F61F8D /* status_bar_black.tiff */,
 				04A77BC217104FEE00A50173 /* status_bar_colour.tiff */,

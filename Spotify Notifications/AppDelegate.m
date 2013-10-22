@@ -5,6 +5,10 @@
 
 #import "AppDelegate.h"
 #import "GBLaunchAtLogin.h"
+#import "MASShortcutView.h"
+#import "MASShortcutView+UserDefaults.h"
+#import "MASShortcut+UserDefaults.h"
+#import "MASShortcut+Monitoring.h"
 
 @implementation AppDelegate
 
@@ -15,6 +19,7 @@
 @synthesize window;
 @synthesize iconToggle;
 @synthesize startupToggle;
+@synthesize shortcutView;
 
 - (void)applicationDidFinishLaunching:(NSNotification *)notification{
         
@@ -26,6 +31,15 @@
                                                           object:nil];
     
     [self setIcon];
+    
+    NSString *const kPreferenceGlobalShortcut = @"ShowCurrentSong";
+    self.shortcutView.associatedUserDefaultsKey = kPreferenceGlobalShortcut;
+    
+    [MASShortcut registerGlobalShortcutWithUserDefaultsKey:kPreferenceGlobalShortcut handler:^{
+        [[NSAlert alertWithMessageText:NSLocalizedString(@"Global hotkey has been pressed.", @"Alert message for custom shortcut")
+                         defaultButton:NSLocalizedString(@"OK", @"Default button for the alert on custom shortcut")
+                       alternateButton:nil otherButton:nil informativeTextWithFormat:@""] runModal];
+    }];
     
     [soundToggle selectItemAtIndex:[self getProperty:@"notificationSound"]];
     [iconToggle selectItemAtIndex:[self getProperty:@"iconSelection"]];

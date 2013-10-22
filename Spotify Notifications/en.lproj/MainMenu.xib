@@ -651,6 +651,7 @@
             <connections>
                 <outlet property="iconToggle" destination="36k-RY-ycT" id="iqL-uS-Kh5"/>
                 <outlet property="openPrefences" destination="61H-gV-eIG" id="GBH-Wk-wmZ"/>
+                <outlet property="shortcutView" destination="zbi-2N-Pgf" id="H7h-c9-67G"/>
                 <outlet property="soundToggle" destination="jB5-XW-fCl" id="Q6q-bI-u2H"/>
                 <outlet property="startupToggle" destination="rMI-2V-W99" id="Oc9-Ow-nwg"/>
                 <outlet property="statusMenu" destination="536" id="541"/>

@@ -3,6 +3,8 @@
 //  Spotify Notifications
 //
 
+@class MASShortcutView;
+
 #import <Cocoa/Cocoa.h>
 
 @interface AppDelegate : NSObject <NSApplicationDelegate, NSUserNotificationCenterDelegate, NSWindowDelegate>
@@ -14,6 +16,7 @@
 @property (strong, nonatomic) IBOutlet NSPopUpButton *soundToggle;
 @property (strong, nonatomic) IBOutlet NSPopUpButton *iconToggle;
 @property (strong, nonatomic) IBOutlet NSPopUpButton *startupToggle;
+@property (nonatomic, weak) IBOutlet MASShortcutView *shortcutView;
 
 - (IBAction)showHome:(id)sender;
 - (IBAction)showAuthor:(id)sender;

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0481818917E8626400E25950 /* status_bar_colour@2x.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 0481818817E8626400E25950 /* status_bar_colour@2x.tiff */; };
+		049BCBF218170F5E00743860 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 049BCBF118170F5E00743860 /* Carbon.framework */; };
 		04A77BA3170FC75200A50173 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04A77BA2170FC75200A50173 /* Cocoa.framework */; };
 		04A77BAD170FC75200A50173 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 04A77BAB170FC75200A50173 /* InfoPlist.strings */; };
 		04A77BAF170FC75200A50173 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A77BAE170FC75200A50173 /* main.m */; };
@@ -24,6 +25,7 @@
 
 /* Begin PBXFileReference section */
 		0481818817E8626400E25950 /* status_bar_colour@2x.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = "status_bar_colour@2x.tiff"; sourceTree = "<group>"; };
+		049BCBF118170F5E00743860 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
 		04A77B9F170FC75200A50173 /* Spotify Notifications.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Spotify Notifications.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		04A77BA2170FC75200A50173 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		04A77BA5170FC75200A50173 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -52,6 +54,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				049BCBF218170F5E00743860 /* Carbon.framework in Frameworks */,
 				04A77BA3170FC75200A50173 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -80,6 +83,7 @@
 		04A77BA1170FC75200A50173 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				049BCBF118170F5E00743860 /* Carbon.framework */,
 				04A77BA2170FC75200A50173 /* Cocoa.framework */,
 				04A77BA4170FC75200A50173 /* Other Frameworks */,
 			);

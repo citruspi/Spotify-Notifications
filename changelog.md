@@ -1,3 +1,7 @@
+## v0.4.4 (October 22, 2013)
+
+- Included global shortcut to show current track information
+
 ## v0.4.3 (October 20, 2013)
 
 - Disabled preference window visibility on startup

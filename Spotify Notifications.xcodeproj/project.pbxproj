@@ -9,6 +9,11 @@
 /* Begin PBXBuildFile section */
 		0481818917E8626400E25950 /* status_bar_colour@2x.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 0481818817E8626400E25950 /* status_bar_colour@2x.tiff */; };
 		049BCBF218170F5E00743860 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 049BCBF118170F5E00743860 /* Carbon.framework */; };
+		049BCC0F181710CE00743860 /* MASShortcut.m in Sources */ = {isa = PBXBuildFile; fileRef = 049BCC06181710CE00743860 /* MASShortcut.m */; };
+		049BCC10181710CE00743860 /* MASShortcut+Monitoring.m in Sources */ = {isa = PBXBuildFile; fileRef = 049BCC08181710CE00743860 /* MASShortcut+Monitoring.m */; };
+		049BCC11181710CE00743860 /* MASShortcut+UserDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = 049BCC0A181710CE00743860 /* MASShortcut+UserDefaults.m */; };
+		049BCC12181710CE00743860 /* MASShortcutView.m in Sources */ = {isa = PBXBuildFile; fileRef = 049BCC0C181710CE00743860 /* MASShortcutView.m */; };
+		049BCC13181710CE00743860 /* MASShortcutView+UserDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = 049BCC0E181710CE00743860 /* MASShortcutView+UserDefaults.m */; };
 		04A77BA3170FC75200A50173 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04A77BA2170FC75200A50173 /* Cocoa.framework */; };
 		04A77BAD170FC75200A50173 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 04A77BAB170FC75200A50173 /* InfoPlist.strings */; };
 		04A77BAF170FC75200A50173 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A77BAE170FC75200A50173 /* main.m */; };
@@ -26,6 +31,16 @@
 /* Begin PBXFileReference section */
 		0481818817E8626400E25950 /* status_bar_colour@2x.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = "status_bar_colour@2x.tiff"; sourceTree = "<group>"; };
 		049BCBF118170F5E00743860 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
+		049BCC05181710CE00743860 /* MASShortcut.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASShortcut.h; sourceTree = "<group>"; };
+		049BCC06181710CE00743860 /* MASShortcut.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MASShortcut.m; sourceTree = "<group>"; };
+		049BCC07181710CE00743860 /* MASShortcut+Monitoring.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MASShortcut+Monitoring.h"; sourceTree = "<group>"; };
+		049BCC08181710CE00743860 /* MASShortcut+Monitoring.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MASShortcut+Monitoring.m"; sourceTree = "<group>"; };
+		049BCC09181710CE00743860 /* MASShortcut+UserDefaults.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MASShortcut+UserDefaults.h"; sourceTree = "<group>"; };
+		049BCC0A181710CE00743860 /* MASShortcut+UserDefaults.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MASShortcut+UserDefaults.m"; sourceTree = "<group>"; };
+		049BCC0B181710CE00743860 /* MASShortcutView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASShortcutView.h; sourceTree = "<group>"; };
+		049BCC0C181710CE00743860 /* MASShortcutView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MASShortcutView.m; sourceTree = "<group>"; };
+		049BCC0D181710CE00743860 /* MASShortcutView+UserDefaults.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MASShortcutView+UserDefaults.h"; sourceTree = "<group>"; };
+		049BCC0E181710CE00743860 /* MASShortcutView+UserDefaults.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MASShortcutView+UserDefaults.m"; sourceTree = "<group>"; };
 		04A77B9F170FC75200A50173 /* Spotify Notifications.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Spotify Notifications.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		04A77BA2170FC75200A50173 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		04A77BA5170FC75200A50173 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -82,6 +97,23 @@
 			name = "Status Bar Images";
 			sourceTree = "<group>";
 		};
+		049BCC14181710D500743860 /* MASShortcut */ = {
+			isa = PBXGroup;
+			children = (
+				049BCC05181710CE00743860 /* MASShortcut.h */,
+				049BCC06181710CE00743860 /* MASShortcut.m */,
+				049BCC07181710CE00743860 /* MASShortcut+Monitoring.h */,
+				049BCC08181710CE00743860 /* MASShortcut+Monitoring.m */,
+				049BCC09181710CE00743860 /* MASShortcut+UserDefaults.h */,
+				049BCC0A181710CE00743860 /* MASShortcut+UserDefaults.m */,
+				049BCC0B181710CE00743860 /* MASShortcutView.h */,
+				049BCC0C181710CE00743860 /* MASShortcutView.m */,
+				049BCC0D181710CE00743860 /* MASShortcutView+UserDefaults.h */,
+				049BCC0E181710CE00743860 /* MASShortcutView+UserDefaults.m */,
+			);
+			name = MASShortcut;
+			sourceTree = "<group>";
+		};
 		04A77B96170FC75200A50173 = {
 			isa = PBXGroup;
 			children = (
@@ -125,6 +157,7 @@
 			children = (
 				049BCBF318170F8E00743860 /* GBLaunchAtLogin */,
 				049BCBF418170FBC00743860 /* Status Bar Images */,
+				049BCC14181710D500743860 /* MASShortcut */,
 				04A77BC1170FC7E600A50173 /* Spotify Notifications.entitlements */,
 				04A77BB4170FC75200A50173 /* AppDelegate.h */,
 				04A77BB5170FC75200A50173 /* AppDelegate.m */,
@@ -227,7 +260,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				049BCC11181710CE00743860 /* MASShortcut+UserDefaults.m in Sources */,
+				049BCC10181710CE00743860 /* MASShortcut+Monitoring.m in Sources */,
 				04A77BAF170FC75200A50173 /* main.m in Sources */,
+				049BCC13181710CE00743860 /* MASShortcutView+UserDefaults.m in Sources */,
+				049BCC0F181710CE00743860 /* MASShortcut.m in Sources */,
+				049BCC12181710CE00743860 /* MASShortcutView.m in Sources */,
 				04A77BB6170FC75200A50173 /* AppDelegate.m in Sources */,
 				04C5E40D1813445600956039 /* GBLaunchAtLogin.m in Sources */,
 			);

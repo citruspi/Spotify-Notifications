@@ -71,6 +71,17 @@
 			name = GBLaunchAtLogin;
 			sourceTree = "<group>";
 		};
+		049BCBF418170FBC00743860 /* Status Bar Images */ = {
+			isa = PBXGroup;
+			children = (
+				AEAFCD7B1712D50B00F61F8D /* status_bar_black@2x.tiff */,
+				AEAFCD751712CD1200F61F8D /* status_bar_black.tiff */,
+				04A77BC217104FEE00A50173 /* status_bar_colour.tiff */,
+				0481818817E8626400E25950 /* status_bar_colour@2x.tiff */,
+			);
+			name = "Status Bar Images";
+			sourceTree = "<group>";
+		};
 		04A77B96170FC75200A50173 = {
 			isa = PBXGroup;
 			children = (
@@ -113,10 +124,7 @@
 			isa = PBXGroup;
 			children = (
 				049BCBF318170F8E00743860 /* GBLaunchAtLogin */,
-				AEAFCD7B1712D50B00F61F8D /* status_bar_black@2x.tiff */,
-				AEAFCD751712CD1200F61F8D /* status_bar_black.tiff */,
-				04A77BC217104FEE00A50173 /* status_bar_colour.tiff */,
-				0481818817E8626400E25950 /* status_bar_colour@2x.tiff */,
+				049BCBF418170FBC00743860 /* Status Bar Images */,
 				04A77BC1170FC7E600A50173 /* Spotify Notifications.entitlements */,
 				04A77BB4170FC75200A50173 /* AppDelegate.h */,
 				04A77BB5170FC75200A50173 /* AppDelegate.m */,

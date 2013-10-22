@@ -21,6 +21,10 @@
 @synthesize startupToggle;
 @synthesize shortcutView;
 
+NSString *artist;
+NSString *track;
+NSString *album;
+
 - (void)applicationDidFinishLaunching:(NSNotification *)notification{
         
     [[NSUserNotificationCenter defaultUserNotificationCenter] setDelegate:self];
@@ -36,9 +40,16 @@
     self.shortcutView.associatedUserDefaultsKey = kPreferenceGlobalShortcut;
     
     [MASShortcut registerGlobalShortcutWithUserDefaultsKey:kPreferenceGlobalShortcut handler:^{
-        [[NSAlert alertWithMessageText:NSLocalizedString(@"Global hotkey has been pressed.", @"Alert message for custom shortcut")
-                         defaultButton:NSLocalizedString(@"OK", @"Default button for the alert on custom shortcut")
-                       alternateButton:nil otherButton:nil informativeTextWithFormat:@""] runModal];
+        NSUserNotification *notification = [[NSUserNotification alloc] init];
+        notification.title = track;
+        notification.subtitle = album;
+        notification.informativeText = artist;
+        
+        if ([self getProperty:@"notificationSound"] == 0){
+            notification.soundName = NSUserNotificationDefaultSoundName;
+        }
+        
+        [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
     }];
     
     [soundToggle selectItemAtIndex:[self getProperty:@"notificationSound"]];
@@ -89,10 +100,14 @@
     
     if ([[information objectForKey: @"Player State"]isEqualToString:@"Playing"]){
         
+        artist = [information objectForKey: @"Artist"];
+        album = [information objectForKey: @"Album"];
+        track = [information objectForKey: @"Name"];
+        
         NSUserNotification *notification = [[NSUserNotification alloc] init];
-        notification.title = [information objectForKey: @"Name"];
-        notification.subtitle = [information objectForKey: @"Album"];
-        notification.informativeText = [information objectForKey: @"Artist"];
+        notification.title = track;
+        notification.subtitle = album;
+        notification.informativeText = artist;
 
         if ([self getProperty:@"notificationSound"] == 0){
             notification.soundName = NSUserNotificationDefaultSoundName;

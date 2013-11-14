@@ -24,6 +24,7 @@
 NSString *artist;
 NSString *track;
 NSString *album;
+NSImage *art;
 
 - (void)applicationDidFinishLaunching:(NSNotification *)notification{
         
@@ -44,6 +45,9 @@ NSString *album;
         notification.title = track;
         notification.subtitle = album;
         notification.informativeText = artist;
+        
+        if (art)
+            notification.contentImage = art;
         
         if ([self getProperty:@"notificationSound"] == 0){
             notification.soundName = NSUserNotificationDefaultSoundName;
@@ -104,10 +108,30 @@ NSString *album;
         album = [information objectForKey: @"Album"];
         track = [information objectForKey: @"Name"];
         
+        NSString *trackId = [information objectForKey:@"Track ID"];
+        if (trackId){
+            NSString *metaLoc = [NSString stringWithFormat:@"https://embed.spotify.com/oembed/?url=%@",trackId];
+            NSURL *metaReq = [NSURL URLWithString:metaLoc];
+            NSData *metaD = [NSData dataWithContentsOfURL:metaReq];
+            
+            if (metaD){
+                NSError *error;
+                NSDictionary *meta = [NSJSONSerialization JSONObjectWithData:metaD options:NSJSONReadingAllowFragments error:&error];
+                NSURL *artReq = [NSURL URLWithString:[meta objectForKey:@"thumbnail_url"]];
+                NSData *artD = [NSData dataWithContentsOfURL:artReq];
+                if (artD)
+                    art = [[NSImage alloc] initWithData:artD];
+            }
+        }
+        
+        
         NSUserNotification *notification = [[NSUserNotification alloc] init];
         notification.title = track;
         notification.subtitle = album;
         notification.informativeText = artist;
+        
+        if (art)
+            notification.contentImage = art;
 
         if ([self getProperty:@"notificationSound"] == 0){
             notification.soundName = NSUserNotificationDefaultSoundName;

@@ -12,6 +12,7 @@ Spotify Notifications does nothing more than display a notification every time
 ## Contributors
 
 - Raphael Jasjukaitis ([raphaa](http://github.com/raphaa))
+- James Snee ([jamessnee](https://github.com/jamessnee))
 
 ## License
 

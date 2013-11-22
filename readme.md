@@ -1,3 +1,5 @@
+Edited by Dan Fortunato. You can now choose only to be notified of new tracks that begin playing (so no notifications will be displayed if you play/pause the current track).
+
 ## Spotify Notifications
 
 Spotify Notifications does nothing more than display a notification every time

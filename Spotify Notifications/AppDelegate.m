@@ -19,15 +19,19 @@
 @synthesize window;
 @synthesize iconToggle;
 @synthesize startupToggle;
+@synthesize showTracksToggle;
 @synthesize shortcutView;
 
 NSString *artist;
 NSString *track;
 NSString *album;
 NSImage *art;
+NSString *lastTrackId;
 
 - (void)applicationDidFinishLaunching:(NSNotification *)notification{
-        
+    
+    lastTrackId = @"";
+    
     [[NSUserNotificationCenter defaultUserNotificationCenter] setDelegate:self];
     
     [[NSDistributedNotificationCenter defaultCenter] addObserver:self
@@ -59,6 +63,7 @@ NSImage *art;
     [soundToggle selectItemAtIndex:[self getProperty:@"notificationSound"]];
     [iconToggle selectItemAtIndex:[self getProperty:@"iconSelection"]];
     [startupToggle selectItemAtIndex:[self getProperty:@"startupSelection"]];
+    [showTracksToggle selectItemAtIndex:[self getProperty:@"showTracks"]];
     
     if ([self getProperty:@"startupSelection"] == 0){
         [GBLaunchAtLogin addAppAsLoginItem];
@@ -109,42 +114,51 @@ NSImage *art;
         track = [information objectForKey: @"Name"];
         
         NSString *trackId = [information objectForKey:@"Track ID"];
-        if (trackId){
-            NSString *metaLoc = [NSString stringWithFormat:@"https://embed.spotify.com/oembed/?url=%@",trackId];
-            NSURL *metaReq = [NSURL URLWithString:metaLoc];
-            NSData *metaD = [NSData dataWithContentsOfURL:metaReq];
-            
-            if (metaD){
-                NSError *error;
-                NSDictionary *meta = [NSJSONSerialization JSONObjectWithData:metaD options:NSJSONReadingAllowFragments error:&error];
-                NSURL *artReq = [NSURL URLWithString:[meta objectForKey:@"thumbnail_url"]];
-                NSData *artD = [NSData dataWithContentsOfURL:artReq];
-                if (artD)
-                    art = [[NSImage alloc] initWithData:artD];
+        
+        if (![lastTrackId isEqualToString:trackId] || [self getProperty:@"showTracks"] == 0) {
+            lastTrackId = trackId;
+            if (trackId){
+                NSString *metaLoc = [NSString stringWithFormat:@"https://embed.spotify.com/oembed/?url=%@",trackId];
+                NSURL *metaReq = [NSURL URLWithString:metaLoc];
+                NSData *metaD = [NSData dataWithContentsOfURL:metaReq];
+                
+                if (metaD){
+                    NSError *error;
+                    NSDictionary *meta = [NSJSONSerialization JSONObjectWithData:metaD options:NSJSONReadingAllowFragments error:&error];
+                    NSURL *artReq = [NSURL URLWithString:[meta objectForKey:@"thumbnail_url"]];
+                    NSData *artD = [NSData dataWithContentsOfURL:artReq];
+                    if (artD)
+                        art = [[NSImage alloc] initWithData:artD];
+                }
             }
+        
+            NSUserNotification *notification = [[NSUserNotification alloc] init];
+            notification.title = track;
+            notification.subtitle = album;
+            notification.informativeText = artist;
+            
+            if (art)
+                notification.contentImage = art;
+
+            if ([self getProperty:@"notificationSound"] == 0){
+                notification.soundName = NSUserNotificationDefaultSoundName;
+            }
+
+            [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
+            
         }
-        
-        
-        NSUserNotification *notification = [[NSUserNotification alloc] init];
-        notification.title = track;
-        notification.subtitle = album;
-        notification.informativeText = artist;
-        
-        if (art)
-            notification.contentImage = art;
-
-        if ([self getProperty:@"notificationSound"] == 0){
-            notification.soundName = NSUserNotificationDefaultSoundName;
-        }
-
-        [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
-
     }
 }
 
 - (IBAction)toggleSound:(id)sender{
     
     [self saveProperty:@"notificationSound" :(int)[soundToggle indexOfSelectedItem]];
+    
+}
+
+- (IBAction)toggleShowTracks:(id)sender{
+    
+    [self saveProperty:@"showTracks" :(int)[showTracksToggle indexOfSelectedItem]];
     
 }
 

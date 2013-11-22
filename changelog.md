@@ -1,3 +1,8 @@
+## v0.4.5 (November 22, 2013)
+
+- Added album art to notifcations
+- Added an option to only show notifications for new tracks
+
 ## v0.4.4 (October 22, 2013)
 
 - Included global shortcut to show current track information

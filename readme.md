@@ -1,10 +1,8 @@
-Edited by Dan Fortunato. You can now choose only to be notified of new tracks that begin playing (so no notifications will be displayed if you play/pause the current track).
-
 ## Spotify Notifications
 
-Spotify Notifications does nothing more than display a notification every time
+Spotify Notifications does nothing more than display a notification when
 
-- a song goes from "paused" to "playing"
+- a song goes from "paused" to "playing" _(optional)_
 - a new song is played
 
 ## Authors
@@ -15,6 +13,7 @@ Spotify Notifications does nothing more than display a notification every time
 
 - Raphael Jasjukaitis ([raphaa](http://github.com/raphaa))
 - James Snee ([jamessnee](https://github.com/jamessnee))
+- Daniel Fortunato ([danfortunato](https://github.com/danfortunato))
 
 ## License
 

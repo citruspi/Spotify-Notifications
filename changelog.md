@@ -1,7 +1,7 @@
 ## v0.4.5 (November 22, 2013)
 
-- Added album art to notifcations
-- Added an option to only show notifications for new tracks
+- Added album art to notifcations (implemented by [jamessnee](https://github.com/jamessnee))
+- Added an option to only show notifications for new tracks (implemented by [danfortunato](https://github.com/danfortunato))
 
 ## v0.4.4 (October 22, 2013)
 
@@ -26,11 +26,11 @@
 
 ## v0.3.1 (March 8, 2013)
 
-- Added Retina version of colored icon
+- Added Retina version of colored icon (implemented by [raphaa](https://github.com/raphaa))
 
 ## v0.3 (March 8, 2013)
 
-- Added black menu bar icon (thanks @raphaa!)
+- Added black menu bar icon (implemented by [raphaa](https://github.com/raphaa))
 - Removed extra icon files (.pxm and .png)
 
 ## v0.2 (March 7, 2013)

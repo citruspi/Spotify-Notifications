@@ -28,6 +28,8 @@ NSString *album;
 NSImage *art;
 NSString *lastTrackId;
 
+SInt32 OSXversionMajor, OSXversionMinor;
+
 - (void)applicationDidFinishLaunching:(NSNotification *)notification{
     
     lastTrackId = @"";
@@ -50,8 +52,15 @@ NSString *lastTrackId;
         notification.subtitle = album;
         notification.informativeText = artist;
         
-        if (art)
-            notification.contentImage = art;
+        if(Gestalt(gestaltSystemVersionMajor, &OSXversionMajor) == noErr && Gestalt(gestaltSystemVersionMinor, &OSXversionMinor) == noErr)
+        {
+            if(OSXversionMajor == 10 && OSXversionMinor >= 9)
+            {
+                if (art)
+                    notification.contentImage = art;
+                
+            }
+        }
         
         if ([self getProperty:@"notificationSound"] == 0){
             notification.soundName = NSUserNotificationDefaultSoundName;
@@ -137,9 +146,16 @@ NSString *lastTrackId;
             notification.subtitle = album;
             notification.informativeText = artist;
             
-            if (art)
-                notification.contentImage = art;
+            if(Gestalt(gestaltSystemVersionMajor, &OSXversionMajor) == noErr && Gestalt(gestaltSystemVersionMinor, &OSXversionMinor) == noErr)
+            {
+                if(OSXversionMajor == 10 && OSXversionMinor >= 9)
+                {
+                    if (art)
+                        notification.contentImage = art;
 
+                }
+            }
+            
             if ([self getProperty:@"notificationSound"] == 0){
                 notification.soundName = NSUserNotificationDefaultSoundName;
             }

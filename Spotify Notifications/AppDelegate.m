@@ -85,6 +85,16 @@ SInt32 OSXversionMajor, OSXversionMinor;
 
 }
 
+- (BOOL)applicationShouldHandleReopen:(NSApplication *)sender hasVisibleWindows:(BOOL)flag{
+    if (!flag) {
+        // This makes it so you can open the preferences by reopning the app
+        // This way you can get to the preferences even when the status item is hidden
+        [self showPrefences:nil];
+    }
+    
+    return YES;
+}
+
 - (IBAction)showSource:(id)sender{
     [[NSWorkspace sharedWorkspace] openURL: [NSURL URLWithString:@"http://github.com/citruspi/Spotify-Notifications"]];
 }

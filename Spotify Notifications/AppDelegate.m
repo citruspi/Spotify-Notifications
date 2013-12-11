@@ -39,7 +39,8 @@ SInt32 OSXversionMajor, OSXversionMinor;
     [[NSDistributedNotificationCenter defaultCenter] addObserver:self
                                                         selector:@selector(eventOccured:)
                                                             name:@"com.spotify.client.PlaybackStateChanged"
-                                                          object:nil];
+                                                          object:nil
+                                              suspensionBehavior:NSNotificationSuspensionBehaviorDeliverImmediately];
     
     [self setIcon];
     

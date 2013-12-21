@@ -1,3 +1,7 @@
+### 0.4.7 (December 21, 2013)
+
+- Fixed lagging notifications (implemented by [ksuther](https://github.com/ksuther))
+
 ### 0.4.6 (November 27, 2013)
 
 - Fixed bug in OS X 10.8 and below which caused notifications not to be displayed (thanks to [gostaj](https://github.com/gostaj) for submitting a bug report)

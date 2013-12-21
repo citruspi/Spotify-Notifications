@@ -14,6 +14,7 @@ Spotify Notifications does nothing more than display a notification when
 - Raphael Jasjukaitis ([raphaa](http://github.com/raphaa))
 - James Snee ([jamessnee](https://github.com/jamessnee))
 - Daniel Fortunato ([danfortunato](https://github.com/danfortunato))
+- Kent Sutherland ([ksuther](https://github.com/ksuther))
 
 ## License
 

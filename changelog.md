@@ -1,3 +1,7 @@
+### 0.4.8 (December 22, 2013)
+
+- Fixed preferences window not properly opening (implemented by [ksuther](https://github.com/ksuther))
+
 ### 0.4.7 (December 21, 2013)
 
 - Fixed lagging notifications (implemented by [ksuther](https://github.com/ksuther))

@@ -9,6 +9,7 @@
 #import "MASShortcutView+UserDefaults.h"
 #import "MASShortcut+UserDefaults.h"
 #import "MASShortcut+Monitoring.h"
+#import "SNXTrack.h"
 
 @implementation AppDelegate
 
@@ -24,10 +25,8 @@
 
 BOOL *UserNotificationContentImagePropertyAvailable;
 
-NSString *artist;
-NSString *track;
-NSString *album;
-NSImage *art;
+Track *track;
+
 NSString *lastTrackId;
 
 - (void)applicationDidFinishLaunching:(NSNotification *)notification {
@@ -48,7 +47,9 @@ NSString *lastTrackId;
 
         }
 
-    }    
+    }
+    
+    track = [[Track alloc] init];
     
     lastTrackId = @"";
     
@@ -90,14 +91,14 @@ NSString *lastTrackId;
     [MASShortcut registerGlobalShortcutWithUserDefaultsKey:kPreferenceGlobalShortcut handler:^{
         
         NSUserNotification *notification = [[NSUserNotification alloc] init];
-        notification.title = track;
-        notification.subtitle = album;
-        notification.informativeText = artist;
+        notification.title = track.title;
+        notification.subtitle = track.album;
+        notification.informativeText = track.artist;
         
         if ((UserNotificationContentImagePropertyAvailable) &&
-            (art)) {
+            (track.albumArt)) {
             
-            notification.contentImage = art;
+            notification.contentImage = track.albumArt;
             
         }
         
@@ -108,7 +109,7 @@ NSString *lastTrackId;
         }
         
         [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
-        art = nil;
+        track.albumArt = nil;
         
     }];
     
@@ -173,9 +174,9 @@ NSString *lastTrackId;
     
     if ([[information objectForKey: @"Player State"]isEqualToString:@"Playing"]) {
         
-        artist = [information objectForKey: @"Artist"];
-        album = [information objectForKey: @"Album"];
-        track = [information objectForKey: @"Name"];
+        track.artist = [information objectForKey: @"Artist"];
+        track.album = [information objectForKey: @"Album"];
+        track.title = [information objectForKey: @"Name"];
         
         NSString *trackId = [information objectForKey:@"Track ID"];
         
@@ -198,21 +199,21 @@ NSString *lastTrackId;
                     
                     if (artD) {
 
-                        art = [[NSImage alloc] initWithData:artD];
+                        track.albumArt = [[NSImage alloc] initWithData:artD];
                         
                     }
                 }
             }
         
             NSUserNotification *notification = [[NSUserNotification alloc] init];
-            notification.title = track;
-            notification.subtitle = album;
-            notification.informativeText = artist;
+            notification.title = track.title;
+            notification.subtitle = track.album;
+            notification.informativeText = track.artist;
             
             if ((UserNotificationContentImagePropertyAvailable) &&
-                (art)) {
+                (track.albumArt)) {
 
-                notification.contentImage = art;
+                notification.contentImage = track.albumArt;
 
             }
             
@@ -223,7 +224,7 @@ NSString *lastTrackId;
             }
 
             [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
-            art = nil;
+            track.albumArt = nil;
             
         }
     }

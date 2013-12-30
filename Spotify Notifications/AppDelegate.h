@@ -17,7 +17,7 @@
 @property (strong, nonatomic) IBOutlet NSPopUpButton *iconToggle;
 @property (strong, nonatomic) IBOutlet NSPopUpButton *startupToggle;
 @property (strong, nonatomic) IBOutlet NSPopUpButton *showTracksToggle;
-@property (nonatomic, weak) IBOutlet MASShortcutView *shortcutView;
+@property (weak, nonatomic) IBOutlet MASShortcutView *shortcutView;
 
 - (IBAction)showHome:(id)sender;
 - (IBAction)showAuthor:(id)sender;

@@ -68,7 +68,7 @@ build/
 #####
 # Xcode 5 VCS Metatdata
 
-.xccheckout
+*.xccheckout
 
 #####
 # Xcode private settings (window sizes, bookmarks, breakpoints, custom executables, smart groups)

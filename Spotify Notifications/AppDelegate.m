@@ -108,6 +108,7 @@ NSString *lastTrackId;
         }
         
         [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
+        art = nil;
         
     }];
     
@@ -222,6 +223,7 @@ NSString *lastTrackId;
             }
 
             [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
+            art = nil;
             
         }
     }

@@ -61,33 +61,7 @@ NSString *lastTrackId;
                                               suspensionBehavior:NSNotificationSuspensionBehaviorDeliverImmediately];
     
     [self setIcon];
-    
-    NSString *const kPreferenceGlobalShortcut = @"ShowCurrentTrack";
-    self.shortcutView.associatedUserDefaultsKey = kPreferenceGlobalShortcut;
-    
-    [MASShortcut registerGlobalShortcutWithUserDefaultsKey:kPreferenceGlobalShortcut handler:^{
-        
-        NSUserNotification *notification = [[NSUserNotification alloc] init];
-        notification.title = track;
-        notification.subtitle = album;
-        notification.informativeText = artist;
-
-        if ((UserNotificationContentImagePropertyAvailable) &&
-            (art)) {
-
-            notification.contentImage = art;
-
-        }
-        
-        if ([self getProperty:@"notificationSound"] == 0) {
-
-            notification.soundName = NSUserNotificationDefaultSoundName;
-
-        }
-        
-        [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
-        
-    }];
+    [self setupGlobalShortcutForNotifications];
     
     [soundToggle selectItemAtIndex:[self getProperty:@"notificationSound"]];
     [iconToggle selectItemAtIndex:[self getProperty:@"iconSelection"]];
@@ -106,6 +80,37 @@ NSString *lastTrackId;
         
     }
 
+}
+
+- (void)setupGlobalShortcutForNotifications {
+    
+    NSString *const kPreferenceGlobalShortcut = @"ShowCurrentTrack";
+    self.shortcutView.associatedUserDefaultsKey = kPreferenceGlobalShortcut;
+    
+    [MASShortcut registerGlobalShortcutWithUserDefaultsKey:kPreferenceGlobalShortcut handler:^{
+        
+        NSUserNotification *notification = [[NSUserNotification alloc] init];
+        notification.title = track;
+        notification.subtitle = album;
+        notification.informativeText = artist;
+        
+        if ((UserNotificationContentImagePropertyAvailable) &&
+            (art)) {
+            
+            notification.contentImage = art;
+            
+        }
+        
+        if ([self getProperty:@"notificationSound"] == 0) {
+            
+            notification.soundName = NSUserNotificationDefaultSoundName;
+            
+        }
+        
+        [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
+        
+    }];
+    
 }
 
 - (BOOL)applicationShouldHandleReopen:(NSApplication *)sender hasVisibleWindows:(BOOL)flag {

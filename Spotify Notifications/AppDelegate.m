@@ -22,15 +22,33 @@
 @synthesize showTracksToggle;
 @synthesize shortcutView;
 
+BOOL *UserNotificationContentImagePropertyAvailable;
+
 NSString *artist;
 NSString *track;
 NSString *album;
 NSImage *art;
 NSString *lastTrackId;
 
-SInt32 OSXversionMajor, OSXversionMinor;
-
 - (void)applicationDidFinishLaunching:(NSNotification *)notification {
+
+    SInt32 OSXversionMajor, OSXversionMinor;
+
+    if (Gestalt(gestaltSystemVersionMajor, &OSXversionMajor) == noErr && Gestalt(gestaltSystemVersionMinor, &OSXversionMinor) == noErr) {
+
+        if(OSXversionMajor == 10 && OSXversionMinor >= 9) {
+      
+            UserNotificationContentImagePropertyAvailable = YES;  
+
+        }
+
+        else {
+
+            UserNotificationContentImagePropertyAvailable = NO;
+
+        }
+
+    }    
     
     lastTrackId = @"";
     
@@ -53,19 +71,12 @@ SInt32 OSXversionMajor, OSXversionMinor;
         notification.title = track;
         notification.subtitle = album;
         notification.informativeText = artist;
-        
-        if(Gestalt(gestaltSystemVersionMajor, &OSXversionMajor) == noErr && Gestalt(gestaltSystemVersionMinor, &OSXversionMinor) == noErr) {
 
-            if(OSXversionMajor == 10 && OSXversionMinor >= 9) {
-                
-                if (art) {
+        if ((UserNotificationContentImagePropertyAvailable) &&
+            (art)) {
 
-                    notification.contentImage = art;
+            notification.contentImage = art;
 
-                }
-                
-            }
-            
         }
         
         if ([self getProperty:@"notificationSound"] == 0) {
@@ -143,7 +154,7 @@ SInt32 OSXversionMajor, OSXversionMinor;
     
 }
 
-- (void) userNotificationCenter:(NSUserNotificationCenter *)center didActivateNotification:(NSUserNotification *)notification {
+- (void)userNotificationCenter:(NSUserNotificationCenter *)center didActivateNotification:(NSUserNotification *)notification {
 
     NSLog(@"Clicked");
     [[NSWorkspace sharedWorkspace] launchApplication:@"Spotify"];
@@ -192,18 +203,11 @@ SInt32 OSXversionMajor, OSXversionMinor;
             notification.subtitle = album;
             notification.informativeText = artist;
             
-            if (Gestalt(gestaltSystemVersionMajor, &OSXversionMajor) == noErr && Gestalt(gestaltSystemVersionMinor, &OSXversionMinor) == noErr) {
+            if ((UserNotificationContentImagePropertyAvailable) &&
+                (art)) {
 
-                if (OSXversionMajor == 10 && OSXversionMinor >= 9) {
+                notification.contentImage = art;
 
-                    if (art) {
-
-                        notification.contentImage = art;
-                        
-                    }
-
-                }
-                
             }
             
             if ([self getProperty:@"notificationSound"] == 0) {

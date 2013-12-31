@@ -16,4 +16,6 @@
 @property (copy) NSImage *albumArt;
 @property (copy) NSString *trackID;
 
+- (void)fetchAlbumArt;
+
 @end

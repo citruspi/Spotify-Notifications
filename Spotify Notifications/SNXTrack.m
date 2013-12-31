@@ -16,4 +16,29 @@
 @synthesize albumArt = _albumArt;
 @synthesize trackID = _trackID;
 
+- (void)fetchAlbumArt {
+
+    if (_trackID) {
+        
+        NSString *metaLoc = [NSString stringWithFormat:@"https://embed.spotify.com/oembed/?url=%@",_trackID];
+        NSURL *metaReq = [NSURL URLWithString:metaLoc];
+        NSData *metaD = [NSData dataWithContentsOfURL:metaReq];
+        
+        if (metaD) {
+            
+            NSError *error;
+            NSDictionary *meta = [NSJSONSerialization JSONObjectWithData:metaD options:NSJSONReadingAllowFragments error:&error];
+            NSURL *artReq = [NSURL URLWithString:[meta objectForKey:@"thumbnail_url"]];
+            NSData *artD = [NSData dataWithContentsOfURL:artReq];
+            
+            if (artD) {
+                
+                _albumArt = [[NSImage alloc] initWithData:artD];
+                
+            }
+        }
+    }
+    
+}
+
 @end

@@ -169,7 +169,7 @@ NSString *previousTrack;
 }
 
 - (void)eventOccured:(NSNotification *)notification {
-    
+        
     NSDictionary *information = [notification userInfo];
     
     if ([[information objectForKey: @"Player State"]isEqualToString:@"Playing"]) {
@@ -183,27 +183,6 @@ NSString *previousTrack;
             
             previousTrack = track.trackID;
             track.albumArt = nil;
-            
-            if (track.trackID) {
-                
-                NSString *metaLoc = [NSString stringWithFormat:@"https://embed.spotify.com/oembed/?url=%@",track.trackID];
-                NSURL *metaReq = [NSURL URLWithString:metaLoc];
-                NSData *metaD = [NSData dataWithContentsOfURL:metaReq];
-                
-                if (metaD) {
-                    
-                    NSError *error;
-                    NSDictionary *meta = [NSJSONSerialization JSONObjectWithData:metaD options:NSJSONReadingAllowFragments error:&error];
-                    NSURL *artReq = [NSURL URLWithString:[meta objectForKey:@"thumbnail_url"]];
-                    NSData *artD = [NSData dataWithContentsOfURL:artReq];
-                    
-                    if (artD) {
-
-                        track.albumArt = [[NSImage alloc] initWithData:artD];
-                        
-                    }
-                }
-            }
         
             NSUserNotification *notification = [[NSUserNotification alloc] init];
             notification.title = track.title;
@@ -213,6 +192,7 @@ NSString *previousTrack;
             if ((UserNotificationContentImagePropertyAvailable) &&
                 (track.albumArt)) {
 
+                [track fetchAlbumArt];
                 notification.contentImage = track.albumArt;
 
             }

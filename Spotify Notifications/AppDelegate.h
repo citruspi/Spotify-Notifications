@@ -17,6 +17,7 @@
 @property (strong, nonatomic) IBOutlet NSPopUpButton *iconToggle;
 @property (strong, nonatomic) IBOutlet NSPopUpButton *startupToggle;
 @property (strong, nonatomic) IBOutlet NSPopUpButton *showTracksToggle;
+@property (strong, nonatomic) IBOutlet NSPopUpButton *albumArtToggle;
 @property (weak, nonatomic) IBOutlet MASShortcutView *shortcutView;
 
 - (IBAction)showHome:(id)sender;
@@ -27,5 +28,6 @@
 - (IBAction)toggleSound:(id)sender;
 - (IBAction)toggleStartup:(id)sender;
 - (IBAction)toggleShowTracks:(id)sender;
+- (IBAction)toggleAlbumArt:(id)sender;
 
 @end

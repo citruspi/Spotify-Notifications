@@ -22,6 +22,7 @@
 @synthesize startupToggle;
 @synthesize showTracksToggle;
 @synthesize shortcutView;
+@synthesize albumArtToggle;
 
 BOOL *UserNotificationContentImagePropertyAvailable;
 
@@ -68,6 +69,14 @@ NSString *previousTrack;
     [iconToggle selectItemAtIndex:[self getProperty:@"iconSelection"]];
     [startupToggle selectItemAtIndex:[self getProperty:@"startupSelection"]];
     [showTracksToggle selectItemAtIndex:[self getProperty:@"showTracks"]];
+    [albumArtToggle selectItemAtIndex:[self getProperty:@"includeAlbumArt"]];
+    
+    if (!(UserNotificationContentImagePropertyAvailable)) {
+        
+        albumArtToggle.enabled = NO;
+        [albumArtToggle selectItemAtIndex:1];
+        
+    }
     
     if ([self getProperty:@"startupSelection"] == 0) {
         
@@ -96,8 +105,9 @@ NSString *previousTrack;
         notification.informativeText = track.artist;
         
         if ((UserNotificationContentImagePropertyAvailable) &&
-            (track.albumArt)) {
+            ([self getProperty:@"includeAlbumArt"] == 0)) {
             
+            [track fetchAlbumArt];
             notification.contentImage = track.albumArt;
             
         }
@@ -189,7 +199,8 @@ NSString *previousTrack;
             notification.subtitle = track.album;
             notification.informativeText = track.artist;
             
-            if (UserNotificationContentImagePropertyAvailable) {
+            if ((UserNotificationContentImagePropertyAvailable) &&
+                ([self getProperty:@"includeAlbumArt"] == 0)) {
 
                 [track fetchAlbumArt];
                 notification.contentImage = track.albumArt;
@@ -274,6 +285,12 @@ NSString *previousTrack;
     [self saveProperty:@"iconSelection" :(int)[iconToggle indexOfSelectedItem]];
     [self setIcon];
     
+}
+
+- (IBAction)toggleAlbumArt:(id)sender {
+    
+    [self saveProperty:@"includeAlbumArt" :(int)[albumArtToggle indexOfSelectedItem]];
+        
 }
 
 - (void)saveProperty:(NSString*)key:(int)value {

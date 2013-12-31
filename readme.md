@@ -7,17 +7,6 @@ Spotify Notifications does nothing more than display a notification when
 - a song goes from "paused" to "playing" _(optional)_
 - a new song is played
 
-## Authors
-
-- Mihir Singh ([citruspi](http://github.com/citruspi))
-
-## Contributors
-
-- Raphael Jasjukaitis ([raphaa](http://github.com/raphaa))
-- James Snee ([jamessnee](https://github.com/jamessnee))
-- Daniel Fortunato ([danfortunato](https://github.com/danfortunato))
-- Kent Sutherland ([ksuther](https://github.com/ksuther))
-
 ## License
 
 ### Spotify Notifications

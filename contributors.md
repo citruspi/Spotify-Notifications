@@ -1,0 +1,5 @@
+- Mihir Singh ([citruspi](http://github.com/citruspi))
+- Raphael Jasjukaitis ([raphaa](http://github.com/raphaa))
+- James Snee ([jamessnee](https://github.com/jamessnee))
+- Daniel Fortunato ([danfortunato](https://github.com/danfortunato))
+- Kent Sutherland ([ksuther](https://github.com/ksuther))

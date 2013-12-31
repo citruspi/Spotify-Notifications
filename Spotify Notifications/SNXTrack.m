@@ -14,5 +14,6 @@
 @synthesize artist = _artist;
 @synthesize album = _album;
 @synthesize albumArt = _albumArt;
+@synthesize trackID = _trackID;
 
 @end

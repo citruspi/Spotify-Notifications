@@ -14,5 +14,6 @@
 @property (copy) NSString *artist;
 @property (copy) NSString *album;
 @property (copy) NSImage *albumArt;
+@property (copy) NSString *trackID;
 
 @end

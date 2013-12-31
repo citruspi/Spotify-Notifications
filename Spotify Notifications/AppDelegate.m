@@ -27,7 +27,7 @@ BOOL *UserNotificationContentImagePropertyAvailable;
 
 SNXTrack *track;
 
-NSString *lastTrackId;
+NSString *previousTrack;
 
 - (void)applicationDidFinishLaunching:(NSNotification *)notification {
 
@@ -51,7 +51,7 @@ NSString *lastTrackId;
     
     track = [[SNXTrack alloc] init];
     
-    lastTrackId = @"";
+    previousTrack = @"";
     
     [[NSUserNotificationCenter defaultUserNotificationCenter] setDelegate:self];
     
@@ -176,17 +176,16 @@ NSString *lastTrackId;
         
         track.artist = [information objectForKey: @"Artist"];
         track.album = [information objectForKey: @"Album"];
-        track.title = [information objectForKey: @"Name"];
+        track.title = [information objectForKey: @"Name"];        
+        track.trackID = [information objectForKey:@"Track ID"];
         
-        NSString *trackId = [information objectForKey:@"Track ID"];
-        
-        if (![lastTrackId isEqualToString:trackId] || [self getProperty:@"showTracks"] == 0) {
+        if (![previousTrack isEqualToString:track.trackID] || [self getProperty:@"showTracks"] == 0) {
             
-            lastTrackId = trackId;
+            previousTrack = track.trackID;
             
-            if (trackId) {
+            if (track.trackID) {
                 
-                NSString *metaLoc = [NSString stringWithFormat:@"https://embed.spotify.com/oembed/?url=%@",trackId];
+                NSString *metaLoc = [NSString stringWithFormat:@"https://embed.spotify.com/oembed/?url=%@",track.trackID];
                 NSURL *metaReq = [NSURL URLWithString:metaLoc];
                 NSData *metaD = [NSData dataWithContentsOfURL:metaReq];
                 

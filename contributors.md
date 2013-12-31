@@ -3,3 +3,4 @@
 - James Snee ([jamessnee](https://github.com/jamessnee))
 - Daniel Fortunato ([danfortunato](https://github.com/danfortunato))
 - Kent Sutherland ([ksuther](https://github.com/ksuther))
+- John Seggerson ([TheSeg](https://github.com/TheSeg))

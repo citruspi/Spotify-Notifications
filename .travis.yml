@@ -1,2 +1,7 @@
 language: objective-c
+<<<<<<< HEAD
 xcode_project: Spotify Notifications.xcodeproj
+=======
+xcode_project: Spotify Notifications.xcodeproj
+xcode_scheme: Spotify Notifications
+>>>>>>> ccdbf826b8baed8c012129a3a5bde1a2604baab6

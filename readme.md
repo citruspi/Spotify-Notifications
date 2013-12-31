@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/citruspi/Spotify-Notifications.png?branch=master)](https://travis-ci.org/citruspi/Spotify-Notifications)
+
 ## Spotify Notifications
 
 Spotify Notifications does nothing more than display a notification when

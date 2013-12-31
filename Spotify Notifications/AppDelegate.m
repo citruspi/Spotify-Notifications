@@ -31,23 +31,45 @@ SNXTrack *track;
 NSString *previousTrack;
 
 - (void)applicationDidFinishLaunching:(NSNotification *)notification {
-
-    SInt32 OSXversionMajor, OSXversionMinor;
-
-    if (Gestalt(gestaltSystemVersionMajor, &OSXversionMajor) == noErr && Gestalt(gestaltSystemVersionMinor, &OSXversionMinor) == noErr) {
-
-        if(OSXversionMajor == 10 && OSXversionMinor >= 9) {
-      
-            UserNotificationContentImagePropertyAvailable = YES;  
-
+    
+    NSInteger major;
+    NSInteger minor;
+    NSInteger patch;
+    
+    major = minor = patch = -1;
+    
+    NSString* productVersion = [[NSDictionary dictionaryWithContentsOfFile:
+                                @"/System/Library/CoreServices/SystemVersion.plist"] objectForKey:@"ProductVersion"];
+    
+    NSArray* productVersionSeparated = [productVersion componentsSeparatedByString:@"."];
+    
+    if (productVersionSeparated.count >= 1 ) {
+        
+        major = [productVersionSeparated[0] integerValue];
+        
+        if ( productVersionSeparated.count >= 2 ) {
+            
+            minor = [productVersionSeparated[1] integerValue];
+            
+            if ( productVersionSeparated.count >= 3 ) {
+                
+                patch = [productVersionSeparated[2] integerValue];
+                
+            }
         }
-
-        else {
-
-            UserNotificationContentImagePropertyAvailable = NO;
-
-        }
-
+    }
+    
+    if ((major == 10) &&
+        (minor >= 9)) {
+        
+        UserNotificationContentImagePropertyAvailable = YES;
+        
+    }
+    
+    else {
+        
+        UserNotificationContentImagePropertyAvailable = NO;
+        
     }
     
     track = [[SNXTrack alloc] init];

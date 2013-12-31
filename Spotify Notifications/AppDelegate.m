@@ -189,8 +189,7 @@ NSString *previousTrack;
             notification.subtitle = track.album;
             notification.informativeText = track.artist;
             
-            if ((UserNotificationContentImagePropertyAvailable) &&
-                (track.albumArt)) {
+            if (UserNotificationContentImagePropertyAvailable) {
 
                 [track fetchAlbumArt];
                 notification.contentImage = track.albumArt;

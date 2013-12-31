@@ -243,19 +243,19 @@ NSString *previousTrack;
 
 - (IBAction)toggleSound:(id)sender {
     
-    [self saveProperty:@"notificationSound" :(int)[soundToggle indexOfSelectedItem]];
+    [self saveProperty:@"notificationSound" value:(int)[soundToggle indexOfSelectedItem]];
     
 }
 
 - (IBAction)toggleShowTracks:(id)sender {
     
-    [self saveProperty:@"showTracks" :(int)[showTracksToggle indexOfSelectedItem]];
+    [self saveProperty:@"showTracks" value:(int)[showTracksToggle indexOfSelectedItem]];
     
 }
 
 - (IBAction)toggleStartup:(id)sender {
     
-    [self saveProperty:@"startupSelection" :(int)[startupToggle indexOfSelectedItem]];
+    [self saveProperty:@"startupSelection" value:(int)[startupToggle indexOfSelectedItem]];
     
     if ([self getProperty:@"startupSelection"] == 0) {
         
@@ -303,18 +303,18 @@ NSString *previousTrack;
 
 - (IBAction)toggleIcons:(id)sender {
     
-    [self saveProperty:@"iconSelection" :(int)[iconToggle indexOfSelectedItem]];
+    [self saveProperty:@"iconSelection" value:(int)[iconToggle indexOfSelectedItem]];
     [self setIcon];
     
 }
 
 - (IBAction)toggleAlbumArt:(id)sender {
     
-    [self saveProperty:@"includeAlbumArt" :(int)[albumArtToggle indexOfSelectedItem]];
+    [self saveProperty:@"includeAlbumArt" value:(int)[albumArtToggle indexOfSelectedItem]];
         
 }
 
-- (void)saveProperty:(NSString*)key:(int)value {
+- (void)saveProperty:(NSString*)key value:(int)value {
     
 	NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
     

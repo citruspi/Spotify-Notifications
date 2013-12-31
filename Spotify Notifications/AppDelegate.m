@@ -182,6 +182,7 @@ NSString *previousTrack;
         if (![previousTrack isEqualToString:track.trackID] || [self getProperty:@"showTracks"] == 0) {
             
             previousTrack = track.trackID;
+            track.albumArt = nil;
             
             if (track.trackID) {
                 
@@ -223,7 +224,6 @@ NSString *previousTrack;
             }
 
             [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
-            track.albumArt = nil;
             
         }
     }

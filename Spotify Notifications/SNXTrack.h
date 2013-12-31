@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface Track : NSObject
+@interface SNXTrack : NSObject
 
 @property (copy) NSString *title;
 @property (copy) NSString *artist;

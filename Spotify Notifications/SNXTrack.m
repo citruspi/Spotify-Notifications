@@ -8,7 +8,7 @@
 
 #import "SNXTrack.h"
 
-@implementation Track
+@implementation SNXTrack
 
 @synthesize title = _track;
 @synthesize artist = _artist;

@@ -25,7 +25,7 @@
 
 BOOL *UserNotificationContentImagePropertyAvailable;
 
-Track *track;
+SNXTrack *track;
 
 NSString *lastTrackId;
 
@@ -49,7 +49,7 @@ NSString *lastTrackId;
 
     }
     
-    track = [[Track alloc] init];
+    track = [[SNXTrack alloc] init];
     
     lastTrackId = @"";
     
@@ -314,6 +314,7 @@ NSString *lastTrackId;
 - (Boolean)getProperty:(NSString*)key {
 
 	NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
+    
 	int val = 0;
     
 	if (standardUserDefaults) {

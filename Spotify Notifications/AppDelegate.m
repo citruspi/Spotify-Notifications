@@ -24,7 +24,7 @@
 @synthesize shortcutView;
 @synthesize albumArtToggle;
 
-BOOL *UserNotificationContentImagePropertyAvailable;
+BOOL UserNotificationContentImagePropertyAvailable;
 
 SNXTrack *track;
 

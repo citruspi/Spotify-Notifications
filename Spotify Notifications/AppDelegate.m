@@ -173,7 +173,6 @@ NSString *previousTrack;
 
 - (void)userNotificationCenter:(NSUserNotificationCenter *)center didActivateNotification:(NSUserNotification *)notification {
 
-    NSLog(@"Clicked");
     [[NSWorkspace sharedWorkspace] launchApplication:@"Spotify"];
     
 }

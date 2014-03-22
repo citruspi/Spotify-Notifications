@@ -16,6 +16,10 @@
 @synthesize statusBar;
 @synthesize statusMenu;
 @synthesize openPrefences;
+@synthesize openLastFMMenu;
+@synthesize openLastFMArtist;
+@synthesize openLastFMAlbum;
+@synthesize openLastFMTrack;
 @synthesize soundToggle;
 @synthesize window;
 @synthesize iconToggle;
@@ -186,6 +190,27 @@ NSString *previousTrack;
     
 }
 
+- (IBAction)showLastFM:(id)sender {
+    
+    //Artist - we always need at least this
+    NSString* urlText = [NSString stringWithFormat:@"http://last.fm/music/%@", track.artist];
+    
+    if ([sender tag] == 1) {
+        //Album
+        urlText = [urlText stringByAppendingString:[NSString stringWithFormat:@"/%@", track.album]];
+    }
+    else if ([sender tag] == 2) {
+        //Track
+        urlText = [urlText stringByAppendingString:[NSString stringWithFormat:@"/%@/%@", track.album, track.title]];
+    }
+    
+    urlText = [urlText stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    
+    NSURL *url = [NSURL URLWithString: urlText];
+    [[NSWorkspace sharedWorkspace] openURL:url];
+    
+}
+
 - (BOOL)userNotificationCenter:(NSUserNotificationCenter *)center
     shouldPresentNotification:(NSUserNotification *)notification {
     
@@ -209,6 +234,10 @@ NSString *previousTrack;
         track.album = [information objectForKey: @"Album"];
         track.title = [information objectForKey: @"Name"];        
         track.trackID = [information objectForKey:@"Track ID"];
+        
+        if (![openLastFMMenu isEnabled] && [track.artist isNotEqualTo:NULL]) {
+            [openLastFMMenu setEnabled:YES];
+        }
         
         if (![previousTrack isEqualToString:track.trackID] || [self getProperty:@"showTracks"] == 0) {
             

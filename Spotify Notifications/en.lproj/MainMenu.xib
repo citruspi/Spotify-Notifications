@@ -653,6 +653,10 @@
             <connections>
                 <outlet property="albumArtToggle" destination="keF-Aq-QVQ" id="bfo-wT-VX9"/>
                 <outlet property="iconToggle" destination="36k-RY-ycT" id="iqL-uS-Kh5"/>
+                <outlet property="openLastFMAlbum" destination="pXK-QR-zej" id="Ffb-qH-xxx"/>
+                <outlet property="openLastFMArtist" destination="0cf-J0-9nm" id="ODO-h9-pTC"/>
+                <outlet property="openLastFMMenu" destination="SZW-Od-Gwx" id="Lsx-Qa-lnL"/>
+                <outlet property="openLastFMTrack" destination="SnO-7a-Y77" id="zsZ-Pi-b5C"/>
                 <outlet property="openPrefences" destination="61H-gV-eIG" id="GBH-Wk-wmZ"/>
                 <outlet property="shortcutView" destination="zbi-2N-Pgf" id="H7h-c9-67G"/>
                 <outlet property="showTracksToggle" destination="ayC-ZL-bmW" id="pg9-8B-2yn"/>
@@ -677,12 +681,21 @@
                         <items>
                             <menuItem title="Artist" enabled="NO" id="0cf-J0-9nm">
                                 <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="showLastFM:" target="494" id="ED3-4W-aet"/>
+                                </connections>
                             </menuItem>
-                            <menuItem title="Album" enabled="NO" id="pXK-QR-zej">
+                            <menuItem title="Album" tag="1" enabled="NO" id="pXK-QR-zej">
                                 <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="showLastFM:" target="494" id="2fc-Sp-Pjz"/>
+                                </connections>
                             </menuItem>
-                            <menuItem title="Track" enabled="NO" id="SnO-7a-Y77">
+                            <menuItem title="Track" tag="2" enabled="NO" id="SnO-7a-Y77">
                                 <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="showLastFM:" target="494" id="SU8-jh-aId"/>
+                                </connections>
                             </menuItem>
                         </items>
                     </menu>

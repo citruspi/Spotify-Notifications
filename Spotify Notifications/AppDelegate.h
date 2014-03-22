@@ -13,6 +13,10 @@
 @property (strong, nonatomic) NSStatusItem *statusBar;
 @property (strong, nonatomic) IBOutlet NSMenu *statusMenu;
 @property (strong, nonatomic) IBOutlet NSMenuItem *openPrefences;
+@property (strong, nonatomic) IBOutlet NSMenuItem *openLastFMMenu;
+@property (strong, nonatomic) IBOutlet NSMenuItem *openLastFMArtist;
+@property (strong, nonatomic) IBOutlet NSMenuItem *openLastFMAlbum;
+@property (strong, nonatomic) IBOutlet NSMenuItem *openLastFMTrack;
 @property (strong, nonatomic) IBOutlet NSPopUpButton *soundToggle;
 @property (strong, nonatomic) IBOutlet NSPopUpButton *iconToggle;
 @property (strong, nonatomic) IBOutlet NSPopUpButton *startupToggle;
@@ -23,6 +27,8 @@
 - (IBAction)showHome:(id)sender;
 - (IBAction)showAuthor:(id)sender;
 - (IBAction)showSource:(id)sender;
+
+- (IBAction)showLastFM:(id)sender;
 
 - (IBAction)toggleIcons:(id)sender;
 - (IBAction)toggleSound:(id)sender;

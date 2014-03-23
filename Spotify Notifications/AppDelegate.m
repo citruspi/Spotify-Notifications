@@ -200,8 +200,7 @@ NSString *previousTrack;
     
     urlText = [urlText stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     
-    NSURL *url = [NSURL URLWithString: urlText];
-    [[NSWorkspace sharedWorkspace] openURL:url];
+    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString: urlText]];
     
 }
 

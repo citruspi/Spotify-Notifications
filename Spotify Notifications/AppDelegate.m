@@ -239,7 +239,7 @@ NSString *previousTrack;
             [openLastFMMenu setEnabled:YES];
         }
         
-        if (![previousTrack isEqualToString:track.trackID] || [self getProperty:@"showTracks"] == 0) {
+        if (![previousTrack isEqualToString:track.trackID] && [self getProperty:@"showTracks"] == 0) {
             
             previousTrack = track.trackID;
             track.albumArt = nil;

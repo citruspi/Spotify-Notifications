@@ -167,13 +167,13 @@ NSString *previousTrack;
 
 - (IBAction)showSource:(id)sender {
 
-    [[NSWorkspace sharedWorkspace] openURL: [NSURL URLWithString:@"https://github.com/hadimichael/Spotify-Notifications"]];
+    [[NSWorkspace sharedWorkspace] openURL: [NSURL URLWithString:@"https://github.com/citruspi/Spotify-Notifications"]];
 
 }
 
 - (IBAction)showAuthor:(id)sender {
     
-    [[NSWorkspace sharedWorkspace] openURL: [NSURL URLWithString:@"https://github.com/hadimichael/Spotify-Notifications/graphs/contributors"]];
+    [[NSWorkspace sharedWorkspace] openURL: [NSURL URLWithString:@"https://github.com/citruspi/Spotify-Notifications/graphs/contributors"]];
     
 }
 

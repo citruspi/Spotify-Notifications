@@ -12,7 +12,7 @@
 @property (assign) IBOutlet NSWindow *window;
 @property (strong, nonatomic) NSStatusItem *statusBar;
 @property (strong, nonatomic) IBOutlet NSMenu *statusMenu;
-@property (strong, nonatomic) IBOutlet NSMenuItem *openPrefences;
+@property (strong, nonatomic) IBOutlet NSMenuItem *openPreferences;
 @property (strong, nonatomic) IBOutlet NSMenuItem *openLastFMMenu;
 @property (strong, nonatomic) IBOutlet NSMenuItem *openLastFMArtist;
 @property (strong, nonatomic) IBOutlet NSMenuItem *openLastFMAlbum;

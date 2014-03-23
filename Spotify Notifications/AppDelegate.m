@@ -15,7 +15,7 @@
 
 @synthesize statusBar;
 @synthesize statusMenu;
-@synthesize openPrefences;
+@synthesize openPreferences;
 @synthesize openLastFMMenu;
 @synthesize openLastFMArtist;
 @synthesize openLastFMAlbum;
@@ -157,7 +157,7 @@ NSString *previousTrack;
         
         // This makes it so you can open the preferences by re-opening the app
         // This way you can get to the preferences even when the status item is hidden
-        [self showPrefences:nil];
+        [self showPreferences:nil];
         
     }
     
@@ -183,7 +183,7 @@ NSString *previousTrack;
     
 }
 
-- (IBAction)showPrefences:(id)sender {
+- (IBAction)showPreferences:(id)sender {
     
     [NSApp activateIgnoringOtherApps:YES];
     [window makeKeyAndOrderFront:nil];

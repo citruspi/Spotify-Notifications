@@ -658,6 +658,7 @@
                 <outlet property="openLastFMMenu" destination="SZW-Od-Gwx" id="Lsx-Qa-lnL"/>
                 <outlet property="openLastFMTrack" destination="SnO-7a-Y77" id="zsZ-Pi-b5C"/>
                 <outlet property="openPrefences" destination="61H-gV-eIG" id="GBH-Wk-wmZ"/>
+                <outlet property="openPreferences" destination="61H-gV-eIG" id="6Ub-JI-ndP"/>
                 <outlet property="shortcutView" destination="zbi-2N-Pgf" id="H7h-c9-67G"/>
                 <outlet property="showTracksToggle" destination="ayC-ZL-bmW" id="pg9-8B-2yn"/>
                 <outlet property="soundToggle" destination="jB5-XW-fCl" id="Q6q-bI-u2H"/>
@@ -672,7 +673,7 @@
                 <menuItem title="Preferences" id="61H-gV-eIG">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
-                        <action selector="showPrefences:" target="494" id="NCg-Ha-Oe9"/>
+                        <action selector="showPreferences:" target="494" id="XKB-Ii-DPd"/>
                     </connections>
                 </menuItem>
                 <menuItem title="Lookup on Last.FM" enabled="NO" id="SZW-Od-Gwx">

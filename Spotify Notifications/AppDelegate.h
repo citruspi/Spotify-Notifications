@@ -17,22 +17,25 @@
 @property (strong, nonatomic) IBOutlet NSMenuItem *openLastFMArtist;
 @property (strong, nonatomic) IBOutlet NSMenuItem *openLastFMAlbum;
 @property (strong, nonatomic) IBOutlet NSMenuItem *openLastFMTrack;
+@property (strong, nonatomic) IBOutlet NSPopUpButton *showNotificationsToggle;
+@property (strong, nonatomic) IBOutlet NSPopUpButton *showPlayPauseNotifToggle;
 @property (strong, nonatomic) IBOutlet NSPopUpButton *soundToggle;
 @property (strong, nonatomic) IBOutlet NSPopUpButton *iconToggle;
 @property (strong, nonatomic) IBOutlet NSPopUpButton *startupToggle;
-@property (strong, nonatomic) IBOutlet NSPopUpButton *showTracksToggle;
 @property (strong, nonatomic) IBOutlet NSPopUpButton *albumArtToggle;
 @property (weak, nonatomic) IBOutlet MASShortcutView *shortcutView;
 
-- (IBAction)showAuthor:(id)sender;
 - (IBAction)showSource:(id)sender;
+- (IBAction)showContributors:(id)sender;
 
 - (IBAction)showLastFM:(id)sender;
+- (IBAction)showPreferences:(id)sender;
 
-- (IBAction)toggleIcons:(id)sender;
+- (IBAction)toggleNotifications:(id)sender;
+- (IBAction)togglePlayPauseNotif:(id)sender;
 - (IBAction)toggleSound:(id)sender;
+- (IBAction)toggleIcons:(id)sender;
 - (IBAction)toggleStartup:(id)sender;
-- (IBAction)toggleShowTracks:(id)sender;
 - (IBAction)toggleAlbumArt:(id)sender;
 
 @end

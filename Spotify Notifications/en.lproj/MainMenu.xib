@@ -660,7 +660,8 @@
                 <outlet property="openPrefences" destination="61H-gV-eIG" id="GBH-Wk-wmZ"/>
                 <outlet property="openPreferences" destination="61H-gV-eIG" id="6Ub-JI-ndP"/>
                 <outlet property="shortcutView" destination="zbi-2N-Pgf" id="H7h-c9-67G"/>
-                <outlet property="showTracksToggle" destination="ayC-ZL-bmW" id="pg9-8B-2yn"/>
+                <outlet property="showNotificationsToggle" destination="RJH-ok-8hR" id="LWi-2B-mAL"/>
+                <outlet property="showPlayPauseNotifToggle" destination="dKE-qO-891" id="a2L-G2-XPE"/>
                 <outlet property="soundToggle" destination="jB5-XW-fCl" id="Q6q-bI-u2H"/>
                 <outlet property="startupToggle" destination="rMI-2V-W99" id="Oc9-Ow-nwg"/>
                 <outlet property="statusMenu" destination="536" id="541"/>
@@ -677,7 +678,6 @@
                     </connections>
                 </menuItem>
                 <menuItem title="Lookup on Last.FM" enabled="NO" id="SZW-Od-Gwx">
-                    <modifierMask key="keyEquivalentModifierMask"/>
                     <menu key="submenu" title="Lookup on Last.FM" id="a8M-Lg-29f">
                         <items>
                             <menuItem title="Artist" enabled="NO" id="0cf-J0-9nm">
@@ -739,7 +739,7 @@
                             <font key="font" metaFont="system"/>
                         </buttonCell>
                         <connections>
-                            <action selector="showAuthor:" target="494" id="MjA-8T-a8A"/>
+                            <action selector="showContributors:" target="494" id="hXO-Ta-a3q"/>
                         </connections>
                     </button>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nr8-cn-xxJ">
@@ -823,12 +823,12 @@
                     <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jB5-XW-fCl">
                         <rect key="frame" x="167" y="164" width="170" height="26"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Jhk-RF-RQ5">
+                        <popUpButtonCell key="cell" type="push" title="Enabled" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="border" tag="1" imageScaling="proportionallyDown" inset="2" selectedItem="KbY-H6-Sda" id="Jhk-RF-RQ5">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="menu"/>
                             <menu key="menu" title="OtherViews" id="Y57-tp-Va4">
                                 <items>
-                                    <menuItem title="Enabled" tag="1" id="KbY-H6-Sda">
+                                    <menuItem title="Enabled" state="on" tag="1" id="KbY-H6-Sda">
                                         <modifierMask key="keyEquivalentModifierMask"/>
                                     </menuItem>
                                     <menuItem title="Disabled" tag="2" id="MbK-Pk-wgP">
@@ -844,12 +844,12 @@
                     <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rMI-2V-W99">
                         <rect key="frame" x="167" y="110" width="170" height="26"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="8XQ-a4-UIa">
+                        <popUpButtonCell key="cell" type="push" title="Enabled" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="border" tag="1" imageScaling="proportionallyDown" inset="2" selectedItem="ov9-Kg-xJq" id="8XQ-a4-UIa">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="menu"/>
                             <menu key="menu" title="OtherViews" id="nOl-F5-prg">
                                 <items>
-                                    <menuItem title="Enabled" tag="1" id="ov9-Kg-xJq">
+                                    <menuItem title="Enabled" state="on" tag="1" id="ov9-Kg-xJq">
                                         <modifierMask key="keyEquivalentModifierMask"/>
                                     </menuItem>
                                     <menuItem title="Disabled" tag="2" id="svf-mj-ToE">
@@ -874,12 +874,12 @@
                     <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="keF-Aq-QVQ">
                         <rect key="frame" x="167" y="83" width="170" height="26"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="8EN-nE-3Wy">
+                        <popUpButtonCell key="cell" type="push" title="Enabled" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="border" tag="1" imageScaling="proportionallyDown" inset="2" selectedItem="p4b-IH-z0r" id="8EN-nE-3Wy">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="menu"/>
                             <menu key="menu" title="OtherViews" id="GY0-J5-AmB">
                                 <items>
-                                    <menuItem title="Enabled" tag="1" id="p4b-IH-z0r">
+                                    <menuItem title="Enabled" state="on" tag="1" id="p4b-IH-z0r">
                                         <modifierMask key="keyEquivalentModifierMask"/>
                                     </menuItem>
                                     <menuItem title="Disabled" tag="2" id="NZc-Rd-lf5">
@@ -901,27 +901,6 @@
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ayC-ZL-bmW">
-                        <rect key="frame" x="167" y="191" width="170" height="26"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <popUpButtonCell key="cell" type="push" title="Disabled" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="border" tag="2" imageScaling="proportionallyDown" inset="2" selectedItem="Epx-s3-85T" id="ARj-pb-YK5">
-                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="menu"/>
-                            <menu key="menu" title="OtherViews" id="A27-al-LxM">
-                                <items>
-                                    <menuItem title="Enabled" tag="1" id="J4l-ac-GAs">
-                                        <modifierMask key="keyEquivalentModifierMask"/>
-                                    </menuItem>
-                                    <menuItem title="Disabled" state="on" tag="2" id="Epx-s3-85T">
-                                        <modifierMask key="keyEquivalentModifierMask"/>
-                                    </menuItem>
-                                </items>
-                            </menu>
-                        </popUpButtonCell>
-                        <connections>
-                            <action selector="toggleShowTracks:" target="494" id="Lq9-71-hkk"/>
-                        </connections>
-                    </popUpButton>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rkW-He-mVK">
                         <rect key="frame" x="10" y="223" width="145" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -934,12 +913,12 @@
                     <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RJH-ok-8hR">
                         <rect key="frame" x="167" y="218" width="170" height="26"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <popUpButtonCell key="cell" type="push" title="Enabled" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="border" tag="1" imageScaling="proportionallyDown" inset="2" selectedItem="eqe-Am-8Oq" id="R1J-bu-Swu">
+                        <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="R1J-bu-Swu">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="menu"/>
                             <menu key="menu" title="OtherViews" id="8g6-eQ-Xt4">
                                 <items>
-                                    <menuItem title="Enabled" state="on" tag="1" id="eqe-Am-8Oq">
+                                    <menuItem title="Enabled" tag="1" id="eqe-Am-8Oq">
                                         <modifierMask key="keyEquivalentModifierMask"/>
                                     </menuItem>
                                     <menuItem title="Disabled" tag="2" id="P6z-FO-2LM">
@@ -949,13 +928,34 @@
                             </menu>
                         </popUpButtonCell>
                         <connections>
-                            <action selector="toggleShowTracks:" target="494" id="w53-Q7-0AJ"/>
+                            <action selector="toggleNotifications:" target="494" id="N8l-IB-0X7"/>
                         </connections>
                     </popUpButton>
                     <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zbi-2N-Pgf" customClass="MASShortcutView">
                         <rect key="frame" x="169" y="61" width="165" height="19"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     </customView>
+                    <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dKE-qO-891">
+                        <rect key="frame" x="167" y="191" width="170" height="26"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="QNd-Gx-4yw">
+                            <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                            <menu key="menu" title="OtherViews" id="QAf-HP-KO3">
+                                <items>
+                                    <menuItem title="Enabled" id="2Ls-Uz-fDf">
+                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                    </menuItem>
+                                    <menuItem title="Disabled" state="on" id="AMf-hz-DON">
+                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                    </menuItem>
+                                </items>
+                            </menu>
+                        </popUpButtonCell>
+                        <connections>
+                            <action selector="togglePlayPauseNotif:" target="494" id="Lq7-ST-cJP"/>
+                        </connections>
+                    </popUpButton>
                 </subviews>
             </view>
         </window>

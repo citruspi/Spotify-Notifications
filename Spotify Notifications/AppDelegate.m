@@ -13,6 +13,7 @@
 
 @implementation AppDelegate
 
+@synthesize window;
 @synthesize statusBar;
 @synthesize statusMenu;
 @synthesize openPreferences;
@@ -20,13 +21,14 @@
 @synthesize openLastFMArtist;
 @synthesize openLastFMAlbum;
 @synthesize openLastFMTrack;
+
+@synthesize showNotificationsToggle;
+@synthesize showPlayPauseNotifToggle;
 @synthesize soundToggle;
-@synthesize window;
 @synthesize iconToggle;
 @synthesize startupToggle;
-@synthesize showTracksToggle;
-@synthesize shortcutView;
 @synthesize albumArtToggle;
+@synthesize shortcutView;
 
 BOOL UserNotificationContentImagePropertyAvailable;
 
@@ -91,10 +93,11 @@ NSString *previousTrack;
     [self setIcon];
     [self setupGlobalShortcutForNotifications];
     
+    [showNotificationsToggle selectItemAtIndex:[self getProperty:@"notifications"]];
+    [showPlayPauseNotifToggle selectItemAtIndex:[self getProperty:@"playpausenotifs"]];
     [soundToggle selectItemAtIndex:[self getProperty:@"notificationSound"]];
     [iconToggle selectItemAtIndex:[self getProperty:@"iconSelection"]];
     [startupToggle selectItemAtIndex:[self getProperty:@"startupSelection"]];
-    [showTracksToggle selectItemAtIndex:[self getProperty:@"showTracks"]];
     [albumArtToggle selectItemAtIndex:[self getProperty:@"includeAlbumArt"]];
     
     if (!(UserNotificationContentImagePropertyAvailable)) {
@@ -171,7 +174,7 @@ NSString *previousTrack;
 
 }
 
-- (IBAction)showAuthor:(id)sender {
+- (IBAction)showContributors:(id)sender {
     
     [[NSWorkspace sharedWorkspace] openURL: [NSURL URLWithString:@"https://github.com/citruspi/Spotify-Notifications/graphs/contributors"]];
     
@@ -232,7 +235,7 @@ NSString *previousTrack;
             [openLastFMMenu setEnabled:YES];
         }
         
-        if (![previousTrack isEqualToString:track.trackID] && [self getProperty:@"showTracks"] == 0) {
+        if ( [self getProperty:@"notifications"] == 0 && (![previousTrack isEqualToString:track.trackID] || [self getProperty:@"playpausenotifs"] == 0) ) {
             
             previousTrack = track.trackID;
             track.albumArt = nil;
@@ -263,34 +266,22 @@ NSString *previousTrack;
     
 }
 
+- (IBAction)toggleNotifications:(id)sender {
+    
+    [self saveProperty:@"notifications" value:(int)[showNotificationsToggle indexOfSelectedItem]];
+    
+}
+
+- (IBAction)togglePlayPauseNotif:(id)sender {
+    
+    [self saveProperty:@"playpausenotifs" value:(int)[showPlayPauseNotifToggle indexOfSelectedItem]];
+    
+}
+
 - (IBAction)toggleSound:(id)sender {
     
     [self saveProperty:@"notificationSound" value:(int)[soundToggle indexOfSelectedItem]];
     
-}
-
-- (IBAction)toggleShowTracks:(id)sender {
-    
-    [self saveProperty:@"showTracks" value:(int)[showTracksToggle indexOfSelectedItem]];
-    
-}
-
-- (IBAction)toggleStartup:(id)sender {
-    
-    [self saveProperty:@"startupSelection" value:(int)[startupToggle indexOfSelectedItem]];
-    
-    if ([self getProperty:@"startupSelection"] == 0) {
-        
-        [GBLaunchAtLogin addAppAsLoginItem];
-        
-    }
-    
-    if ([self getProperty:@"startupSelection"] == 1) {
-        
-        [GBLaunchAtLogin removeAppFromLoginItems];
-        
-    }
-
 }
 
 - (void)setIcon {
@@ -327,6 +318,24 @@ NSString *previousTrack;
     
     [self saveProperty:@"iconSelection" value:(int)[iconToggle indexOfSelectedItem]];
     [self setIcon];
+    
+}
+
+- (IBAction)toggleStartup:(id)sender {
+    
+    [self saveProperty:@"startupSelection" value:(int)[startupToggle indexOfSelectedItem]];
+    
+    if ([self getProperty:@"startupSelection"] == 0) {
+        
+        [GBLaunchAtLogin addAppAsLoginItem];
+        
+    }
+    
+    if ([self getProperty:@"startupSelection"] == 1) {
+        
+        [GBLaunchAtLogin removeAppFromLoginItems];
+        
+    }
     
 }
 

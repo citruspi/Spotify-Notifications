@@ -4,3 +4,4 @@
 - Daniel Fortunato ([danfortunato](https://github.com/danfortunato))
 - Kent Sutherland ([ksuther](https://github.com/ksuther))
 - John "Seg" Seggerson ([TheSeg](https://github.com/TheSeg))
+- Hadi Michael ([HadiMichael](https://github.com/hadimichael))

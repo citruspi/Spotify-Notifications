@@ -13,16 +13,22 @@
 
 @implementation AppDelegate
 
+@synthesize window;
 @synthesize statusBar;
 @synthesize statusMenu;
-@synthesize openPrefences;
+@synthesize openPreferences;
+@synthesize openLastFMMenu;
+@synthesize openLastFMArtist;
+@synthesize openLastFMAlbum;
+@synthesize openLastFMTrack;
+
+@synthesize showNotificationsToggle;
+@synthesize showPlayPauseNotifToggle;
 @synthesize soundToggle;
-@synthesize window;
 @synthesize iconToggle;
 @synthesize startupToggle;
-@synthesize showTracksToggle;
-@synthesize shortcutView;
 @synthesize albumArtToggle;
+@synthesize shortcutView;
 
 BOOL UserNotificationContentImagePropertyAvailable;
 
@@ -87,10 +93,11 @@ NSString *previousTrack;
     [self setIcon];
     [self setupGlobalShortcutForNotifications];
 
+    [showNotificationsToggle selectItemAtIndex:[self getProperty:@"notifications"]];
+    [showPlayPauseNotifToggle selectItemAtIndex:[self getProperty:@"playpausenotifs"]];
     [soundToggle selectItemAtIndex:[self getProperty:@"notificationSound"]];
     [iconToggle selectItemAtIndex:[self getProperty:@"iconSelection"]];
     [startupToggle selectItemAtIndex:[self getProperty:@"startupSelection"]];
-    [showTracksToggle selectItemAtIndex:[self getProperty:@"showTracks"]];
     [albumArtToggle selectItemAtIndex:[self getProperty:@"includeAlbumArt"]];
 
     if (!(UserNotificationContentImagePropertyAvailable)) {
@@ -124,6 +131,7 @@ NSString *previousTrack;
         NSUserNotification *notification = [[NSUserNotification alloc] init];
 
         if ([track.title length] == 0) {
+
             notification.title = @"No Song Playing";
 
             if ([self getProperty:@"notificationSound"] == 0) {
@@ -136,6 +144,7 @@ NSString *previousTrack;
         }
 
         else {
+
             notification.title = track.title;
             notification.subtitle = track.album;
             notification.informativeText = track.artist;
@@ -156,6 +165,7 @@ NSString *previousTrack;
 
             [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
             track.albumArt = nil;
+
         }
 
     }];
@@ -168,7 +178,7 @@ NSString *previousTrack;
 
         // This makes it so you can open the preferences by re-opening the app
         // This way you can get to the preferences even when the status item is hidden
-        [self showPrefences:nil];
+        [self showPreferences:nil];
 
     }
 
@@ -176,28 +186,48 @@ NSString *previousTrack;
 
 }
 
-- (IBAction)showSource:(id)sender {
-
-    [[NSWorkspace sharedWorkspace] openURL: [NSURL URLWithString:@"http://github.com/citruspi/Spotify-Notifications"]];
-
-}
-
 - (IBAction)showHome:(id)sender {
 
-    [[NSWorkspace sharedWorkspace] openURL: [NSURL URLWithString:@"http://mihirsingh.com/Spotify-Notifications"]];
+    [[NSWorkspace sharedWorkspace] openURL: [NSURL URLWithString:@"http://spotify-notifications.citruspi.io"]];
 
 }
 
-- (IBAction)showAuthor:(id)sender {
+- (IBAction)showSource:(id)sender {
 
-    [[NSWorkspace sharedWorkspace] openURL: [NSURL URLWithString:@"http://mihirsingh.com"]];
+    [[NSWorkspace sharedWorkspace] openURL: [NSURL URLWithString:@"https://github.com/citruspi/Spotify-Notifications"]];
 
 }
 
-- (IBAction)showPrefences:(id)sender {
+- (IBAction)showContributors:(id)sender {
+
+    [[NSWorkspace sharedWorkspace] openURL: [NSURL URLWithString:@"https://github.com/citruspi/Spotify-Notifications/graphs/contributors"]];
+
+}
+
+- (IBAction)showPreferences:(id)sender {
 
     [NSApp activateIgnoringOtherApps:YES];
     [window makeKeyAndOrderFront:nil];
+
+}
+
+- (IBAction)showLastFM:(id)sender {
+
+    //Artist - we always need at least this
+    NSString* urlText = [NSString stringWithFormat:@"http://last.fm/music/%@", track.artist];
+
+    if ([sender tag] == 1) {
+        //Album
+        urlText = [urlText stringByAppendingString:[NSString stringWithFormat:@"/%@", track.album]];
+    }
+    else if ([sender tag] == 2) {
+        //Track
+        urlText = [urlText stringByAppendingString:[NSString stringWithFormat:@"/%@/%@", track.album, track.title]];
+    }
+
+    urlText = [urlText stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+
+    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString: urlText]];
 
 }
 
@@ -225,7 +255,11 @@ NSString *previousTrack;
         track.title = [information objectForKey: @"Name"];
         track.trackID = [information objectForKey:@"Track ID"];
 
-        if (![previousTrack isEqualToString:track.trackID] || [self getProperty:@"showTracks"] == 0) {
+        if (![openLastFMMenu isEnabled] && [track.artist isNotEqualTo:NULL]) {
+            [openLastFMMenu setEnabled:YES];
+        }
+
+        if ( [self getProperty:@"notifications"] == 0 && (![previousTrack isEqualToString:track.trackID] || [self getProperty:@"playpausenotifs"] == 0) ) {
 
             previousTrack = track.trackID;
             track.albumArt = nil;
@@ -256,33 +290,21 @@ NSString *previousTrack;
 
 }
 
+- (IBAction)toggleNotifications:(id)sender {
+
+    [self saveProperty:@"notifications" value:(int)[showNotificationsToggle indexOfSelectedItem]];
+
+}
+
+- (IBAction)togglePlayPauseNotif:(id)sender {
+
+    [self saveProperty:@"playpausenotifs" value:(int)[showPlayPauseNotifToggle indexOfSelectedItem]];
+
+}
+
 - (IBAction)toggleSound:(id)sender {
 
     [self saveProperty:@"notificationSound" value:(int)[soundToggle indexOfSelectedItem]];
-
-}
-
-- (IBAction)toggleShowTracks:(id)sender {
-
-    [self saveProperty:@"showTracks" value:(int)[showTracksToggle indexOfSelectedItem]];
-
-}
-
-- (IBAction)toggleStartup:(id)sender {
-
-    [self saveProperty:@"startupSelection" value:(int)[startupToggle indexOfSelectedItem]];
-
-    if ([self getProperty:@"startupSelection"] == 0) {
-
-        [GBLaunchAtLogin addAppAsLoginItem];
-
-    }
-
-    if ([self getProperty:@"startupSelection"] == 1) {
-
-        [GBLaunchAtLogin removeAppFromLoginItems];
-
-    }
 
 }
 
@@ -320,6 +342,24 @@ NSString *previousTrack;
 
     [self saveProperty:@"iconSelection" value:(int)[iconToggle indexOfSelectedItem]];
     [self setIcon];
+
+}
+
+- (IBAction)toggleStartup:(id)sender {
+
+    [self saveProperty:@"startupSelection" value:(int)[startupToggle indexOfSelectedItem]];
+
+    if ([self getProperty:@"startupSelection"] == 0) {
+
+        [GBLaunchAtLogin addAppAsLoginItem];
+
+    }
+
+    if ([self getProperty:@"startupSelection"] == 1) {
+
+        [GBLaunchAtLogin removeAppFromLoginItems];
+
+    }
 
 }
 

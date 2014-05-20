@@ -186,6 +186,12 @@ NSString *previousTrack;
 
 }
 
+- (IBAction)showHome:(id)sender {
+
+    [[NSWorkspace sharedWorkspace] openURL: [NSURL URLWithString:@"http://spotify-notifications.citruspi.io"]];
+
+}
+
 - (IBAction)showSource:(id)sender {
 
     [[NSWorkspace sharedWorkspace] openURL: [NSURL URLWithString:@"https://github.com/citruspi/Spotify-Notifications"]];

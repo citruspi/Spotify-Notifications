@@ -25,6 +25,7 @@
 @property (strong, nonatomic) IBOutlet NSPopUpButton *albumArtToggle;
 @property (weak, nonatomic) IBOutlet MASShortcutView *shortcutView;
 
+- (IBAction)showHome:(id)sender;
 - (IBAction)showSource:(id)sender;
 - (IBAction)showContributors:(id)sender;
 

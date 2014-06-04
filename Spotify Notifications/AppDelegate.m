@@ -24,6 +24,7 @@
 
 @synthesize showNotificationsToggle;
 @synthesize showPlayPauseNotifToggle;
+@synthesize showOnlyCurrentSongToggle;
 @synthesize soundToggle;
 @synthesize iconToggle;
 @synthesize startupToggle;
@@ -95,6 +96,7 @@ NSString *previousTrack;
 
     [showNotificationsToggle selectItemAtIndex:[self getProperty:@"notifications"]];
     [showPlayPauseNotifToggle selectItemAtIndex:[self getProperty:@"playpausenotifs"]];
+    [showOnlyCurrentSongToggle selectItemAtIndex:[self getProperty:@"onlycurrentsong"]];
     [soundToggle selectItemAtIndex:[self getProperty:@"notificationSound"]];
     [iconToggle selectItemAtIndex:[self getProperty:@"iconSelection"]];
     [startupToggle selectItemAtIndex:[self getProperty:@"startupSelection"]];
@@ -141,6 +143,10 @@ NSString *previousTrack;
             }
 
             [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
+            
+            if ([self getProperty:@"onlycurrentsong"] == 0) {
+                [[NSUserNotificationCenter defaultUserNotificationCenter] removeAllDeliveredNotifications];
+            }
         }
 
         else {
@@ -161,6 +167,10 @@ NSString *previousTrack;
 
                 notification.soundName = NSUserNotificationDefaultSoundName;
 
+            }
+            
+            if ([self getProperty:@"onlycurrentsong"] == 0) {
+                [[NSUserNotificationCenter defaultUserNotificationCenter] removeAllDeliveredNotifications];
             }
 
             [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
@@ -248,7 +258,9 @@ NSString *previousTrack;
 
     NSDictionary *information = [notification userInfo];
 
-    if ([[information objectForKey: @"Player State"]isEqualToString:@"Playing"]) {
+    NSString *playerState = [information objectForKey: @"Player State"];
+    
+    if ([playerState isEqualToString:@"Playing"]) {
 
         track.artist = [information objectForKey: @"Artist"];
         track.album = [information objectForKey: @"Album"];
@@ -282,10 +294,16 @@ NSString *previousTrack;
                 notification.soundName = NSUserNotificationDefaultSoundName;
 
             }
+            
+            if ([self getProperty:@"onlycurrentsong"] == 0) {
+                [[NSUserNotificationCenter defaultUserNotificationCenter] removeAllDeliveredNotifications];
+            }
 
             [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
 
         }
+    } else if ([self getProperty:@"onlycurrentsong"] == 0 && [self getProperty:@"playpausenotifs"] == 0 && [playerState isEqualToString:@"Paused"]) {
+        [[NSUserNotificationCenter defaultUserNotificationCenter] removeAllDeliveredNotifications];
     }
 
 }
@@ -300,6 +318,12 @@ NSString *previousTrack;
 
     [self saveProperty:@"playpausenotifs" value:(int)[showPlayPauseNotifToggle indexOfSelectedItem]];
 
+}
+
+- (IBAction)toggleOnlyCurrentSong:(id)sender {
+    
+    [self saveProperty:@"onlycurrentsong" value:(int)[showOnlyCurrentSongToggle indexOfSelectedItem]];
+    
 }
 
 - (IBAction)toggleSound:(id)sender {

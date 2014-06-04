@@ -19,6 +19,7 @@
 @property (strong, nonatomic) IBOutlet NSMenuItem *openLastFMTrack;
 @property (strong, nonatomic) IBOutlet NSPopUpButton *showNotificationsToggle;
 @property (strong, nonatomic) IBOutlet NSPopUpButton *showPlayPauseNotifToggle;
+@property (strong, nonatomic) IBOutlet NSPopUpButton *showOnlyCurrentSongToggle;
 @property (strong, nonatomic) IBOutlet NSPopUpButton *soundToggle;
 @property (strong, nonatomic) IBOutlet NSPopUpButton *iconToggle;
 @property (strong, nonatomic) IBOutlet NSPopUpButton *startupToggle;
@@ -34,6 +35,7 @@
 
 - (IBAction)toggleNotifications:(id)sender;
 - (IBAction)togglePlayPauseNotif:(id)sender;
+- (IBAction)toggleOnlyCurrentSong:(id)sender;
 - (IBAction)toggleSound:(id)sender;
 - (IBAction)toggleIcons:(id)sender;
 - (IBAction)toggleStartup:(id)sender;

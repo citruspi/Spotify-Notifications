@@ -6,3 +6,4 @@
 - John "Seg" Seggerson ([TheSeg](https://github.com/TheSeg))
 - Hadi Michael ([HadiMichael](https://github.com/hadimichael))
 - Harlan Haskins ([Harlan Haskins](https://github.com/harlanhaskins))
+- Joseba Mendivil ([josebama](https://github.com/josebama))

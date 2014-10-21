@@ -346,6 +346,7 @@ NSString *previousTrack;
         self.statusBar = [[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength];
         self.statusBar.image = [NSImage imageNamed:@"status_bar_colour.tiff"];
         self.statusBar.menu = self.statusMenu;
+        self.statusBar.image.template = NO;
         self.statusBar.highlightMode = YES;
 
     }
@@ -356,6 +357,7 @@ NSString *previousTrack;
         self.statusBar = [[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength];
         self.statusBar.image = [NSImage imageNamed:@"status_bar_black.tiff"];
         self.statusBar.menu = self.statusMenu;
+        self.statusBar.image.template = YES;
         self.statusBar.highlightMode = YES;
 
     }

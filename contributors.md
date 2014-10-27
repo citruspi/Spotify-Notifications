@@ -7,3 +7,4 @@
 - Hadi Michael ([HadiMichael](https://github.com/hadimichael))
 - Harlan Haskins ([Harlan Haskins](https://github.com/harlanhaskins))
 - Joseba Mendivil ([josebama](https://github.com/josebama))
+- Anuj Das ([Anuj Das](https://github.com/anujdas))

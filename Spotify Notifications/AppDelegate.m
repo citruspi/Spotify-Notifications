@@ -58,11 +58,6 @@ NSString *previousTrack;
 
             minor = [productVersionSeparated[1] integerValue];
 
-            if ( productVersionSeparated.count >= 3 ) {
-
-                patch = [productVersionSeparated[2] integerValue];
-
-            }
         }
     }
 

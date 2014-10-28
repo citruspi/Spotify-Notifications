@@ -677,8 +677,8 @@
                         <action selector="showPreferences:" target="494" id="XKB-Ii-DPd"/>
                     </connections>
                 </menuItem>
-                <menuItem title="Lookup on Last.FM" enabled="NO" id="SZW-Od-Gwx">
-                    <menu key="submenu" title="Lookup on Last.FM" id="a8M-Lg-29f">
+                <menuItem title="Last.fm" enabled="NO" id="SZW-Od-Gwx">
+                    <menu key="submenu" title="Last.fm" id="a8M-Lg-29f">
                         <items>
                             <menuItem title="Artist" enabled="NO" id="0cf-J0-9nm">
                                 <modifierMask key="keyEquivalentModifierMask"/>

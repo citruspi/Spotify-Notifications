@@ -671,8 +671,7 @@
         <customObject id="420" customClass="NSFontManager"/>
         <menu id="536">
             <items>
-                <menuItem title="Preferences" id="61H-gV-eIG">
-                    <modifierMask key="keyEquivalentModifierMask"/>
+                <menuItem title="Preferences" keyEquivalent="," id="61H-gV-eIG">
                     <connections>
                         <action selector="showPreferences:" target="494" id="XKB-Ii-DPd"/>
                     </connections>

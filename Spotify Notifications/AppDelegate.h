@@ -24,6 +24,7 @@
 @property (strong, nonatomic) IBOutlet NSPopUpButton *iconToggle;
 @property (strong, nonatomic) IBOutlet NSPopUpButton *startupToggle;
 @property (strong, nonatomic) IBOutlet NSPopUpButton *albumArtToggle;
+@property (strong, nonatomic) IBOutlet NSPopUpButton *disabledWhenSpotifyHasFocusToggle;
 @property (weak, nonatomic) IBOutlet MASShortcutView *shortcutView;
 
 - (IBAction)showHome:(id)sender;
@@ -40,5 +41,5 @@
 - (IBAction)toggleIcons:(id)sender;
 - (IBAction)toggleStartup:(id)sender;
 - (IBAction)toggleAlbumArt:(id)sender;
-
+- (IBAction)toggleDisabledWhenSpotifyHasFocus:(id)sender;
 @end

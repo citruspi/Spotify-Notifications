@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6206.8" systemVersion="14A343f" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <deployment version="1080" defaultVersion="1070" identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6206.8"/>
+        <deployment version="1080" identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6250"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="NSApplication">
@@ -652,6 +652,7 @@
         <customObject id="494" customClass="AppDelegate">
             <connections>
                 <outlet property="albumArtToggle" destination="keF-Aq-QVQ" id="bfo-wT-VX9"/>
+                <outlet property="disabledWhenSpotifyHasFocusToggle" destination="awD-lA-Y4C" id="Mup-bh-kgJ"/>
                 <outlet property="iconToggle" destination="36k-RY-ycT" id="iqL-uS-Kh5"/>
                 <outlet property="openLastFMAlbum" destination="pXK-QR-zej" id="Ffb-qH-xxx"/>
                 <outlet property="openLastFMArtist" destination="0cf-J0-9nm" id="ODO-h9-pTC"/>
@@ -711,26 +712,16 @@
         <window title="Spotify Notifications" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="XjB-tk-5rO">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="131" y="165" width="354" height="289"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1177"/>
+            <rect key="contentRect" x="131" y="165" width="414" height="325"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1200"/>
             <value key="minSize" type="size" width="354" height="224"/>
             <value key="maxSize" type="size" width="354" height="224"/>
             <view key="contentView" id="yf3-aQ-pSq">
-                <rect key="frame" x="0.0" y="0.0" width="354" height="289"/>
+                <rect key="frame" x="0.0" y="0.0" width="414" height="325"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yJj-ud-kWM">
-                        <rect key="frame" x="76" y="5" width="83" height="32"/>
-                        <buttonCell key="cell" type="push" title="Source" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="b1D-6Z-mU0">
-                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="system"/>
-                        </buttonCell>
-                        <connections>
-                            <action selector="showSource:" target="494" id="0eV-Gj-17K"/>
-                        </connections>
-                    </button>
                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HhP-Bg-IV0">
-                        <rect key="frame" x="6" y="5" width="70" height="32"/>
+                        <rect key="frame" x="6" y="13" width="89" height="32"/>
                         <buttonCell key="cell" type="push" title="Home" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="tce-xk-hly">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
@@ -740,7 +731,7 @@
                         </connections>
                     </button>
                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mFp-lS-USE">
-                        <rect key="frame" x="161" y="5" width="112" height="32"/>
+                        <rect key="frame" x="191" y="13" width="127" height="32"/>
                         <buttonCell key="cell" type="push" title="Contributors" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="OYu-IQ-DqI">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
@@ -750,7 +741,7 @@
                         </connections>
                     </button>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nr8-cn-xxJ">
-                        <rect key="frame" x="9" y="169" width="121" height="17"/>
+                        <rect key="frame" x="9" y="205" width="121" height="17"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Notification Sound" id="HDW-ZH-ate">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -758,7 +749,7 @@
                         </textFieldCell>
                     </textField>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ciN-aU-Ao4">
-                        <rect key="frame" x="10" y="142" width="94" height="17"/>
+                        <rect key="frame" x="10" y="178" width="94" height="17"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Menu Bar Icon" id="J1v-0s-9HJ">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -766,7 +757,7 @@
                         </textFieldCell>
                     </textField>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dmf-Pt-WfJ">
-                        <rect key="frame" x="10" y="115" width="99" height="17"/>
+                        <rect key="frame" x="10" y="151" width="99" height="17"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Run on Startup" id="SMs-1Z-uuI">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -774,15 +765,23 @@
                         </textFieldCell>
                     </textField>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iYs-fy-aKp">
-                        <rect key="frame" x="10" y="63" width="125" height="17"/>
+                        <rect key="frame" x="10" y="99" width="125" height="17"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Show Current Song" id="ioa-gS-kBC">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="b2c-XE-cXb">
+                        <rect key="frame" x="10" y="72" width="202" height="17"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Disable when Spotify has Focus" id="gsd-f4-Mhj">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gJg-bI-avw">
-                        <rect key="frame" x="273" y="5" width="67" height="32"/>
+                        <rect key="frame" x="318" y="13" width="82" height="32"/>
                         <buttonCell key="cell" type="push" title="Quit" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="D8L-RW-s52">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
@@ -792,13 +791,13 @@
                         </connections>
                     </button>
                     <box verticalHuggingPriority="750" fixedFrame="YES" title="Box" boxType="separator" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="Qg2-J3-03d">
-                        <rect key="frame" x="12" y="44" width="322" height="5"/>
+                        <rect key="frame" x="12" y="52" width="382" height="5"/>
                         <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                         <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <font key="titleFont" metaFont="system"/>
                     </box>
                     <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="36k-RY-ycT">
-                        <rect key="frame" x="167" y="137" width="170" height="26"/>
+                        <rect key="frame" x="227" y="173" width="170" height="26"/>
                         <popUpButtonCell key="cell" type="push" title="Coloured" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="border" tag="1" imageScaling="proportionallyDown" inset="2" selectedItem="918-Ej-orj" id="D3F-Wn-llx">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="menu"/>
@@ -821,7 +820,7 @@
                         </connections>
                     </popUpButton>
                     <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jB5-XW-fCl">
-                        <rect key="frame" x="167" y="164" width="170" height="26"/>
+                        <rect key="frame" x="227" y="200" width="170" height="26"/>
                         <popUpButtonCell key="cell" type="push" title="Enabled" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="border" tag="1" imageScaling="proportionallyDown" inset="2" selectedItem="KbY-H6-Sda" id="Jhk-RF-RQ5">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="menu"/>
@@ -841,7 +840,7 @@
                         </connections>
                     </popUpButton>
                     <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rMI-2V-W99">
-                        <rect key="frame" x="167" y="110" width="170" height="26"/>
+                        <rect key="frame" x="227" y="146" width="170" height="26"/>
                         <popUpButtonCell key="cell" type="push" title="Enabled" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="border" tag="1" imageScaling="proportionallyDown" inset="2" selectedItem="ov9-Kg-xJq" id="8XQ-a4-UIa">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="menu"/>
@@ -861,7 +860,7 @@
                         </connections>
                     </popUpButton>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OaB-JE-Xh4">
-                        <rect key="frame" x="10" y="88" width="119" height="17"/>
+                        <rect key="frame" x="10" y="124" width="119" height="17"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Include Album Art" id="PyI-oG-4FN">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -869,7 +868,7 @@
                         </textFieldCell>
                     </textField>
                     <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="keF-Aq-QVQ">
-                        <rect key="frame" x="167" y="83" width="170" height="26"/>
+                        <rect key="frame" x="227" y="119" width="170" height="26"/>
                         <popUpButtonCell key="cell" type="push" title="Enabled" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="border" tag="1" imageScaling="proportionallyDown" inset="2" selectedItem="p4b-IH-z0r" id="8EN-nE-3Wy">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="menu"/>
@@ -888,8 +887,28 @@
                             <action selector="toggleAlbumArt:" target="494" id="VHk-a4-ESV"/>
                         </connections>
                     </popUpButton>
+                    <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="awD-lA-Y4C">
+                        <rect key="frame" x="227" y="67" width="170" height="26"/>
+                        <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="w9f-S4-2sg">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="menu"/>
+                            <menu key="menu" title="OtherViews" id="VCl-sh-qmL">
+                                <items>
+                                    <menuItem title="Enabled" tag="1" id="AAO-ky-bEv">
+                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                    </menuItem>
+                                    <menuItem title="Disabled" tag="2" id="zfE-Tv-bkv">
+                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                    </menuItem>
+                                </items>
+                            </menu>
+                        </popUpButtonCell>
+                        <connections>
+                            <action selector="toggleAlbumArt:" target="494" id="cg1-JS-cGB"/>
+                        </connections>
+                    </popUpButton>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ghx-OI-Ljb">
-                        <rect key="frame" x="10" y="223" width="145" height="17"/>
+                        <rect key="frame" x="10" y="259" width="145" height="17"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Notify on Play/Pause" id="ewB-B2-cZF">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -897,7 +916,7 @@
                         </textFieldCell>
                     </textField>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rkW-He-mVK">
-                        <rect key="frame" x="10" y="250" width="145" height="17"/>
+                        <rect key="frame" x="10" y="286" width="145" height="17"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Notifications" id="8Ll-WX-KWL">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -905,7 +924,7 @@
                         </textFieldCell>
                     </textField>
                     <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RJH-ok-8hR">
-                        <rect key="frame" x="167" y="245" width="170" height="26"/>
+                        <rect key="frame" x="227" y="281" width="170" height="26"/>
                         <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="R1J-bu-Swu">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="menu"/>
@@ -925,10 +944,10 @@
                         </connections>
                     </popUpButton>
                     <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zbi-2N-Pgf" customClass="MASShortcutView">
-                        <rect key="frame" x="169" y="61" width="165" height="19"/>
+                        <rect key="frame" x="229" y="97" width="165" height="19"/>
                     </customView>
                     <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dKE-qO-891">
-                        <rect key="frame" x="167" y="218" width="170" height="26"/>
+                        <rect key="frame" x="227" y="254" width="170" height="26"/>
                         <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="QNd-Gx-4yw">
                             <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="menu"/>
@@ -948,7 +967,7 @@
                         </connections>
                     </popUpButton>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eeM-Qd-hRU">
-                        <rect key="frame" x="10" y="196" width="153" height="17"/>
+                        <rect key="frame" x="10" y="232" width="153" height="17"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Show only current song" id="Wsh-AZ-56A">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -956,7 +975,7 @@
                         </textFieldCell>
                     </textField>
                     <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Y6r-ZU-TOD">
-                        <rect key="frame" x="167" y="191" width="170" height="26"/>
+                        <rect key="frame" x="227" y="227" width="170" height="26"/>
                         <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="Rn8-fq-ITk">
                             <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="menu"/>
@@ -975,8 +994,19 @@
                             <action selector="toggleOnlyCurrentSong:" target="494" id="3Tt-AP-i6y"/>
                         </connections>
                     </popUpButton>
+                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yJj-ud-kWM">
+                        <rect key="frame" x="95" y="13" width="96" height="32"/>
+                        <buttonCell key="cell" type="push" title="Source" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="b1D-6Z-mU0">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="showSource:" target="494" id="0eV-Gj-17K"/>
+                        </connections>
+                    </button>
                 </subviews>
             </view>
+            <point key="canvasLocation" x="703" y="317.5"/>
         </window>
     </objects>
 </document>

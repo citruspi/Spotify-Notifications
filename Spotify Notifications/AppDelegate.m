@@ -4,6 +4,7 @@
 //
 
 #import "AppDelegate.h"
+#import <AppKit/AppKit.h>
 #import "GBLaunchAtLogin.h"
 #import "MASShortcutView.h"
 #import "MASShortcutView+UserDefaults.h"
@@ -30,6 +31,7 @@
 @synthesize startupToggle;
 @synthesize albumArtToggle;
 @synthesize shortcutView;
+@synthesize disabledWhenSpotifyHasFocusToggle;
 
 BOOL UserNotificationContentImagePropertyAvailable;
 
@@ -96,7 +98,8 @@ NSString *previousTrack;
     [iconToggle selectItemAtIndex:[self getProperty:@"iconSelection"]];
     [startupToggle selectItemAtIndex:[self getProperty:@"startupSelection"]];
     [albumArtToggle selectItemAtIndex:[self getProperty:@"includeAlbumArt"]];
-
+    [disabledWhenSpotifyHasFocusToggle selectItemAtIndex:[self getProperty:@"disableWhenSpotifyHasFocus"]];
+    
     if (!(UserNotificationContentImagePropertyAvailable)) {
 
         albumArtToggle.enabled = NO;
@@ -259,6 +262,14 @@ NSString *previousTrack;
     NSString *playerState = [information objectForKey: @"Player State"];
     
     if ([playerState isEqualToString:@"Playing"]) {
+        
+        NSRunningApplication *frontmostApplication = [[NSWorkspace sharedWorkspace] frontmostApplication];
+        
+        if ([frontmostApplication.bundleIdentifier isEqualToString:@"com.spotify.client"]) {
+            if ([self getProperty:@"disableWhenSpotifyHasFocus"] == 0) {
+                return;
+            }
+        }
 
         track.artist = [information objectForKey: @"Artist"];
         track.album = [information objectForKey: @"Album"];
@@ -394,6 +405,10 @@ NSString *previousTrack;
 
     [self saveProperty:@"includeAlbumArt" value:(int)[albumArtToggle indexOfSelectedItem]];
 
+}
+
+- (IBAction)toggleDisabledWhenSpotifyHasFocus:(id)sender {
+    [self saveProperty:@"disableWhenSpotifyHasFocus" value:(int)[disabledWhenSpotifyHasFocusToggle indexOfSelectedItem]];
 }
 
 - (void)saveProperty:(NSString*)key value:(int)value {

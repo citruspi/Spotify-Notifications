@@ -408,7 +408,9 @@ NSString *previousTrack;
 }
 
 - (IBAction)toggleDisabledWhenSpotifyHasFocus:(id)sender {
+
     [self saveProperty:@"disableWhenSpotifyHasFocus" value:(int)[disabledWhenSpotifyHasFocusToggle indexOfSelectedItem]];
+
 }
 
 - (void)saveProperty:(NSString*)key value:(int)value {

@@ -904,7 +904,7 @@
                             </menu>
                         </popUpButtonCell>
                         <connections>
-                            <action selector="toggleAlbumArt:" target="494" id="cg1-JS-cGB"/>
+                            <action selector="toggleDisabledWhenSpotifyHasFocus:" target="494" id="Fqb-va-cwY"/>
                         </connections>
                     </popUpButton>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ghx-OI-Ljb">

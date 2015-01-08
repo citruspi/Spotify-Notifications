@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		21CFE4DC1A5E18DE00BA92FB /* Alamofire.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 21CFE4D61A5E185100BA92FB /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		21CFE4E21A5E1A3700BA92FB /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21CFE4E11A5E1A3700BA92FB /* SwiftyJSON.swift */; };
 		21DE32F81A5E00D7009FB228 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DE32F71A5E00D7009FB228 /* AppDelegate.swift */; };
 		21DE32FA1A5E00D7009FB228 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DE32F91A5E00D7009FB228 /* ViewController.swift */; };
 		21DE32FC1A5E00D7009FB228 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 21DE32FB1A5E00D7009FB228 /* Images.xcassets */; };
@@ -15,6 +17,27 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		21CFE4D51A5E185100BA92FB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 21CFE4D01A5E185100BA92FB /* Alamofire.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F8111E3319A95C8B0040E7D1;
+			remoteInfo = Alamofire;
+		};
+		21CFE4D71A5E185100BA92FB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 21CFE4D01A5E185100BA92FB /* Alamofire.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F8111E3E19A95C8B0040E7D1;
+			remoteInfo = AlamofireTests;
+		};
+		21CFE4D91A5E18C900BA92FB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 21CFE4D01A5E185100BA92FB /* Alamofire.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = F8111E3219A95C8B0040E7D1;
+			remoteInfo = Alamofire;
+		};
 		21DE33051A5E00D7009FB228 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 21DE32EA1A5E00D7009FB228 /* Project object */;
@@ -24,7 +47,23 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		21CFE4DB1A5E18D100BA92FB /* Copy Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				21CFE4DC1A5E18DE00BA92FB /* Alamofire.framework in Copy Frameworks */,
+			);
+			name = "Copy Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		21CFE4D01A5E185100BA92FB /* Alamofire.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Alamofire.xcodeproj; path = Alamofire/Alamofire.xcodeproj; sourceTree = "<group>"; };
+		21CFE4E11A5E1A3700BA92FB /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwiftyJSON.swift; path = SwiftyJSON/Source/SwiftyJSON.swift; sourceTree = "<group>"; };
 		21DE32F21A5E00D7009FB228 /* Spotify Notifications.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Spotify Notifications.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		21DE32F61A5E00D7009FB228 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		21DE32F71A5E00D7009FB228 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -54,9 +93,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		21CFE4D11A5E185100BA92FB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				21CFE4D61A5E185100BA92FB /* Alamofire.framework */,
+				21CFE4D81A5E185100BA92FB /* AlamofireTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		21DE32E91A5E00D7009FB228 = {
 			isa = PBXGroup;
 			children = (
+				21CFE4E11A5E1A3700BA92FB /* SwiftyJSON.swift */,
+				21CFE4D01A5E185100BA92FB /* Alamofire.xcodeproj */,
 				21DE32F41A5E00D7009FB228 /* Spotify Notifications */,
 				21DE33071A5E00D7009FB228 /* Spotify NotificationsTests */,
 				21DE32F31A5E00D7009FB228 /* Products */,
@@ -119,10 +169,12 @@
 				21DE32EE1A5E00D7009FB228 /* Sources */,
 				21DE32EF1A5E00D7009FB228 /* Frameworks */,
 				21DE32F01A5E00D7009FB228 /* Resources */,
+				21CFE4DB1A5E18D100BA92FB /* Copy Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				21CFE4DA1A5E18C900BA92FB /* PBXTargetDependency */,
 			);
 			name = "Spotify Notifications";
 			productName = "Spotify Notifications";
@@ -158,6 +210,7 @@
 				TargetAttributes = {
 					21DE32F11A5E00D7009FB228 = {
 						CreatedOnToolsVersion = 6.1.1;
+						DevelopmentTeam = SH52BQ2ZXA;
 					};
 					21DE33031A5E00D7009FB228 = {
 						CreatedOnToolsVersion = 6.1.1;
@@ -176,6 +229,12 @@
 			mainGroup = 21DE32E91A5E00D7009FB228;
 			productRefGroup = 21DE32F31A5E00D7009FB228 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 21CFE4D11A5E185100BA92FB /* Products */;
+					ProjectRef = 21CFE4D01A5E185100BA92FB /* Alamofire.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				21DE32F11A5E00D7009FB228 /* Spotify Notifications */,
@@ -183,6 +242,23 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		21CFE4D61A5E185100BA92FB /* Alamofire.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Alamofire.framework;
+			remoteRef = 21CFE4D51A5E185100BA92FB /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		21CFE4D81A5E185100BA92FB /* AlamofireTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = AlamofireTests.xctest;
+			remoteRef = 21CFE4D71A5E185100BA92FB /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		21DE32F01A5E00D7009FB228 /* Resources */ = {
@@ -208,6 +284,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				21CFE4E21A5E1A3700BA92FB /* SwiftyJSON.swift in Sources */,
 				21DE32FA1A5E00D7009FB228 /* ViewController.swift in Sources */,
 				21DE32F81A5E00D7009FB228 /* AppDelegate.swift in Sources */,
 			);
@@ -224,6 +301,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		21CFE4DA1A5E18C900BA92FB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Alamofire;
+			targetProxy = 21CFE4D91A5E18C900BA92FB /* PBXContainerItemProxy */;
+		};
 		21DE33061A5E00D7009FB228 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 21DE32F11A5E00D7009FB228 /* Spotify Notifications */;
@@ -324,10 +406,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = "Spotify Notifications/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -335,10 +420,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = "Spotify Notifications/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
@@ -397,6 +485,7 @@
 				21DE33101A5E00D7009FB228 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		21DE33111A5E00D7009FB228 /* Build configuration list for PBXNativeTarget "Spotify NotificationsTests" */ = {
 			isa = XCConfigurationList;
@@ -405,6 +494,7 @@
 				21DE33131A5E00D7009FB228 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

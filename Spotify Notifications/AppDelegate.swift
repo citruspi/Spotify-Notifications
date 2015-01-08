@@ -8,6 +8,7 @@
 
 import Cocoa
 import Foundation
+import Alamofire
 
 struct Track {
     var title: String? = nil
@@ -35,7 +36,28 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             track.artist = information["Artist"] as NSString
             track.album = information["Album"] as NSString
             track.id = information["Track ID"] as NSString
+        
+            let apiUri = "https://embed.spotify.com/oembed/?url=" + track.id!
+            
+            Alamofire.request(.GET, apiUri, parameters: nil)
+                .responseJSON { (req, res, json, error) in
+                    if(error != nil) {
+                        NSLog("Error: \(error)")
+                    }
+                    else {
+                        var json = JSON(json!)
+                        
+                        let artworkLocation: NSURL = NSURL(string: json["thumbnail_url"].stringValue)!
+                        
+                        let artwork = NSImage(contentsOfURL: artworkLocation)
+                        self.track.artwork = artwork
+                    }
+            }
         }
+    }
+    
+    func presentNotification() {
+        
     }
 
     func applicationWillTerminate(aNotification: NSNotification) {

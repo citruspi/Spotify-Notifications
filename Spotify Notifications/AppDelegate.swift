@@ -36,7 +36,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             track.artist = information["Artist"] as NSString
             track.album = information["Album"] as NSString
             track.id = information["Track ID"] as NSString
-        
+
             let apiUri = "https://embed.spotify.com/oembed/?url=" + track.id!
             
             Alamofire.request(.GET, apiUri, parameters: nil)
@@ -66,9 +66,24 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         notification.informativeText = track.artist
         notification.contentImage = track.artwork
 
-        notification.soundName = NSUserNotificationDefaultSoundName
+        if (self.fetchPreference("notificationSound", fallback: 0) == 0) {
+            notification.soundName = NSUserNotificationDefaultSoundName
+        }
 
         NSUserNotificationCenter.defaultUserNotificationCenter().deliverNotification(notification)
+    }
+    
+    func setPreference(key: String, value: Int) {
+        NSUserDefaults.standardUserDefaults().setInteger(value, forKey: key)
+        NSUserDefaults.standardUserDefaults().synchronize()
+    }
+    
+    func fetchPreference(key: String, fallback: Int) -> Int {
+        if let preference: AnyObject = NSUserDefaults.standardUserDefaults().objectForKey(key) {
+            return preference as Int
+        } else {
+            return fallback
+        }
     }
 
     func applicationWillTerminate(aNotification: NSNotification) {

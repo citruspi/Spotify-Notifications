@@ -1,7 +1,0 @@
-//
-// Prefix header for all source files of the 'Spotify Notifications' target in the 'Spotify Notifications' project
-//
-
-#ifdef __OBJC__
-    #import <Cocoa/Cocoa.h>
-#endif

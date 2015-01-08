@@ -53,11 +53,22 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                         self.track.artwork = artwork
                     }
             }
+
+            presentNotification()
         }
     }
-    
+
     func presentNotification() {
+        var notification:NSUserNotification = NSUserNotification()
         
+        notification.title = track.title
+        notification.subtitle = track.album
+        notification.informativeText = track.artist
+        notification.contentImage = track.artwork
+
+        notification.soundName = NSUserNotificationDefaultSoundName
+
+        NSUserNotificationCenter.defaultUserNotificationCenter().deliverNotification(notification)
     }
 
     func applicationWillTerminate(aNotification: NSNotification) {

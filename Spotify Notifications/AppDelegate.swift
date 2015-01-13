@@ -73,11 +73,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         NSUserNotificationCenter.defaultUserNotificationCenter().deliverNotification(notification)
     }
     
-    func setPreference(key: String, value: Int) {
-        NSUserDefaults.standardUserDefaults().setInteger(value, forKey: key)
-        NSUserDefaults.standardUserDefaults().synchronize()
-    }
-    
     func fetchPreference(key: String, fallback: Int) -> Int {
         if let preference: AnyObject = NSUserDefaults.standardUserDefaults().objectForKey(key) {
             return preference as Int

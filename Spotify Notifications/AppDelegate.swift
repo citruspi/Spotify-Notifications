@@ -66,14 +66,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         notification.informativeText = track.artist
         notification.contentImage = track.artwork
 
-        if (self.fetchPreference("playSoundOnNotification", fallback: 0) == 0) {
+        if (self.fetchPreference("playSoundOnNotification") == 0) {
             notification.soundName = NSUserNotificationDefaultSoundName
         }
 
         NSUserNotificationCenter.defaultUserNotificationCenter().deliverNotification(notification)
     }
     
-    func fetchPreference(key: String, fallback: Int) -> Int {
+    func fetchPreference(key: String, fallback: Int = 0) -> Int {
         if let preference: AnyObject = NSUserDefaults.standardUserDefaults().objectForKey(key) {
             return preference as Int
         } else {

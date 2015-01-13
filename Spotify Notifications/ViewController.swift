@@ -21,7 +21,7 @@ class ViewController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        NotificationSoundButton.selectItemAtIndex(fetchPreference("playSoundOnNotification", fallback: 0))
+        NotificationSoundButton.selectItemAtIndex(fetchPreference("playSoundOnNotification"))
     }
 
     override var representedObject: AnyObject? {
@@ -40,7 +40,7 @@ class ViewController: NSViewController {
         NSUserDefaults.standardUserDefaults().synchronize()
     }
 
-    func fetchPreference(key: String, fallback: Int) -> Int {
+    func fetchPreference(key: String, fallback: Int = 0) -> Int {
         if let preference: AnyObject = NSUserDefaults.standardUserDefaults().objectForKey(key) {
             return preference as Int
         } else {

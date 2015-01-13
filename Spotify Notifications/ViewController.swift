@@ -10,10 +10,18 @@ import Cocoa
 
 class ViewController: NSViewController {
 
+    /*
+    Button              Preferency Key              Purpose
+    ---------------------------------------------------------------------------------------
+    NotificationSound   playSoundOnNotification     Play a sound before each notification.
+    */
+
+    @IBOutlet weak var NotificationSoundButton: NSPopUpButton!
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        NotificationSoundButton.selectItemAtIndex(fetchPreference("playSoundOnNotification", fallback: 0))
     }
 
     override var representedObject: AnyObject? {
@@ -22,6 +30,23 @@ class ViewController: NSViewController {
         }
     }
 
+    @IBAction func PreferenceSet(sender: NSPopUpButton) {
+        var identifier : String = sender.identifier
+        setPreference(identifier, value: sender.indexOfSelectedItem)
+    }
+
+    func setPreference(key: String, value: Int) {
+        NSUserDefaults.standardUserDefaults().setInteger(value, forKey: key)
+        NSUserDefaults.standardUserDefaults().synchronize()
+    }
+
+    func fetchPreference(key: String, fallback: Int) -> Int {
+        if let preference: AnyObject = NSUserDefaults.standardUserDefaults().objectForKey(key) {
+            return preference as Int
+        } else {
+            return fallback
+        }
+    }
 
 }
 

@@ -66,7 +66,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         notification.informativeText = track.artist
         notification.contentImage = track.artwork
 
-        if (self.fetchPreference("notificationSound", fallback: 0) == 0) {
+        if (self.fetchPreference("playSoundOnNotification", fallback: 0) == 0) {
             notification.soundName = NSUserNotificationDefaultSoundName
         }
 

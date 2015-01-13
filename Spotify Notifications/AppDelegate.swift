@@ -37,21 +37,23 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             track.album = information["Album"] as NSString
             track.id = information["Track ID"] as NSString
 
-            let apiUri = "https://embed.spotify.com/oembed/?url=" + track.id!
+            if fetchPreference("embedAlbumArtwork") == 0 {
+                let apiUri = "https://embed.spotify.com/oembed/?url=" + track.id!
             
-            Alamofire.request(.GET, apiUri, parameters: nil)
-                .responseJSON { (req, res, json, error) in
-                    if(error != nil) {
-                        NSLog("Error: \(error)")
-                    }
-                    else {
-                        var json = JSON(json!)
+                Alamofire.request(.GET, apiUri, parameters: nil)
+                    .responseJSON { (req, res, json, error) in
+                        if(error != nil) {
+                            NSLog("Error: \(error)")
+                        }
+                        else {
+                            var json = JSON(json!)
                         
-                        let artworkLocation: NSURL = NSURL(string: json["thumbnail_url"].stringValue)!
+                            let artworkLocation: NSURL = NSURL(string: json["thumbnail_url"].stringValue)!
                         
-                        let artwork = NSImage(contentsOfURL: artworkLocation)
-                        self.track.artwork = artwork
-                    }
+                            let artwork = NSImage(contentsOfURL: artworkLocation)
+                            self.track.artwork = artwork
+                        }
+                }
             }
 
             presentNotification()
@@ -64,8 +66,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         notification.title = track.title
         notification.subtitle = track.album
         notification.informativeText = track.artist
-        notification.contentImage = track.artwork
-
+        
+        if track.artwork != nil {
+            notification.contentImage = track.artwork
+        }
+        
         if (self.fetchPreference("playSoundOnNotification") == 0) {
             notification.soundName = NSUserNotificationDefaultSoundName
         }

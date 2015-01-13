@@ -12,16 +12,19 @@ class ViewController: NSViewController {
 
     /*
     Button              Preferency Key              Purpose
-    ---------------------------------------------------------------------------------------
-    NotificationSound   playSoundOnNotification     Play a sound before each notification.
+    -----------------------------------------------------------------------------------------
+    notificationSound   playSoundOnNotification     Play a sound before each notification.
+    embedAlbumArtwork   embedAlbumArtwork           Embed the album artwork in notifications.
     */
 
-    @IBOutlet weak var NotificationSoundButton: NSPopUpButton!
-
+    @IBOutlet weak var notificationSoundButton: NSPopUpButton!
+    @IBOutlet weak var embedAlbumArtworkButton: NSPopUpButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        NotificationSoundButton.selectItemAtIndex(fetchPreference("playSoundOnNotification"))
+        notificationSoundButton.selectItemAtIndex(fetchPreference("playSoundOnNotification"))
+        embedAlbumArtworkButton.selectItemAtIndex(fetchPreference("embedAlbumArtwork"))
     }
 
     override var representedObject: AnyObject? {

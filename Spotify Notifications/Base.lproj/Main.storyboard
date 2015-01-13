@@ -700,10 +700,35 @@
                                     <action selector="PreferenceSet:" target="XfG-lQ-9wD" id="Flq-EZ-1nO"/>
                                 </connections>
                             </popUpButton>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1vH-yZ-2Hy">
+                                <rect key="frame" x="18" y="208" width="143" height="17"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Embed Album Artwork" id="ZHm-oZ-NII">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <popUpButton identifier="embedAlbumArtwork" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ub6-UU-y3w">
+                                <rect key="frame" x="237" y="203" width="226" height="26"/>
+                                <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="dsC-r8-Qwo">
+                                    <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="menu"/>
+                                    <menu key="menu" id="QS4-uZ-a4l">
+                                        <items>
+                                            <menuItem title="Enabled" id="Pqn-5M-WTU"/>
+                                            <menuItem title="Disabled" id="yZ4-7I-XJw"/>
+                                        </items>
+                                    </menu>
+                                </popUpButtonCell>
+                                <connections>
+                                    <action selector="PreferenceSet:" target="XfG-lQ-9wD" id="yk7-aO-zgG"/>
+                                </connections>
+                            </popUpButton>
                         </subviews>
                     </view>
                     <connections>
                         <outlet property="NotificationSoundButton" destination="uoW-kz-pwH" id="oyH-pj-gZn"/>
+                        <outlet property="embedAlbumArtworkButton" destination="ub6-UU-y3w" id="z5u-kH-W8d"/>
                     </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1EAA7250E3AC97691970E76C /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 10B804E1F3F000BFA478BCE7 /* libPods.a */; };
 		21CFE4DC1A5E18DE00BA92FB /* Alamofire.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 21CFE4D61A5E185100BA92FB /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		21CFE4E21A5E1A3700BA92FB /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21CFE4E11A5E1A3700BA92FB /* SwiftyJSON.swift */; };
 		21DE32F81A5E00D7009FB228 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DE32F71A5E00D7009FB228 /* AppDelegate.swift */; };
@@ -62,6 +63,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		10B804E1F3F000BFA478BCE7 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		212ED2DE1A65FF680012044F /* Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "Bridging-Header.h"; path = "../Bridging-Header.h"; sourceTree = "<group>"; };
 		21CFE4D01A5E185100BA92FB /* Alamofire.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Alamofire.xcodeproj; path = Alamofire/Alamofire.xcodeproj; sourceTree = "<group>"; };
 		21CFE4E11A5E1A3700BA92FB /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwiftyJSON.swift; path = SwiftyJSON/Source/SwiftyJSON.swift; sourceTree = "<group>"; };
 		21DE32F21A5E00D7009FB228 /* Spotify Notifications.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Spotify Notifications.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -73,6 +76,8 @@
 		21DE33041A5E00D7009FB228 /* Spotify NotificationsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Spotify NotificationsTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		21DE33091A5E00D7009FB228 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		21DE330A1A5E00D7009FB228 /* Spotify_NotificationsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spotify_NotificationsTests.swift; sourceTree = "<group>"; };
+		7C0D28B5B2F50EB4878854BB /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		CE06EF61376146DE017BEA9C /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +85,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1EAA7250E3AC97691970E76C /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -110,6 +116,8 @@
 				21DE32F41A5E00D7009FB228 /* Spotify Notifications */,
 				21DE33071A5E00D7009FB228 /* Spotify NotificationsTests */,
 				21DE32F31A5E00D7009FB228 /* Products */,
+				D9402FE83B2D6C33786D9D06 /* Pods */,
+				968B7063D7B6C7F6862E77CB /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -125,6 +133,7 @@
 		21DE32F41A5E00D7009FB228 /* Spotify Notifications */ = {
 			isa = PBXGroup;
 			children = (
+				212ED2DE1A65FF680012044F /* Bridging-Header.h */,
 				21DE32F71A5E00D7009FB228 /* AppDelegate.swift */,
 				21DE32F91A5E00D7009FB228 /* ViewController.swift */,
 				21DE32FB1A5E00D7009FB228 /* Images.xcassets */,
@@ -159,6 +168,23 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		968B7063D7B6C7F6862E77CB /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				10B804E1F3F000BFA478BCE7 /* libPods.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D9402FE83B2D6C33786D9D06 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				7C0D28B5B2F50EB4878854BB /* Pods.debug.xcconfig */,
+				CE06EF61376146DE017BEA9C /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -166,10 +192,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 21DE330E1A5E00D7009FB228 /* Build configuration list for PBXNativeTarget "Spotify Notifications" */;
 			buildPhases = (
+				677251035C669977FE0BDA5A /* Check Pods Manifest.lock */,
 				21DE32EE1A5E00D7009FB228 /* Sources */,
 				21DE32EF1A5E00D7009FB228 /* Frameworks */,
 				21DE32F01A5E00D7009FB228 /* Resources */,
 				21CFE4DB1A5E18D100BA92FB /* Copy Frameworks */,
+				257DB405D7F2075C8388848C /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -278,6 +306,39 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		257DB405D7F2075C8388848C /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		677251035C669977FE0BDA5A /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		21DE32EE1A5E00D7009FB228 /* Sources */ = {
@@ -404,6 +465,7 @@
 		};
 		21DE330F1A5E00D7009FB228 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7C0D28B5B2F50EB4878854BB /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Mac Developer";
@@ -413,11 +475,13 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "Bridging-Header.h";
 			};
 			name = Debug;
 		};
 		21DE33101A5E00D7009FB228 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CE06EF61376146DE017BEA9C /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Mac Developer";
@@ -427,6 +491,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "Bridging-Header.h";
 			};
 			name = Release;
 		};

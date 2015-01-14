@@ -732,6 +732,14 @@
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cBh-5D-Aj9">
+                                <rect key="frame" x="18" y="158" width="107" height="17"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Launch on Login" id="qCf-HC-5Hf">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
                             <popUpButton identifier="disableWhenSpotifyHasFocus" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NHb-Mp-QRr">
                                 <rect key="frame" x="237" y="178" width="226" height="26"/>
                                 <popUpButtonCell key="cell" type="push" title="Enabled" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="dqf-D8-Y7y" id="KEG-wk-5yM">
@@ -748,11 +756,28 @@
                                     <action selector="PreferenceSet:" target="XfG-lQ-9wD" id="v6v-zV-POc"/>
                                 </connections>
                             </popUpButton>
+                            <popUpButton identifier="launchOnLogin" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="46d-Oi-GwP">
+                                <rect key="frame" x="237" y="153" width="226" height="26"/>
+                                <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="QSv-2F-Irf">
+                                    <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="menu"/>
+                                    <menu key="menu" id="r01-eY-9Xy">
+                                        <items>
+                                            <menuItem title="Enabled" id="3gs-gU-mQh"/>
+                                            <menuItem title="Disabled" id="ldf-BE-3wK"/>
+                                        </items>
+                                    </menu>
+                                </popUpButtonCell>
+                                <connections>
+                                    <action selector="PreferenceSet:" target="XfG-lQ-9wD" id="4dj-ur-Y4a"/>
+                                </connections>
+                            </popUpButton>
                         </subviews>
                     </view>
                     <connections>
                         <outlet property="NotificationSoundButton" destination="uoW-kz-pwH" id="oyH-pj-gZn"/>
                         <outlet property="embedAlbumArtworkButton" destination="ub6-UU-y3w" id="z5u-kH-W8d"/>
+                        <outlet property="launchOnLoginButton" destination="46d-Oi-GwP" id="UXa-72-RSf"/>
                         <outlet property="spotifyHasFocusButton" destination="NHb-Mp-QRr" id="QBx-c7-xhn"/>
                     </connections>
                 </viewController>

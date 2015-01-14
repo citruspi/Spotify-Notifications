@@ -16,19 +16,29 @@ class ViewController: NSViewController {
     notificationSound   playSoundOnNotification     Play a sound before each notification.
     embedAlbumArtwork   embedAlbumArtwork           Embed the album artwork in notifications.
     spotifyHasFocus     disableWhenSpotifyHasFocus  Disable notifications when the Spotify
-                                                    client is the "frontmost" application
+                                                    has focus
+    launchOnLogin       n/a                         Automatically launch the application on
+                                                    login
+    
     */
 
     @IBOutlet weak var notificationSoundButton: NSPopUpButton!
     @IBOutlet weak var embedAlbumArtworkButton: NSPopUpButton!
     @IBOutlet weak var spotifyHasFocusButton: NSPopUpButton!
-    
+    @IBOutlet weak var launchOnLoginButton: NSPopUpButton!
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
         notificationSoundButton.selectItemAtIndex(fetchPreference("playSoundOnNotification"))
         embedAlbumArtworkButton.selectItemAtIndex(fetchPreference("embedAlbumArtwork"))
         spotifyHasFocusButton.selectItemAtIndex(fetchPreference("disableWhenSpotifyHasFocus"))
+        
+        if NSBundle.mainBundle().isLoginItemEnabled() {
+            launchOnLoginButton.selectItemAtIndex(0)
+        } else {
+            launchOnLoginButton.selectItemAtIndex(1)
+        }
     }
 
     override var representedObject: AnyObject? {
@@ -39,7 +49,16 @@ class ViewController: NSViewController {
 
     @IBAction func PreferenceSet(sender: NSPopUpButton) {
         var identifier : String = sender.identifier
-        setPreference(identifier, value: sender.indexOfSelectedItem)
+        
+        if identifier == "launchOnLogin" {
+            if sender.indexOfSelectedItem == 0 {
+                NSBundle.mainBundle().enableLoginItem()
+            } else {
+                NSBundle.mainBundle().disableLoginItem()
+            }
+        } else {
+            setPreference(identifier, value: sender.indexOfSelectedItem)
+        }
     }
 
     func setPreference(key: String, value: Int) {

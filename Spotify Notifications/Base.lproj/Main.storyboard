@@ -724,11 +724,36 @@
                                     <action selector="PreferenceSet:" target="XfG-lQ-9wD" id="yk7-aO-zgG"/>
                                 </connections>
                             </popUpButton>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zhx-jC-lJq">
+                                <rect key="frame" x="18" y="183" width="206" height="17"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Disable When Spotify Has Focus" id="aNM-gu-qld">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <popUpButton identifier="disableWhenSpotifyHasFocus" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NHb-Mp-QRr">
+                                <rect key="frame" x="237" y="178" width="226" height="26"/>
+                                <popUpButtonCell key="cell" type="push" title="Enabled" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="dqf-D8-Y7y" id="KEG-wk-5yM">
+                                    <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="menu"/>
+                                    <menu key="menu" id="g2M-tD-C01">
+                                        <items>
+                                            <menuItem title="Enabled" state="on" id="dqf-D8-Y7y"/>
+                                            <menuItem title="Disabled" id="1fs-Mb-jef"/>
+                                        </items>
+                                    </menu>
+                                </popUpButtonCell>
+                                <connections>
+                                    <action selector="PreferenceSet:" target="XfG-lQ-9wD" id="v6v-zV-POc"/>
+                                </connections>
+                            </popUpButton>
                         </subviews>
                     </view>
                     <connections>
                         <outlet property="NotificationSoundButton" destination="uoW-kz-pwH" id="oyH-pj-gZn"/>
                         <outlet property="embedAlbumArtworkButton" destination="ub6-UU-y3w" id="z5u-kH-W8d"/>
+                        <outlet property="spotifyHasFocusButton" destination="NHb-Mp-QRr" id="QBx-c7-xhn"/>
                     </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>

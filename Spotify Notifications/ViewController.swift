@@ -15,16 +15,20 @@ class ViewController: NSViewController {
     -----------------------------------------------------------------------------------------
     notificationSound   playSoundOnNotification     Play a sound before each notification.
     embedAlbumArtwork   embedAlbumArtwork           Embed the album artwork in notifications.
+    spotifyHasFocus     disableWhenSpotifyHasFocus  Disable notifications when the Spotify
+                                                    client is the "frontmost" application
     */
 
     @IBOutlet weak var notificationSoundButton: NSPopUpButton!
     @IBOutlet weak var embedAlbumArtworkButton: NSPopUpButton!
+    @IBOutlet weak var spotifyHasFocusButton: NSPopUpButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         notificationSoundButton.selectItemAtIndex(fetchPreference("playSoundOnNotification"))
         embedAlbumArtworkButton.selectItemAtIndex(fetchPreference("embedAlbumArtwork"))
+        spotifyHasFocusButton.selectItemAtIndex(fetchPreference("disableWhenSpotifyHasFocus"))
     }
 
     override var representedObject: AnyObject? {

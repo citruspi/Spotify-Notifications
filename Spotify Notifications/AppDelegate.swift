@@ -20,7 +20,7 @@ struct Track {
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
-    
+
     var track = Track()
 
     func applicationDidFinishLaunching(aNotification: NSNotification) {
@@ -56,7 +56,17 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 }
             }
 
-            presentNotification()
+            var frontmostApplication : NSRunningApplication? = NSWorkspace.sharedWorkspace().frontmostApplication
+
+            if frontmostApplication != nil {
+                if frontmostApplication?.bundleIdentifier == "com.spotify.client" {
+                    if fetchPreference("disableWhenSpotifyHasFocus") == 1 {
+                        presentNotification()
+                    }
+                } else {
+                    presentNotification()
+                }
+            }
         }
     }
 

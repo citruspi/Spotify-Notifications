@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		1EAA7250E3AC97691970E76C /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 10B804E1F3F000BFA478BCE7 /* libPods.a */; };
-		21CFE4DC1A5E18DE00BA92FB /* Alamofire.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 21CFE4D61A5E185100BA92FB /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		21CFE4E21A5E1A3700BA92FB /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21CFE4E11A5E1A3700BA92FB /* SwiftyJSON.swift */; };
 		21DE32F81A5E00D7009FB228 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DE32F71A5E00D7009FB228 /* AppDelegate.swift */; };
 		21DE32FA1A5E00D7009FB228 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DE32F91A5E00D7009FB228 /* ViewController.swift */; };
@@ -18,27 +17,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		21CFE4D51A5E185100BA92FB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 21CFE4D01A5E185100BA92FB /* Alamofire.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = F8111E3319A95C8B0040E7D1;
-			remoteInfo = Alamofire;
-		};
-		21CFE4D71A5E185100BA92FB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 21CFE4D01A5E185100BA92FB /* Alamofire.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = F8111E3E19A95C8B0040E7D1;
-			remoteInfo = AlamofireTests;
-		};
-		21CFE4D91A5E18C900BA92FB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 21CFE4D01A5E185100BA92FB /* Alamofire.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = F8111E3219A95C8B0040E7D1;
-			remoteInfo = Alamofire;
-		};
 		21DE33051A5E00D7009FB228 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 21DE32EA1A5E00D7009FB228 /* Project object */;
@@ -55,7 +33,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				21CFE4DC1A5E18DE00BA92FB /* Alamofire.framework in Copy Frameworks */,
 			);
 			name = "Copy Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -65,7 +42,6 @@
 /* Begin PBXFileReference section */
 		10B804E1F3F000BFA478BCE7 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		212ED2DE1A65FF680012044F /* Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "Bridging-Header.h"; path = "../Bridging-Header.h"; sourceTree = "<group>"; };
-		21CFE4D01A5E185100BA92FB /* Alamofire.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Alamofire.xcodeproj; path = Alamofire/Alamofire.xcodeproj; sourceTree = "<group>"; };
 		21CFE4E11A5E1A3700BA92FB /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwiftyJSON.swift; path = SwiftyJSON/Source/SwiftyJSON.swift; sourceTree = "<group>"; };
 		21DE32F21A5E00D7009FB228 /* Spotify Notifications.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Spotify Notifications.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		21DE32F61A5E00D7009FB228 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -99,20 +75,10 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		21CFE4D11A5E185100BA92FB /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				21CFE4D61A5E185100BA92FB /* Alamofire.framework */,
-				21CFE4D81A5E185100BA92FB /* AlamofireTests.xctest */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		21DE32E91A5E00D7009FB228 = {
 			isa = PBXGroup;
 			children = (
 				21CFE4E11A5E1A3700BA92FB /* SwiftyJSON.swift */,
-				21CFE4D01A5E185100BA92FB /* Alamofire.xcodeproj */,
 				21DE32F41A5E00D7009FB228 /* Spotify Notifications */,
 				21DE33071A5E00D7009FB228 /* Spotify NotificationsTests */,
 				21DE32F31A5E00D7009FB228 /* Products */,
@@ -202,7 +168,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				21CFE4DA1A5E18C900BA92FB /* PBXTargetDependency */,
 			);
 			name = "Spotify Notifications";
 			productName = "Spotify Notifications";
@@ -257,12 +222,6 @@
 			mainGroup = 21DE32E91A5E00D7009FB228;
 			productRefGroup = 21DE32F31A5E00D7009FB228 /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = 21CFE4D11A5E185100BA92FB /* Products */;
-					ProjectRef = 21CFE4D01A5E185100BA92FB /* Alamofire.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				21DE32F11A5E00D7009FB228 /* Spotify Notifications */,
@@ -270,23 +229,6 @@
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		21CFE4D61A5E185100BA92FB /* Alamofire.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = Alamofire.framework;
-			remoteRef = 21CFE4D51A5E185100BA92FB /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		21CFE4D81A5E185100BA92FB /* AlamofireTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = AlamofireTests.xctest;
-			remoteRef = 21CFE4D71A5E185100BA92FB /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		21DE32F01A5E00D7009FB228 /* Resources */ = {
@@ -362,11 +304,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		21CFE4DA1A5E18C900BA92FB /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = Alamofire;
-			targetProxy = 21CFE4D91A5E18C900BA92FB /* PBXContainerItemProxy */;
-		};
 		21DE33061A5E00D7009FB228 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 21DE32F11A5E00D7009FB228 /* Spotify Notifications */;

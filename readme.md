@@ -2,9 +2,9 @@
 
 ## Spotify Notifications
 
-_The project is currently being rewritten from scratch in Swift. Development is
+_Note: The project is currently being rewritten from scratch in Swift. Development is
 taking place on the `master` branch. To build the 0.5.0 (Objective-C) release,
-checkout the `0.5.0` branch.` The rewrite is not feature complete.`
+checkout the `0.5.0` branch._
 
 #### 0.5.0 Feature Parity
 

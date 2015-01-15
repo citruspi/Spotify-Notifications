@@ -1,40 +1,28 @@
-## Spotify Notifications
-
 [![Build Status](https://travis-ci.org/citruspi/Spotify-Notifications.png?branch=master)](https://travis-ci.org/citruspi/Spotify-Notifications)
 
-Spotify Notifications does nothing more than display a notification when
+## Spotify Notifications
 
-- a song goes from "paused" to "playing" _(optional)_
-- a new song is played
+_The project is currently being rewritten from scratch in Swift. Development is
+taking place on the `master` branch. To build the 0.5.0 (Objective-C) release,
+checkout the `0.5.0` branch.` The rewrite is not feature complete.`
+
+#### 0.5.0 Feature Parity
+
+- [x] Toggle notification sound
+- [ ] Toggle notifications on resume
+- [ ] Toggle dismissal of all notifications except the current one
+- [ ] Implement a menu bar interface
+- [ ] Toggle the menu bar icon
+- [x] Toggle launch on login functionality
+- [x] Toggle inclusion of album artwork
+- [ ] Toggle global shortcut
+- [x] Toggle disabling of notifications when Spotify has focus
+
+_(These features are all available on the 0.5.0 branch, but are not available on
+the signed 0.4.8 available on the website)._
 
 ## Contributing
 
 Pull requests are more than welcome!
 
 In your pull request, include a __separate__ commit adding yourself to `contributors.md`.
-
-## License
-
-### Spotify Notifications
-
-__The code is licensed under the MIT license. The icon - the `icon.icns` file is not, however. That is licensed to Spotify AB Inc.__
-
-Copyright © 2013 Mihir Singh me@mihirsingh.com
-
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the “Software”), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-
-### GBLaunchAtLogin
-
-__GBLaunchAtLogin was used to implement the start on login option and was written by @lmirosevic__
-
-It is published under the Apache 2.0 License, a copy of which is included.
-
-### MASShortcut
-
-__MASShortcut was used to implement the global shortcut and was written by @shpakovski__
-
-It is published under the 2-clause BSD license, a copy of which is included.

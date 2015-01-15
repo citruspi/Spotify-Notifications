@@ -6,7 +6,7 @@ _Note: The project is currently being rewritten from scratch in Swift. Developme
 taking place on the `master` branch. To build the 0.5.0 (Objective-C) release,
 checkout the `0.5.0` branch._
 
-#### 0.5.0 Feature Parity
+### 0.5.0 Feature Parity
 
 - [x] Toggle notification sound
 - [ ] Toggle notifications on resume

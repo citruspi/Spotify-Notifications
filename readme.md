@@ -21,6 +21,19 @@ checkout the `0.5.0` branch._
 _(These features are all available on the 0.5.0 branch, but are not available on
 the signed 0.4.8 available on the website)._
 
+## Building
+
+Spotify Notifications uses [CocoaPods](http://cocoapods.org) which in turn 
+requires Ruby and Ruby Gems.
+
+```
+$ git clone https://github.com/citruspi/Spotify-Notifications.git
+$ cd Spotify-Notifications
+$ git submodule foreach git pull
+$ pod install
+$ open Spotify Notifications.xcworkspace
+```
+
 ## Contributing
 
 Pull requests are more than welcome!

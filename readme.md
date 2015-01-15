@@ -39,3 +39,17 @@ $ open Spotify Notifications.xcworkspace
 Pull requests are more than welcome!
 
 In your pull request, include a __separate__ commit adding yourself to `contributors.md`.
+
+## License
+
+The source code is dedicated to the public domain. See the `UNLICENSE` file for
+more information.
+
+The Spotify artwork and icon is owned by Spotify AB Inc.
+
+Spotify Notifications makes use of the following libraries
+
+- [nklizhe/NSBundle+LoginItem](https://github.com/nklizhe/NSBundle-LoginItem)
+  (MIT)
+- [Alamofire/Alamofire](https://github.com/Alamofire/Alamofire) (MIT)
+- [SwiftyJSON/SwiftyJSON](https://github.com/SwiftyJSON/SwiftyJSON) (MIT)

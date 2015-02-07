@@ -3,10 +3,10 @@
 ## Spotify Notifications
 
 _Note: The project is currently being rewritten from scratch in Swift. Development is
-taking place on the `master` branch. To build the 0.5.0 (Objective-C) release,
-checkout the `0.5.0` branch._
+taking place on the `master` branch. To build the 0.5.1 (Objective-C) release,
+checkout the `0.5.X` branch._
 
-### 0.5.0 Feature Parity
+### 0.5.1 Feature Parity
 
 - [x] Toggle notification sound
 - [ ] Toggle notifications on resume
@@ -18,7 +18,7 @@ checkout the `0.5.0` branch._
 - [ ] Toggle global shortcut
 - [x] Toggle disabling of notifications when Spotify has focus
 
-_(These features are all available on the 0.5.0 branch, but are not available on
+_(These features are all available on the 0.5.X branch, but are not available on
 the signed 0.4.8 available on the website)._
 
 ## Building

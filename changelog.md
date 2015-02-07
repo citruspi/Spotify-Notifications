@@ -1,3 +1,7 @@
+### 0.5.1 (February 06, 2015)
+
+- Changed the icons to use Spotify's new artwork (implemented by [ricefield](https://github.com/ricefield))
+
 ### 0.5.0 (October 27, 2014)
 
 - Implemented a single check for OS capabilities on launch

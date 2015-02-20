@@ -2,9 +2,9 @@
 
 ## Spotify Notifications
 
-_Note: The project is currently being rewritten from scratch in Swift. Development is
-taking place on the `master` branch. To build the 0.5.1 (Objective-C) release,
-checkout the `0.5.X` branch._
+_Note: The project is currently being rewritten from scratch in Swift.
+Development is taking place on the `master` branch. To build the 0.5.1
+(Objective-C) release, checkout the `0.5.X` branch._
 
 ### 0.5.1 Feature Parity
 
@@ -23,7 +23,7 @@ the signed 0.4.8 available on the website)._
 
 ## Building
 
-Spotify Notifications uses [CocoaPods](http://cocoapods.org) which in turn 
+Spotify Notifications uses [CocoaPods](http://cocoapods.org) which in turn
 requires Ruby and Ruby Gems.
 
 ```
@@ -38,7 +38,8 @@ $ open Spotify Notifications.xcworkspace
 
 Pull requests are more than welcome!
 
-In your pull request, include a __separate__ commit adding yourself to `contributors.md`.
+In your pull request, include a __separate__ commit adding yourself to
+`contributors.md`.
 
 ## License
 

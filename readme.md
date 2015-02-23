@@ -18,9 +18,6 @@ Development is taking place on the `master` branch. To build the 0.5.1
 - [ ] Toggle global shortcut
 - [x] Toggle disabling of notifications when Spotify has focus
 
-_(These features are all available on the 0.5.X branch, but are not available on
-the signed 0.4.8 available on the website)._
-
 ## Building
 
 Spotify Notifications uses [CocoaPods](http://cocoapods.org) which in turn

@@ -20,6 +20,12 @@
 
     if (_trackID) {
         
+        // Accessing embed.spotify.com over HTTPS appears to cause an error with App Transport Security.
+        // It logs an (kCFStreamErrorDomainSSL, -9802) error which appears to deal with Perfect Forward
+        // Secrecy. We need to enable NSAllowsArbitraryLoads for NSAppTransportSecurity. I attempted to use
+        // NSTemporaryExceptionRequiresForwardSecrecy but it continued to cause an error.
+        // Because of the error connecting to the Spotify server, without enabling NSAllowsArbitraryLoads
+        // users lack artwork.
         NSString *metaLoc = [NSString stringWithFormat:@"https://embed.spotify.com/oembed/?url=%@",_trackID];
         NSURL *metaReq = [NSURL URLWithString:metaLoc];
         NSData *metaD = [NSData dataWithContentsOfURL:metaReq];

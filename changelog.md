@@ -1,3 +1,8 @@
+### 0.5.2 (October 07, 2015)
+
+- Changed the icons to use Spotify's new artwork (AGAIN!) (implemented by [randybruder](https://github.com/randybruder))
+- Enabled NSAllowsArbitraryLoads to allow album artwork from Spotify to pass through App Transport Security (disable Album Artwork to opt-out)
+
 ### 0.5.1 (February 06, 2015)
 
 - Changed the icons to use Spotify's new artwork (implemented by [ricefield](https://github.com/ricefield))

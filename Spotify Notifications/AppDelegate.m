@@ -128,7 +128,7 @@
     NSString *artist = track.artist;
     
     NSUserNotification *notification = [NSUserNotification new];
-    notification.title = (title > 0)? title : @"No Song Playing";
+    notification.title = (title.length > 0)? title : @"No Song Playing";
     if (album.length > 0) notification.subtitle = album;
     if (artist.length > 0) notification.informativeText = artist;
     

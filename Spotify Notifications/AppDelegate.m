@@ -74,16 +74,25 @@
     }];
 }
 
-- (IBAction)showLastFM:(id)sender {
+- (BOOL)applicationShouldHandleReopen:(NSApplication *)sender hasVisibleWindows:(BOOL)flag {
+    
+    // This makes it so you can open the preferences by re-opening the app
+    // This way you can get to the preferences even when the status item is hidden
+    if (!flag) [self showPreferences:nil];
+    
+    return YES;
+}
+
+- (IBAction)showLastFM:(NSMenuItem*)sender {
 
     //Artist - we always need at least this
     NSString *urlText = [NSString stringWithFormat:@"http://last.fm/music/%@", track.artist];
 
-    if ([sender tag] == 1) {
+    if (sender.tag == 1) {
         //Album
         urlText = [urlText stringByAppendingString:[NSString stringWithFormat:@"/%@", track.album]];
         
-    } else if ([sender tag] == 2) {
+    } else if (sender.tag == 2) {
         //Track
         urlText = [urlText stringByAppendingString:[NSString stringWithFormat:@"/%@/%@", track.album, track.title]];
     }
@@ -91,7 +100,6 @@
     urlText = [urlText stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 
     [NSWorkspace.sharedWorkspace openURL:[NSURL URLWithString:urlText]];
-
 }
 
 - (BOOL)userNotificationCenter:(NSUserNotificationCenter *)center shouldPresentNotification:(NSUserNotification *)notification {
@@ -168,8 +176,9 @@
 
         if (!_openLastFMMenu.isEnabled && [track.artist isNotEqualTo:NULL])
             [_openLastFMMenu setEnabled:YES];
-
-        if ([NSUserDefaults.standardUserDefaults boolForKey:kNotificationsKey] && (![previousTrack isEqualToString:track.trackID] || [NSUserDefaults.standardUserDefaults boolForKey:kPlayPauseNotificationsKey]) ) {
+        
+        if ([NSUserDefaults.standardUserDefaults boolForKey:kNotificationsKey] &&
+            (![previousTrack isEqualToString:track.trackID] || [NSUserDefaults.standardUserDefaults boolForKey:kPlayPauseNotificationsKey]) ) {
 
             previousTrack = track.trackID;
             track.albumArt = nil;
@@ -193,16 +202,7 @@
 
 #pragma mark - Preferences
 
-- (BOOL)applicationShouldHandleReopen:(NSApplication *)sender hasVisibleWindows:(BOOL)flag {
-    
-    // This makes it so you can open the preferences by re-opening the app
-    // This way you can get to the preferences even when the status item is hidden
-    if (!flag) [self showPreferences:nil];
-    
-    return YES;
-}
-
-- (IBAction)showPreferences:(id)sender {
+- (IBAction)showPreferences:(NSMenuItem*)sender {
     [NSApp activateIgnoringOtherApps:YES];
     [_prefsWindow makeKeyAndOrderFront:nil];
 }
@@ -214,7 +214,7 @@
     if (iconSelection == 0 || iconSelection == 1) {
         
         _statusBar = nil;
-        _statusBar = [[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength];
+        _statusBar = [NSStatusBar.systemStatusBar statusItemWithLength:NSSquareStatusItemLength];
         
         NSString *imageName = (iconSelection == 0)? @"status_bar_colour.tiff" : @"status_bar_black.tiff";
         _statusBar.image = [NSImage imageNamed: imageName];

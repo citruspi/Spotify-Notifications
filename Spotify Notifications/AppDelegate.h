@@ -33,8 +33,8 @@
 @property (weak, nonatomic) IBOutlet MASShortcutView *shortcutView;
 
 
-- (IBAction)showLastFM:(id)sender;
-- (IBAction)showPreferences:(id)sender;
+- (IBAction)showLastFM:(NSMenuItem*)sender;
+- (IBAction)showPreferences:(NSMenuItem*)sender;
 
 - (IBAction)toggleStartup:(NSButton *)sender;
 

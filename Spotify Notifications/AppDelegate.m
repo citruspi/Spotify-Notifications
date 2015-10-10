@@ -16,6 +16,8 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)notification {
     
+    [NSUserDefaults.standardUserDefaults registerDefaults:[NSDictionary dictionaryWithContentsOfFile:[NSBundle.mainBundle pathForResource:@"UserDefaults" ofType:@"plist"]]];
+    
     userNotificationContentImagePropertyAvailable = (NSAppKitVersionNumber >= NSAppKitVersionNumber10_9);
     track = [SNXTrack new];
     previousTrack = @"";
@@ -23,7 +25,7 @@
     [NSUserNotificationCenter.defaultUserNotificationCenter setDelegate:self];
 
     [NSDistributedNotificationCenter.defaultCenter addObserver:self
-                                                        selector:@selector(eventOccured:)
+                                                        selector:@selector(eventOccurred:)
                                                             name:@"com.spotify.client.PlaybackStateChanged"
                                                           object:nil
                                               suspensionBehavior:NSNotificationSuspensionBehaviorDeliverImmediately];
@@ -31,12 +33,10 @@
     [self setIcon];
     [self setupGlobalShortcutForNotifications];
     
-    [_iconToggle selectItemAtIndex:[self getProperty:kIconSelectionKey]];
-    
     if (!userNotificationContentImagePropertyAvailable) _albumArtToggle.enabled = NO;
     
     
-    if ([self getProperty:kLaunchAtLoginKey] == 0) {
+    if ([NSUserDefaults.standardUserDefaults boolForKey:kLaunchAtLoginKey]) {
         [GBLaunchAtLogin addAppAsLoginItem];
         
     } else {
@@ -51,46 +51,24 @@
 
     [MASShortcut registerGlobalShortcutWithUserDefaultsKey:kPreferenceGlobalShortcut handler:^{
 
-        NSUserNotification *notification = [NSUserNotification new];
+        NSUserNotification *notification = [self userNotificationForCurrentTrack];
 
         if (track.title.length == 0) {
 
             notification.title = @"No Song Playing";
 
-            if ([self getProperty:kNotificationSoundKey] == 0)
-                notification.soundName = NSUserNotificationDefaultSoundName;
+            if ([NSUserDefaults.standardUserDefaults boolForKey:kNotificationSoundKey])
+                notification.soundName = @"Pop";
             
-            [NSUserNotificationCenter.defaultUserNotificationCenter deliverNotification:notification];
-            
-            if ([self getProperty:kShowOnlyCurrentSongKey] == 0)
+            if ([NSUserDefaults.standardUserDefaults boolForKey:kShowOnlyCurrentSongKey])
                 [NSUserNotificationCenter.defaultUserNotificationCenter removeAllDeliveredNotifications];
             
         } else {
-
-            notification.title = track.title;
-            notification.subtitle = track.album;
-            notification.informativeText = track.artist;
-
-            if (userNotificationContentImagePropertyAvailable &&
-                ([self getProperty:kNotificationIncludeAlbumArtKey] == 0)) {
-
-                [track fetchAlbumArt];
-                notification.contentImage = track.albumArt;
-
-            }
-
-            if ([self getProperty:kNotificationSoundKey] == 0)
-                notification.soundName = NSUserNotificationDefaultSoundName;
-
-            [NSUserNotificationCenter.defaultUserNotificationCenter deliverNotification:notification];
-            track.albumArt = nil;
             
-            if ([self getProperty:kShowOnlyCurrentSongKey] == 0) {
-                NSArray *notifs = NSUserNotificationCenter.defaultUserNotificationCenter.deliveredNotifications;
-                for (int i=1; i<notifs.count; i++) {
-                    [NSUserNotificationCenter.defaultUserNotificationCenter removeDeliveredNotification:notifs[i]];
-                }
-            }
+            if ([NSUserDefaults.standardUserDefaults boolForKey:kShowOnlyCurrentSongKey])
+                [NSUserNotificationCenter.defaultUserNotificationCenter removeAllDeliveredNotifications];
+            
+            [NSUserNotificationCenter.defaultUserNotificationCenter deliverNotification:notification];
         }
         
     }];
@@ -121,11 +99,57 @@
 }
 
 - (void)userNotificationCenter:(NSUserNotificationCenter *)center didActivateNotification:(NSUserNotification *)notification {
-    [NSWorkspace.sharedWorkspace launchApplication:@"Spotify"];
+    
+    NSUserNotificationActivationType actionType = notification.activationType;
+    
+    if (actionType == NSUserNotificationActivationTypeContentsClicked) {
+        [NSWorkspace.sharedWorkspace launchApplication:@"Spotify"];
+        
+    } else if (actionType == NSUserNotificationActivationTypeActionButtonClicked) {
+        
+        @try {
+            NSAppleScript *script = [[NSAppleScript alloc] initWithSource:@"tell application \"Spotify\" to next track"];
+            [script executeAndReturnError:NULL];
+        } @catch (NSException *exception) {
+            //Oh well
+        }
+    }
 }
 
-- (void)eventOccured:(NSNotification *)notification {
+- (NSUserNotification*)userNotificationForCurrentTrack {
+    NSString *title = track.title;
+    NSString *album = track.album;
+    NSString *artist = track.artist;
+    
+    NSUserNotification *notification = [NSUserNotification new];
+    notification.title = (title > 0)? title : @"No Song Playing";
+    if (album.length > 0) notification.subtitle = album;
+    if (album.length > 0) notification.informativeText = artist;
+    
+    if (userNotificationContentImagePropertyAvailable &&
+        [NSUserDefaults.standardUserDefaults boolForKey:kNotificationIncludeAlbumArtKey]) {
+        
+        [track fetchAlbumArt];
+        notification.contentImage = track.albumArt;
+    }
+    
+    if ([NSUserDefaults.standardUserDefaults boolForKey:kNotificationSoundKey])
+        notification.soundName = @"Pop";
+    
+    [notification setHasActionButton:YES];
+    [notification setActionButtonTitle:@"Skip Song"];
+    
+    //Hacky solution to force showing buttons even if "Banner" alert style is chosen by user
+    @try {
+        [notification setValue:@YES forKey:@"_showsButtons"];
+    } @catch (NSException *exception) {
+        //Oh well
+    }
+    
+    return notification;
+}
 
+- (void)eventOccurred:(NSNotification *)notification {
     NSDictionary *information = notification.userInfo;
 
     NSString *playerState = [information objectForKey: @"Player State"];
@@ -135,7 +159,7 @@
         NSRunningApplication *frontmostApplication = NSWorkspace.sharedWorkspace.frontmostApplication;
         
         if ([frontmostApplication.bundleIdentifier isEqualToString:SpotifyBundleID] &&
-            [self getProperty:kDisableWhenSpotifyHasFocusKey] == 0) return;
+            [NSUserDefaults.standardUserDefaults boolForKey:kDisableWhenSpotifyHasFocusKey]) return;
 
         track.artist = [information objectForKey:@"Artist"];
         track.album = [information objectForKey:@"Album"];
@@ -145,64 +169,29 @@
         if (!_openLastFMMenu.isEnabled && [track.artist isNotEqualTo:NULL])
             [_openLastFMMenu setEnabled:YES];
 
-        if ([self getProperty:kNotificationsKey] == 0 && (![previousTrack isEqualToString:track.trackID] || [self getProperty:kPlayPauseNotificationsKey] == 0) ) {
+        if ([NSUserDefaults.standardUserDefaults boolForKey:kNotificationsKey] && (![previousTrack isEqualToString:track.trackID] || [NSUserDefaults.standardUserDefaults boolForKey:kPlayPauseNotificationsKey]) ) {
 
             previousTrack = track.trackID;
             track.albumArt = nil;
-
-            NSUserNotification *notification = [NSUserNotification new];
-            notification.title = track.title;
-            notification.subtitle = track.album;
-            notification.informativeText = track.artist;
-
-            if ((userNotificationContentImagePropertyAvailable) &&
-                ([self getProperty:kNotificationIncludeAlbumArtKey] == 0)) {
-
-                [track fetchAlbumArt];
-                notification.contentImage = track.albumArt;
-
-            }
-
-            if ([self getProperty:kNotificationSoundKey] == 0)
-                notification.soundName = NSUserNotificationDefaultSoundName;
-
-            [NSUserNotificationCenter.defaultUserNotificationCenter deliverNotification:notification];
             
-            if ([self getProperty:kShowOnlyCurrentSongKey] == 0) {
-                NSArray *notifs = NSUserNotificationCenter.defaultUserNotificationCenter.deliveredNotifications;
-                for (int i=1; i<notifs.count; i++) {
-                    [NSUserNotificationCenter.defaultUserNotificationCenter removeDeliveredNotification:notifs[i]];
-                }
-            }
+            NSUserNotification *notification = [self userNotificationForCurrentTrack];
+            
+            if ([NSUserDefaults.standardUserDefaults boolForKey:kShowOnlyCurrentSongKey])
+                [NSUserNotificationCenter.defaultUserNotificationCenter removeAllDeliveredNotifications];
+            
+            [NSUserNotificationCenter.defaultUserNotificationCenter deliverNotification:notification];
 
         }
-    } else if ([self getProperty:kShowOnlyCurrentSongKey] == 0 && [self getProperty:kPlayPauseNotificationsKey] == 0 && [playerState isEqualToString:@"Paused"]) {
+        
+    } else if ([NSUserDefaults.standardUserDefaults boolForKey:kShowOnlyCurrentSongKey] &&
+               [NSUserDefaults.standardUserDefaults boolForKey:kPlayPauseNotificationsKey] &&
+               [playerState isEqualToString:@"Paused"]) {
         [NSUserNotificationCenter.defaultUserNotificationCenter removeAllDeliveredNotifications];
     }
 
 }
 
 #pragma mark - Preferences
-
-- (void)saveProperty:(NSString*)key value:(int)value {
-    
-    NSUserDefaults *standardUserDefaults = NSUserDefaults.standardUserDefaults;
-    
-    if (standardUserDefaults) {
-        [standardUserDefaults setInteger:value forKey:key];
-        [standardUserDefaults synchronize];
-    }
-}
-
-- (BOOL)getProperty:(NSString*)key {
-    
-    NSUserDefaults *standardUserDefaults = NSUserDefaults.standardUserDefaults;
-    
-    int val = 0;
-    if (standardUserDefaults) val = (int)[standardUserDefaults integerForKey:key];
-    
-    return val;
-}
 
 - (BOOL)applicationShouldHandleReopen:(NSApplication *)sender hasVisibleWindows:(BOOL)flag {
     
@@ -211,7 +200,6 @@
     if (!flag) [self showPreferences:nil];
     
     return YES;
-    
 }
 
 - (IBAction)showPreferences:(id)sender {
@@ -219,33 +207,9 @@
     [_prefsWindow makeKeyAndOrderFront:nil];
 }
 
-- (IBAction)toggleNotifications:(NSButton *)sender {
-    [self saveProperty:kNotificationsKey value:(int)sender.state];
-}
-
-- (IBAction)togglePlayPauseNotif:(NSButton *)sender {
-    [self saveProperty:kPlayPauseNotificationsKey value:(int)sender.state];
-}
-
-- (IBAction)toggleOnlyCurrentSong:(NSButton *)sender {
-    [self saveProperty:kShowOnlyCurrentSongKey value:(int)sender.state];
-}
-
-- (IBAction)toggleSound:(NSButton *)sender {
-    [self saveProperty:kNotificationSoundKey value:(int)sender.state];
-}
-
-- (IBAction)toggleAlbumArt:(NSButton *)sender {
-    [self saveProperty:kNotificationIncludeAlbumArtKey value:(int)sender.state];
-}
-
-- (IBAction)toggleDisabledWhenSpotifyHasFocus:(NSButton *)sender {
-    [self saveProperty:kDisableWhenSpotifyHasFocusKey value:(int)sender.state];
-}
-
 - (void)setIcon {
     
-    int iconSelection = [self getProperty:kIconSelectionKey];
+    NSInteger iconSelection = [NSUserDefaults.standardUserDefaults integerForKey:kIconSelectionKey];
     
     if (iconSelection == 0 || iconSelection == 1) {
         
@@ -265,15 +229,14 @@
 }
 
 - (IBAction)toggleIcons:(id)sender {
-    [self saveProperty:kIconSelectionKey value:(int)_iconToggle.indexOfSelectedItem];
     [self setIcon];
 }
 
 - (IBAction)toggleStartup:(NSButton *)sender {
+    
+    [NSUserDefaults.standardUserDefaults setBool:sender.state forKey:kLaunchAtLoginKey];
 
-    [self saveProperty:kLaunchAtLoginKey value:(int)sender.state];
-
-    if ([self getProperty:kLaunchAtLoginKey] == 0) {
+    if ([NSUserDefaults.standardUserDefaults boolForKey:kLaunchAtLoginKey]) {
         [GBLaunchAtLogin addAppAsLoginItem];
         
     } else {

@@ -651,9 +651,7 @@
         </menu>
         <customObject id="494" customClass="AppDelegate">
             <connections>
-                <outlet property="albumArtToggle" destination="aBa-Hw-XwR" id="g0B-1n-uGY"/>
-                <outlet property="disabledWhenSpotifyHasFocusToggle" destination="SQv-uh-10R" id="uOh-Go-PdO"/>
-                <outlet property="iconToggle" destination="36k-RY-ycT" id="iqL-uS-Kh5"/>
+                <outlet property="albumArtToggle" destination="aBa-Hw-XwR" id="4BW-a9-ysb"/>
                 <outlet property="openLastFMAlbum" destination="pXK-QR-zej" id="Ffb-qH-xxx"/>
                 <outlet property="openLastFMArtist" destination="0cf-J0-9nm" id="ODO-h9-pTC"/>
                 <outlet property="openLastFMMenu" destination="SZW-Od-Gwx" id="Lsx-Qa-lnL"/>
@@ -661,10 +659,6 @@
                 <outlet property="openPreferences" destination="61H-gV-eIG" id="6Ub-JI-ndP"/>
                 <outlet property="prefsWindow" destination="XjB-tk-5rO" id="Tzy-oQ-5C5"/>
                 <outlet property="shortcutView" destination="zbi-2N-Pgf" id="H7h-c9-67G"/>
-                <outlet property="showNotificationsToggle" destination="4SO-dX-Mel" id="Q2P-ZB-0q9"/>
-                <outlet property="showOnlyCurrentSongToggle" destination="kJu-oN-gdE" id="mFM-T8-yHq"/>
-                <outlet property="showPlayPauseNotifToggle" destination="OAZ-Ww-EPz" id="8Lh-WZ-CfW"/>
-                <outlet property="soundToggle" destination="NH5-X4-wGw" id="SXz-DL-WJK"/>
                 <outlet property="startupToggle" destination="whs-lL-9F4" id="JXe-Ki-Rth"/>
                 <outlet property="statusMenu" destination="536" id="541"/>
             </connections>
@@ -677,8 +671,8 @@
                         <action selector="showPreferences:" target="494" id="XKB-Ii-DPd"/>
                     </connections>
                 </menuItem>
-                <menuItem title="Last.fm" enabled="NO" id="SZW-Od-Gwx">
-                    <menu key="submenu" title="Last.fm" id="a8M-Lg-29f">
+                <menuItem title="Last.fm" id="SZW-Od-Gwx">
+                    <menu key="submenu" title="Last.fm" autoenablesItems="NO" id="a8M-Lg-29f">
                         <items>
                             <menuItem title="Artist" enabled="NO" id="0cf-J0-9nm">
                                 <modifierMask key="keyEquivalentModifierMask"/>
@@ -728,9 +722,6 @@
                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
-                        <connections>
-                            <action selector="toggleNotifications:" target="494" id="P1E-kf-ymm"/>
-                        </connections>
                     </button>
                     <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OAZ-Ww-EPz">
                         <rect key="frame" x="38" y="299" width="147" height="18"/>
@@ -740,7 +731,7 @@
                             <font key="font" metaFont="system"/>
                         </buttonCell>
                         <connections>
-                            <action selector="togglePlayPauseNotif:" target="494" id="GnR-6b-mEc"/>
+                            <binding destination="5Si-TY-24i" name="value" keyPath="values.playpausenotifs" id="l17-0Q-bg0"/>
                         </connections>
                     </button>
                     <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kJu-oN-gdE">
@@ -751,7 +742,7 @@
                             <font key="font" metaFont="system"/>
                         </buttonCell>
                         <connections>
-                            <action selector="toggleOnlyCurrentSong:" target="494" id="KXg-40-Fc5"/>
+                            <binding destination="5Si-TY-24i" name="value" keyPath="values.onlycurrentsong" id="BAy-Xf-cdJ"/>
                         </connections>
                     </button>
                     <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NH5-X4-wGw">
@@ -762,7 +753,7 @@
                             <font key="font" metaFont="system"/>
                         </buttonCell>
                         <connections>
-                            <action selector="toggleSound:" target="494" id="hIS-4u-DjE"/>
+                            <binding destination="5Si-TY-24i" name="value" keyPath="values.notificationSound" id="nlB-3w-LXv"/>
                         </connections>
                     </button>
                     <box verticalHuggingPriority="750" fixedFrame="YES" title="Box" boxType="separator" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="YHb-hV-LYS">
@@ -780,7 +771,7 @@
                             <font key="font" metaFont="system"/>
                         </buttonCell>
                         <connections>
-                            <action selector="toggleAlbumArt:" target="494" id="9im-Da-kOa"/>
+                            <binding destination="5Si-TY-24i" name="value" keyPath="values.includeAlbumArt" id="DEa-cm-me2"/>
                         </connections>
                     </button>
                     <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SQv-uh-10R">
@@ -791,7 +782,7 @@
                             <font key="font" metaFont="system"/>
                         </buttonCell>
                         <connections>
-                            <action selector="toggleDisabledWhenSpotifyHasFocus:" target="494" id="bhC-yb-xFs"/>
+                            <binding destination="5Si-TY-24i" name="value" keyPath="values.disableWhenSpotifyHasFocus" id="bDh-CT-IUE"/>
                         </connections>
                     </button>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ciN-aU-Ao4">
@@ -815,12 +806,12 @@
                     <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="36k-RY-ycT">
                         <rect key="frame" x="136" y="103" width="93" height="26"/>
                         <animations/>
-                        <popUpButtonCell key="cell" type="push" title="Coloured" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="border" tag="1" imageScaling="proportionallyDown" inset="2" selectedItem="918-Ej-orj" id="D3F-Wn-llx">
+                        <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="D3F-Wn-llx">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="menu"/>
                             <menu key="menu" title="OtherViews" id="cuz-z9-mYK">
                                 <items>
-                                    <menuItem title="Coloured" state="on" tag="1" id="918-Ej-orj">
+                                    <menuItem title="Coloured" tag="1" id="918-Ej-orj">
                                         <modifierMask key="keyEquivalentModifierMask"/>
                                     </menuItem>
                                     <menuItem title="Black" tag="2" id="acc-dM-mhJ">
@@ -834,6 +825,7 @@
                         </popUpButtonCell>
                         <connections>
                             <action selector="toggleIcons:" target="494" id="dca-63-5d2"/>
+                            <binding destination="5Si-TY-24i" name="selectedIndex" keyPath="values.iconSelection" id="Cij-YN-Pja"/>
                         </connections>
                     </popUpButton>
                     <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="whs-lL-9F4">
@@ -923,5 +915,6 @@
             </view>
             <point key="canvasLocation" x="629" y="298"/>
         </window>
+        <userDefaultsController representsSharedInstance="YES" id="5Si-TY-24i"/>
     </objects>
 </document>

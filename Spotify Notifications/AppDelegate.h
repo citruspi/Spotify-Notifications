@@ -28,31 +28,15 @@
 //Preferences
 @property (assign) IBOutlet NSWindow *prefsWindow;
 
-@property (strong, nonatomic) IBOutlet NSButton *showNotificationsToggle;
-@property (strong, nonatomic) IBOutlet NSButton *showPlayPauseNotifToggle;
-@property (strong, nonatomic) IBOutlet NSButton *showOnlyCurrentSongToggle;
-@property (strong, nonatomic) IBOutlet NSButton *soundToggle;
 @property (strong, nonatomic) IBOutlet NSButton *albumArtToggle;
-@property (strong, nonatomic) IBOutlet NSButton *disabledWhenSpotifyHasFocusToggle;
-
 @property (strong, nonatomic) IBOutlet NSButton *startupToggle;
-@property (strong, nonatomic) IBOutlet NSPopUpButton *iconToggle;
-
 @property (weak, nonatomic) IBOutlet MASShortcutView *shortcutView;
 
 
 - (IBAction)showLastFM:(id)sender;
 - (IBAction)showPreferences:(id)sender;
 
-- (IBAction)toggleNotifications:(NSButton *)sender;
-- (IBAction)togglePlayPauseNotif:(NSButton *)sender;
-- (IBAction)toggleOnlyCurrentSong:(NSButton *)sender;
-- (IBAction)toggleSound:(NSButton *)sender;
-- (IBAction)toggleAlbumArt:(NSButton *)sender;
-- (IBAction)toggleDisabledWhenSpotifyHasFocus:(NSButton *)sender;
-
 - (IBAction)toggleStartup:(NSButton *)sender;
-- (IBAction)toggleIcons:(id)sender;
 
 - (IBAction)showHome:(id)sender;
 - (IBAction)showSource:(id)sender;

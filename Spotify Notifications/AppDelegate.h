@@ -26,7 +26,7 @@
 @property (strong, nonatomic) IBOutlet NSMenuItem *openLastFMTrack;
 
 //Preferences
-@property (assign) IBOutlet NSWindow *window;
+@property (assign) IBOutlet NSWindow *prefsWindow;
 
 @property (strong, nonatomic) IBOutlet NSButton *showNotificationsToggle;
 @property (strong, nonatomic) IBOutlet NSButton *showPlayPauseNotifToggle;

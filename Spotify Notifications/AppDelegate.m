@@ -216,7 +216,7 @@
 
 - (IBAction)showPreferences:(id)sender {
     [NSApp activateIgnoringOtherApps:YES];
-    [_window makeKeyAndOrderFront:nil];
+    [_prefsWindow makeKeyAndOrderFront:nil];
 }
 
 - (IBAction)toggleNotifications:(NSButton *)sender {

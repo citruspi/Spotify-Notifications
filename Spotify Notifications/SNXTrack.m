@@ -10,12 +10,6 @@
 
 @implementation SNXTrack
 
-@synthesize title = _track;
-@synthesize artist = _artist;
-@synthesize album = _album;
-@synthesize albumArt = _albumArt;
-@synthesize trackID = _trackID;
-
 - (void)fetchAlbumArt {
 
     if (_trackID) {
@@ -31,17 +25,12 @@
         NSData *metaD = [NSData dataWithContentsOfURL:metaReq];
         
         if (metaD) {
-            
             NSError *error;
             NSDictionary *meta = [NSJSONSerialization JSONObjectWithData:metaD options:NSJSONReadingAllowFragments error:&error];
             NSURL *artReq = [NSURL URLWithString:[meta objectForKey:@"thumbnail_url"]];
             NSData *artD = [NSData dataWithContentsOfURL:artReq];
             
-            if (artD) {
-                
-                _albumArt = [[NSImage alloc] initWithData:artD];
-                
-            }
+            if (artD) _albumArt = [[NSImage alloc] initWithData:artD];
         }
     }
     

@@ -17,7 +17,6 @@
 		04A77BA3170FC75200A50173 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04A77BA2170FC75200A50173 /* Cocoa.framework */; };
 		04A77BAD170FC75200A50173 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 04A77BAB170FC75200A50173 /* InfoPlist.strings */; };
 		04A77BAF170FC75200A50173 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A77BAE170FC75200A50173 /* main.m */; };
-		04A77BB3170FC75200A50173 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 04A77BB1170FC75200A50173 /* Credits.rtf */; };
 		04A77BB6170FC75200A50173 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A77BB5170FC75200A50173 /* AppDelegate.m */; };
 		04A77BB9170FC75300A50173 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04A77BB7170FC75300A50173 /* MainMenu.xib */; };
 		04A77BC0170FC7CF00A50173 /* icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 04A77BBF170FC7CF00A50173 /* icon.icns */; };
@@ -51,11 +50,10 @@
 		04A77BAC170FC75200A50173 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		04A77BAE170FC75200A50173 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		04A77BB0170FC75200A50173 /* Spotify Notifications-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Spotify Notifications-Prefix.pch"; sourceTree = "<group>"; };
-		04A77BB2170FC75200A50173 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
 		04A77BB4170FC75200A50173 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		04A77BB5170FC75200A50173 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		04A77BB8170FC75300A50173 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
-		04A77BBF170FC7CF00A50173 /* icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = icon.icns; sourceTree = "<group>"; };
+		04A77BBF170FC7CF00A50173 /* icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = icon.icns; path = ../icon.icns; sourceTree = "<group>"; };
 		04A77BC1170FC7E600A50173 /* Spotify Notifications.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Spotify Notifications.entitlements"; sourceTree = "<group>"; };
 		04A77BC217104FEE00A50173 /* status_bar_colour.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = status_bar_colour.tiff; sourceTree = "<group>"; };
 		04AC9052187234A70017E55A /* SNXTrack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNXTrack.h; sourceTree = "<group>"; };
@@ -63,6 +61,7 @@
 		04C5E40618133BB000956039 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		04C5E40B1813445600956039 /* GBLaunchAtLogin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GBLaunchAtLogin.h; sourceTree = "<group>"; };
 		04C5E40C1813445600956039 /* GBLaunchAtLogin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GBLaunchAtLogin.m; sourceTree = "<group>"; };
+		96E3BC1E1BC91F160023C504 /* SharedKeys.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SharedKeys.h; sourceTree = "<group>"; };
 		AEAFCD751712CD1200F61F8D /* status_bar_black.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = status_bar_black.tiff; sourceTree = "<group>"; };
 		AEAFCD7B1712D50B00F61F8D /* status_bar_black@2x.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = "status_bar_black@2x.tiff"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -120,7 +119,6 @@
 		04A77B96170FC75200A50173 = {
 			isa = PBXGroup;
 			children = (
-				04A77BBF170FC7CF00A50173 /* icon.icns */,
 				04A77BA8170FC75200A50173 /* Spotify Notifications */,
 				04A77BA1170FC75200A50173 /* Frameworks */,
 				04A77BA0170FC75200A50173 /* Products */,
@@ -162,6 +160,7 @@
 				049BCBF418170FBC00743860 /* Status Bar Images */,
 				049BCC14181710D500743860 /* MASShortcut */,
 				04A77BC1170FC7E600A50173 /* Spotify Notifications.entitlements */,
+				96E3BC1E1BC91F160023C504 /* SharedKeys.h */,
 				04A77BB4170FC75200A50173 /* AppDelegate.h */,
 				04A77BB5170FC75200A50173 /* AppDelegate.m */,
 				04AC9052187234A70017E55A /* SNXTrack.h */,
@@ -176,11 +175,11 @@
 		04A77BA9170FC75200A50173 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				04A77BBF170FC7CF00A50173 /* icon.icns */,
 				04A77BAA170FC75200A50173 /* Spotify Notifications-Info.plist */,
 				04A77BAB170FC75200A50173 /* InfoPlist.strings */,
 				04A77BAE170FC75200A50173 /* main.m */,
 				04A77BB0170FC75200A50173 /* Spotify Notifications-Prefix.pch */,
-				04A77BB1170FC75200A50173 /* Credits.rtf */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -211,7 +210,7 @@
 		04A77B97170FC75200A50173 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0500;
+				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = "Mihir Singh";
 				TargetAttributes = {
 					04A77B9E170FC75200A50173 = {
@@ -248,7 +247,6 @@
 			files = (
 				04C5E40718133BB000956039 /* Images.xcassets in Resources */,
 				04A77BAD170FC75200A50173 /* InfoPlist.strings in Resources */,
-				04A77BB3170FC75200A50173 /* Credits.rtf in Resources */,
 				04A77BB9170FC75300A50173 /* MainMenu.xib in Resources */,
 				0481818917E8626400E25950 /* status_bar_colour@2x.tiff in Resources */,
 				04A77BC0170FC7CF00A50173 /* icon.icns in Resources */,
@@ -288,14 +286,6 @@
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
-		04A77BB1170FC75200A50173 /* Credits.rtf */ = {
-			isa = PBXVariantGroup;
-			children = (
-				04A77BB2170FC75200A50173 /* en */,
-			);
-			name = Credits.rtf;
-			sourceTree = "<group>";
-		};
 		04A77BB7170FC75300A50173 /* MainMenu.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -320,6 +310,7 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
@@ -375,6 +366,7 @@
 				GCC_PREFIX_HEADER = "Spotify Notifications/Spotify Notifications-Prefix.pch";
 				INFOPLIST_FILE = "Spotify Notifications/Spotify Notifications-Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				PRODUCT_BUNDLE_IDENTIFIER = "io.citruspi.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
@@ -392,6 +384,7 @@
 				GCC_PREFIX_HEADER = "Spotify Notifications/Spotify Notifications-Prefix.pch";
 				INFOPLIST_FILE = "Spotify Notifications/Spotify Notifications-Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				PRODUCT_BUNDLE_IDENTIFIER = "io.citruspi.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;

@@ -3,8 +3,8 @@
 //  Spotify Notifications
 //
 
+#import "SharedKeys.h"
 #import "AppDelegate.h"
-#import <AppKit/AppKit.h>
 #import "GBLaunchAtLogin.h"
 #import "MASShortcutView.h"
 #import "MASShortcutView+UserDefaults.h"
@@ -14,75 +14,15 @@
 
 @implementation AppDelegate
 
-@synthesize window;
-@synthesize statusBar;
-@synthesize statusMenu;
-@synthesize openPreferences;
-@synthesize openLastFMMenu;
-@synthesize openLastFMArtist;
-@synthesize openLastFMAlbum;
-@synthesize openLastFMTrack;
-
-@synthesize showNotificationsToggle;
-@synthesize showPlayPauseNotifToggle;
-@synthesize showOnlyCurrentSongToggle;
-@synthesize soundToggle;
-@synthesize iconToggle;
-@synthesize startupToggle;
-@synthesize albumArtToggle;
-@synthesize shortcutView;
-@synthesize disabledWhenSpotifyHasFocusToggle;
-
-BOOL UserNotificationContentImagePropertyAvailable;
-
-SNXTrack *track;
-
-NSString *previousTrack;
-
 - (void)applicationDidFinishLaunching:(NSNotification *)notification {
-
-    NSInteger major;
-    NSInteger minor;
-    NSInteger patch;
-
-    major = minor = patch = -1;
-
-    NSString* productVersion = [[NSDictionary dictionaryWithContentsOfFile:
-                                @"/System/Library/CoreServices/SystemVersion.plist"] objectForKey:@"ProductVersion"];
-
-    NSArray* productVersionSeparated = [productVersion componentsSeparatedByString:@"."];
-
-    if (productVersionSeparated.count >= 1 ) {
-
-        major = [productVersionSeparated[0] integerValue];
-
-        if ( productVersionSeparated.count >= 2 ) {
-
-            minor = [productVersionSeparated[1] integerValue];
-
-        }
-    }
-
-    if ((major == 10) &&
-        (minor >= 9)) {
-
-        UserNotificationContentImagePropertyAvailable = YES;
-
-    }
-
-    else {
-
-        UserNotificationContentImagePropertyAvailable = NO;
-
-    }
-
-    track = [[SNXTrack alloc] init];
-
+    
+    userNotificationContentImagePropertyAvailable = (NSAppKitVersionNumber >= NSAppKitVersionNumber10_9);
+    track = [SNXTrack new];
     previousTrack = @"";
 
-    [[NSUserNotificationCenter defaultUserNotificationCenter] setDelegate:self];
+    [NSUserNotificationCenter.defaultUserNotificationCenter setDelegate:self];
 
-    [[NSDistributedNotificationCenter defaultCenter] addObserver:self
+    [NSDistributedNotificationCenter.defaultCenter addObserver:self
                                                         selector:@selector(eventOccured:)
                                                             name:@"com.spotify.client.PlaybackStateChanged"
                                                           object:nil
@@ -90,356 +30,271 @@ NSString *previousTrack;
 
     [self setIcon];
     [self setupGlobalShortcutForNotifications];
-
-    [showNotificationsToggle selectItemAtIndex:[self getProperty:@"notifications"]];
-    [showPlayPauseNotifToggle selectItemAtIndex:[self getProperty:@"playpausenotifs"]];
-    [showOnlyCurrentSongToggle selectItemAtIndex:[self getProperty:@"onlycurrentsong"]];
-    [soundToggle selectItemAtIndex:[self getProperty:@"notificationSound"]];
-    [iconToggle selectItemAtIndex:[self getProperty:@"iconSelection"]];
-    [startupToggle selectItemAtIndex:[self getProperty:@"startupSelection"]];
-    [albumArtToggle selectItemAtIndex:[self getProperty:@"includeAlbumArt"]];
-    [disabledWhenSpotifyHasFocusToggle selectItemAtIndex:[self getProperty:@"disableWhenSpotifyHasFocus"]];
     
-    if (!(UserNotificationContentImagePropertyAvailable)) {
-
-        albumArtToggle.enabled = NO;
-        [albumArtToggle selectItemAtIndex:1];
-
-    }
-
-    if ([self getProperty:@"startupSelection"] == 0) {
-
+    [_iconToggle selectItemAtIndex:[self getProperty:kIconSelectionKey]];
+    
+    if (!userNotificationContentImagePropertyAvailable) _albumArtToggle.enabled = NO;
+    
+    
+    if ([self getProperty:kLaunchAtLoginKey] == 0) {
         [GBLaunchAtLogin addAppAsLoginItem];
-
-    }
-
-    if ([self getProperty:@"startupSelection"] == 1) {
-
+        
+    } else {
         [GBLaunchAtLogin removeAppFromLoginItems];
-
     }
-
 }
 
 - (void)setupGlobalShortcutForNotifications {
 
     NSString *const kPreferenceGlobalShortcut = @"ShowCurrentTrack";
-    self.shortcutView.associatedUserDefaultsKey = kPreferenceGlobalShortcut;
+    _shortcutView.associatedUserDefaultsKey = kPreferenceGlobalShortcut;
 
     [MASShortcut registerGlobalShortcutWithUserDefaultsKey:kPreferenceGlobalShortcut handler:^{
 
-        NSUserNotification *notification = [[NSUserNotification alloc] init];
+        NSUserNotification *notification = [NSUserNotification new];
 
-        if ([track.title length] == 0) {
+        if (track.title.length == 0) {
 
             notification.title = @"No Song Playing";
 
-            if ([self getProperty:@"notificationSound"] == 0) {
-
+            if ([self getProperty:kNotificationSoundKey] == 0)
                 notification.soundName = NSUserNotificationDefaultSoundName;
-
-            }
-
-            [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
             
-            if ([self getProperty:@"onlycurrentsong"] == 0) {
-                [[NSUserNotificationCenter defaultUserNotificationCenter] removeAllDeliveredNotifications];
-            }
-        }
-
-        else {
+            [NSUserNotificationCenter.defaultUserNotificationCenter deliverNotification:notification];
+            
+            if ([self getProperty:kShowOnlyCurrentSongKey] == 0)
+                [NSUserNotificationCenter.defaultUserNotificationCenter removeAllDeliveredNotifications];
+            
+        } else {
 
             notification.title = track.title;
             notification.subtitle = track.album;
             notification.informativeText = track.artist;
 
-            if ((UserNotificationContentImagePropertyAvailable) &&
-                ([self getProperty:@"includeAlbumArt"] == 0)) {
+            if (userNotificationContentImagePropertyAvailable &&
+                ([self getProperty:kNotificationIncludeAlbumArtKey] == 0)) {
 
                 [track fetchAlbumArt];
                 notification.contentImage = track.albumArt;
 
             }
 
-            if ([self getProperty:@"notificationSound"] == 0) {
-
+            if ([self getProperty:kNotificationSoundKey] == 0)
                 notification.soundName = NSUserNotificationDefaultSoundName;
 
-            }
-
-            [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
+            [NSUserNotificationCenter.defaultUserNotificationCenter deliverNotification:notification];
             track.albumArt = nil;
             
-            if ([self getProperty:@"onlycurrentsong"] == 0) {
-                NSArray *notifs = [NSUserNotificationCenter defaultUserNotificationCenter].deliveredNotifications;
-                for (int i=1; i<[notifs count]; i++) {
-                    [[NSUserNotificationCenter defaultUserNotificationCenter] removeDeliveredNotification:notifs[i]];
+            if ([self getProperty:kShowOnlyCurrentSongKey] == 0) {
+                NSArray *notifs = NSUserNotificationCenter.defaultUserNotificationCenter.deliveredNotifications;
+                for (int i=1; i<notifs.count; i++) {
+                    [NSUserNotificationCenter.defaultUserNotificationCenter removeDeliveredNotification:notifs[i]];
                 }
             }
-
         }
-
+        
     }];
-
-}
-
-- (BOOL)applicationShouldHandleReopen:(NSApplication *)sender hasVisibleWindows:(BOOL)flag {
-
-    if (!flag) {
-
-        // This makes it so you can open the preferences by re-opening the app
-        // This way you can get to the preferences even when the status item is hidden
-        [self showPreferences:nil];
-
-    }
-
-    return YES;
-
-}
-
-- (IBAction)showHome:(id)sender {
-
-    [[NSWorkspace sharedWorkspace] openURL: [NSURL URLWithString:@"http://spotify-notifications.citruspi.io"]];
-
-}
-
-- (IBAction)showSource:(id)sender {
-
-    [[NSWorkspace sharedWorkspace] openURL: [NSURL URLWithString:@"https://github.com/citruspi/Spotify-Notifications"]];
-
-}
-
-- (IBAction)showContributors:(id)sender {
-
-    [[NSWorkspace sharedWorkspace] openURL: [NSURL URLWithString:@"https://github.com/citruspi/Spotify-Notifications/graphs/contributors"]];
-
-}
-
-- (IBAction)showPreferences:(id)sender {
-
-    [NSApp activateIgnoringOtherApps:YES];
-    [window makeKeyAndOrderFront:nil];
-
 }
 
 - (IBAction)showLastFM:(id)sender {
 
     //Artist - we always need at least this
-    NSString* urlText = [NSString stringWithFormat:@"http://last.fm/music/%@", track.artist];
+    NSString *urlText = [NSString stringWithFormat:@"http://last.fm/music/%@", track.artist];
 
     if ([sender tag] == 1) {
         //Album
         urlText = [urlText stringByAppendingString:[NSString stringWithFormat:@"/%@", track.album]];
-    }
-    else if ([sender tag] == 2) {
+        
+    } else if ([sender tag] == 2) {
         //Track
         urlText = [urlText stringByAppendingString:[NSString stringWithFormat:@"/%@/%@", track.album, track.title]];
     }
 
     urlText = [urlText stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 
-    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString: urlText]];
+    [NSWorkspace.sharedWorkspace openURL:[NSURL URLWithString:urlText]];
 
 }
 
-- (BOOL)userNotificationCenter:(NSUserNotificationCenter *)center
-    shouldPresentNotification:(NSUserNotification *)notification {
-
+- (BOOL)userNotificationCenter:(NSUserNotificationCenter *)center shouldPresentNotification:(NSUserNotification *)notification {
     return YES;
-
 }
 
 - (void)userNotificationCenter:(NSUserNotificationCenter *)center didActivateNotification:(NSUserNotification *)notification {
-
-    [[NSWorkspace sharedWorkspace] launchApplication:@"Spotify"];
-
+    [NSWorkspace.sharedWorkspace launchApplication:@"Spotify"];
 }
 
 - (void)eventOccured:(NSNotification *)notification {
 
-    NSDictionary *information = [notification userInfo];
+    NSDictionary *information = notification.userInfo;
 
     NSString *playerState = [information objectForKey: @"Player State"];
     
     if ([playerState isEqualToString:@"Playing"]) {
         
-        NSRunningApplication *frontmostApplication = [[NSWorkspace sharedWorkspace] frontmostApplication];
+        NSRunningApplication *frontmostApplication = NSWorkspace.sharedWorkspace.frontmostApplication;
         
-        if ([frontmostApplication.bundleIdentifier isEqualToString:@"com.spotify.client"]) {
-            if ([self getProperty:@"disableWhenSpotifyHasFocus"] == 0) {
-                return;
-            }
-        }
+        if ([frontmostApplication.bundleIdentifier isEqualToString:SpotifyBundleID] &&
+            [self getProperty:kDisableWhenSpotifyHasFocusKey] == 0) return;
 
-        track.artist = [information objectForKey: @"Artist"];
-        track.album = [information objectForKey: @"Album"];
-        track.title = [information objectForKey: @"Name"];
+        track.artist = [information objectForKey:@"Artist"];
+        track.album = [information objectForKey:@"Album"];
+        track.title = [information objectForKey:@"Name"];
         track.trackID = [information objectForKey:@"Track ID"];
 
-        if (![openLastFMMenu isEnabled] && [track.artist isNotEqualTo:NULL]) {
-            [openLastFMMenu setEnabled:YES];
-        }
+        if (!_openLastFMMenu.isEnabled && [track.artist isNotEqualTo:NULL])
+            [_openLastFMMenu setEnabled:YES];
 
-        if ( [self getProperty:@"notifications"] == 0 && (![previousTrack isEqualToString:track.trackID] || [self getProperty:@"playpausenotifs"] == 0) ) {
+        if ([self getProperty:kNotificationsKey] == 0 && (![previousTrack isEqualToString:track.trackID] || [self getProperty:kPlayPauseNotificationsKey] == 0) ) {
 
             previousTrack = track.trackID;
             track.albumArt = nil;
 
-            NSUserNotification *notification = [[NSUserNotification alloc] init];
+            NSUserNotification *notification = [NSUserNotification new];
             notification.title = track.title;
             notification.subtitle = track.album;
             notification.informativeText = track.artist;
 
-            if ((UserNotificationContentImagePropertyAvailable) &&
-                ([self getProperty:@"includeAlbumArt"] == 0)) {
+            if ((userNotificationContentImagePropertyAvailable) &&
+                ([self getProperty:kNotificationIncludeAlbumArtKey] == 0)) {
 
                 [track fetchAlbumArt];
                 notification.contentImage = track.albumArt;
 
             }
 
-            if ([self getProperty:@"notificationSound"] == 0) {
-
+            if ([self getProperty:kNotificationSoundKey] == 0)
                 notification.soundName = NSUserNotificationDefaultSoundName;
 
-            }
-
-            [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
+            [NSUserNotificationCenter.defaultUserNotificationCenter deliverNotification:notification];
             
-            if ([self getProperty:@"onlycurrentsong"] == 0) {
-                NSArray *notifs = [NSUserNotificationCenter defaultUserNotificationCenter].deliveredNotifications;
-                for (int i=1; i<[notifs count]; i++) {
-                    [[NSUserNotificationCenter defaultUserNotificationCenter] removeDeliveredNotification:notifs[i]];
+            if ([self getProperty:kShowOnlyCurrentSongKey] == 0) {
+                NSArray *notifs = NSUserNotificationCenter.defaultUserNotificationCenter.deliveredNotifications;
+                for (int i=1; i<notifs.count; i++) {
+                    [NSUserNotificationCenter.defaultUserNotificationCenter removeDeliveredNotification:notifs[i]];
                 }
             }
 
         }
-    } else if ([self getProperty:@"onlycurrentsong"] == 0 && [self getProperty:@"playpausenotifs"] == 0 && [playerState isEqualToString:@"Paused"]) {
-        [[NSUserNotificationCenter defaultUserNotificationCenter] removeAllDeliveredNotifications];
+    } else if ([self getProperty:kShowOnlyCurrentSongKey] == 0 && [self getProperty:kPlayPauseNotificationsKey] == 0 && [playerState isEqualToString:@"Paused"]) {
+        [NSUserNotificationCenter.defaultUserNotificationCenter removeAllDeliveredNotifications];
     }
 
 }
 
-- (IBAction)toggleNotifications:(id)sender {
+#pragma mark - Preferences
 
-    [self saveProperty:@"notifications" value:(int)[showNotificationsToggle indexOfSelectedItem]];
-
-}
-
-- (IBAction)togglePlayPauseNotif:(id)sender {
-
-    [self saveProperty:@"playpausenotifs" value:(int)[showPlayPauseNotifToggle indexOfSelectedItem]];
-
-}
-
-- (IBAction)toggleOnlyCurrentSong:(id)sender {
+- (void)saveProperty:(NSString*)key value:(int)value {
     
-    [self saveProperty:@"onlycurrentsong" value:(int)[showOnlyCurrentSongToggle indexOfSelectedItem]];
+    NSUserDefaults *standardUserDefaults = NSUserDefaults.standardUserDefaults;
+    
+    if (standardUserDefaults) {
+        [standardUserDefaults setInteger:value forKey:key];
+        [standardUserDefaults synchronize];
+    }
+}
+
+- (BOOL)getProperty:(NSString*)key {
+    
+    NSUserDefaults *standardUserDefaults = NSUserDefaults.standardUserDefaults;
+    
+    int val = 0;
+    if (standardUserDefaults) val = (int)[standardUserDefaults integerForKey:key];
+    
+    return val;
+}
+
+- (BOOL)applicationShouldHandleReopen:(NSApplication *)sender hasVisibleWindows:(BOOL)flag {
+    
+    // This makes it so you can open the preferences by re-opening the app
+    // This way you can get to the preferences even when the status item is hidden
+    if (!flag) [self showPreferences:nil];
+    
+    return YES;
     
 }
 
-- (IBAction)toggleSound:(id)sender {
+- (IBAction)showPreferences:(id)sender {
+    [NSApp activateIgnoringOtherApps:YES];
+    [_window makeKeyAndOrderFront:nil];
+}
 
-    [self saveProperty:@"notificationSound" value:(int)[soundToggle indexOfSelectedItem]];
+- (IBAction)toggleNotifications:(NSButton *)sender {
+    [self saveProperty:kNotificationsKey value:(int)sender.state];
+}
 
+- (IBAction)togglePlayPauseNotif:(NSButton *)sender {
+    [self saveProperty:kPlayPauseNotificationsKey value:(int)sender.state];
+}
+
+- (IBAction)toggleOnlyCurrentSong:(NSButton *)sender {
+    [self saveProperty:kShowOnlyCurrentSongKey value:(int)sender.state];
+}
+
+- (IBAction)toggleSound:(NSButton *)sender {
+    [self saveProperty:kNotificationSoundKey value:(int)sender.state];
+}
+
+- (IBAction)toggleAlbumArt:(NSButton *)sender {
+    [self saveProperty:kNotificationIncludeAlbumArtKey value:(int)sender.state];
+}
+
+- (IBAction)toggleDisabledWhenSpotifyHasFocus:(NSButton *)sender {
+    [self saveProperty:kDisableWhenSpotifyHasFocusKey value:(int)sender.state];
 }
 
 - (void)setIcon {
-
-    if ([self getProperty:@"iconSelection"] == 0) {
-
-        self.statusBar = nil;
-        self.statusBar = [[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength];
-        self.statusBar.image = [NSImage imageNamed:@"status_bar_colour.tiff"];
-        self.statusBar.menu = self.statusMenu;
-        self.statusBar.image.template = NO;
-        self.statusBar.highlightMode = YES;
-
+    
+    int iconSelection = [self getProperty:kIconSelectionKey];
+    
+    if (iconSelection == 0 || iconSelection == 1) {
+        
+        _statusBar = nil;
+        _statusBar = [[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength];
+        
+        NSString *imageName = (iconSelection == 0)? @"status_bar_colour.tiff" : @"status_bar_black.tiff";
+        _statusBar.image = [NSImage imageNamed: imageName];
+        
+        _statusBar.menu = _statusMenu;
+        _statusBar.image.template = YES;
+        _statusBar.highlightMode = YES;
+        
+    } else if (iconSelection == 2) {
+        _statusBar = nil;
     }
-
-    if ([self getProperty:@"iconSelection"] == 1) {
-
-        self.statusBar = nil;
-        self.statusBar = [[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength];
-        self.statusBar.image = [NSImage imageNamed:@"status_bar_black.tiff"];
-        self.statusBar.menu = self.statusMenu;
-        self.statusBar.image.template = YES;
-        self.statusBar.highlightMode = YES;
-
-    }
-
-    if ([self getProperty:@"iconSelection"] == 2) {
-
-        self.statusBar = nil;
-
-    }
-
 }
 
 - (IBAction)toggleIcons:(id)sender {
-
-    [self saveProperty:@"iconSelection" value:(int)[iconToggle indexOfSelectedItem]];
+    [self saveProperty:kIconSelectionKey value:(int)_iconToggle.indexOfSelectedItem];
     [self setIcon];
-
 }
 
-- (IBAction)toggleStartup:(id)sender {
+- (IBAction)toggleStartup:(NSButton *)sender {
 
-    [self saveProperty:@"startupSelection" value:(int)[startupToggle indexOfSelectedItem]];
+    [self saveProperty:kLaunchAtLoginKey value:(int)sender.state];
 
-    if ([self getProperty:@"startupSelection"] == 0) {
-
+    if ([self getProperty:kLaunchAtLoginKey] == 0) {
         [GBLaunchAtLogin addAppAsLoginItem];
-
-    }
-
-    if ([self getProperty:@"startupSelection"] == 1) {
-
+        
+    } else {
         [GBLaunchAtLogin removeAppFromLoginItems];
-
     }
 
 }
 
-- (IBAction)toggleAlbumArt:(id)sender {
+#pragma mark - Preferences Info Buttons
 
-    [self saveProperty:@"includeAlbumArt" value:(int)[albumArtToggle indexOfSelectedItem]];
-
+- (IBAction)showHome:(id)sender {
+    [NSWorkspace.sharedWorkspace openURL:[NSURL URLWithString:@"http://spotify-notifications.citruspi.io"]];
 }
 
-- (IBAction)toggleDisabledWhenSpotifyHasFocus:(id)sender {
-
-    [self saveProperty:@"disableWhenSpotifyHasFocus" value:(int)[disabledWhenSpotifyHasFocusToggle indexOfSelectedItem]];
-
+- (IBAction)showSource:(id)sender {
+    [NSWorkspace.sharedWorkspace openURL:[NSURL URLWithString:@"https://github.com/citruspi/Spotify-Notifications"]];
 }
 
-- (void)saveProperty:(NSString*)key value:(int)value {
-
-	NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
-
-	if (standardUserDefaults) {
-
-		[standardUserDefaults setInteger:value forKey:key];
-		[standardUserDefaults synchronize];
-
-	}
-
-}
-
-- (Boolean)getProperty:(NSString*)key {
-
-	NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
-
-	int val = 0;
-
-	if (standardUserDefaults) {
-
-        val = (int)[standardUserDefaults integerForKey:key];
-
-    }
-
-	return val;
-
+- (IBAction)showContributors:(id)sender {
+    [NSWorkspace.sharedWorkspace openURL:[NSURL URLWithString:@"https://github.com/citruspi/Spotify-Notifications/graphs/contributors"]];
+    
 }
 
 @end

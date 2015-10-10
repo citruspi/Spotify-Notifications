@@ -75,11 +75,9 @@
 }
 
 - (BOOL)applicationShouldHandleReopen:(NSApplication *)sender hasVisibleWindows:(BOOL)flag {
-    
     // This makes it so you can open the preferences by re-opening the app
     // This way you can get to the preferences even when the status item is hidden
     if (!flag) [self showPreferences:nil];
-    
     return YES;
 }
 
@@ -132,7 +130,7 @@
     NSUserNotification *notification = [NSUserNotification new];
     notification.title = (title > 0)? title : @"No Song Playing";
     if (album.length > 0) notification.subtitle = album;
-    if (album.length > 0) notification.informativeText = artist;
+    if (artist.length > 0) notification.informativeText = artist;
     
     if (userNotificationContentImagePropertyAvailable &&
         [NSUserDefaults.standardUserDefaults boolForKey:kNotificationIncludeAlbumArtKey]) {
@@ -144,10 +142,11 @@
     if ([NSUserDefaults.standardUserDefaults boolForKey:kNotificationSoundKey])
         notification.soundName = @"Pop";
     
-    [notification setHasActionButton:YES];
-    [notification setActionButtonTitle:@"Skip Song"];
+    notification.hasActionButton = YES;
+    notification.actionButtonTitle = @"Skip Song";
     
     //Hacky solution to force showing buttons even if "Banner" alert style is chosen by user
+    //Private API at the moment – remove if publishing to Mac App Store for example
     @try {
         [notification setValue:@YES forKey:@"_showsButtons"];
     } @catch (NSException *exception) {
@@ -203,8 +202,8 @@
 #pragma mark - Preferences
 
 - (IBAction)showPreferences:(NSMenuItem*)sender {
-    [NSApp activateIgnoringOtherApps:YES];
     [_prefsWindow makeKeyAndOrderFront:nil];
+    [NSApp activateIgnoringOtherApps:YES];
 }
 
 - (void)setIcon {

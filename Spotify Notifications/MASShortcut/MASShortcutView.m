@@ -33,17 +33,36 @@
 
 #pragma mark -
 
++ (Class)shortcutCellClass
+{
+    return [NSButtonCell class];
+}
+
 - (id)initWithFrame:(CGRect)frameRect
 {
     self = [super initWithFrame:frameRect];
     if (self) {
-        _shortcutCell = [[NSButtonCell alloc] init];
-        _shortcutCell.buttonType = NSPushOnPushOffButton;
-        _shortcutCell.font = [[NSFontManager sharedFontManager] convertFont:_shortcutCell.font toSize:BUTTON_FONT_SIZE];
-        _enabled = YES;
-        [self resetShortcutCellStyle];
+        [self commonInit];
     }
     return self;
+}
+
+- (id)initWithCoder:(NSCoder *)coder
+{
+    self = [super initWithCoder:coder];
+    if (self) {
+        [self commonInit];
+    }
+    return self;
+}
+
+- (void)commonInit
+{
+    _shortcutCell = [[[self.class shortcutCellClass] alloc] init];
+    _shortcutCell.buttonType = NSPushOnPushOffButton;
+    _shortcutCell.font = [[NSFontManager sharedFontManager] convertFont:_shortcutCell.font toSize:BUTTON_FONT_SIZE];
+    _enabled = YES;
+    [self resetShortcutCellStyle];
 }
 
 - (void)dealloc
@@ -86,6 +105,12 @@
         }
         case MASShortcutViewAppearanceRounded: {
             _shortcutCell.bezelStyle = NSRoundedBezelStyle;
+            break;
+        }
+        case MASShortcutViewAppearanceFlat: {
+            self.wantsLayer = YES;
+            _shortcutCell.backgroundColor = [NSColor clearColor];
+            _shortcutCell.bordered = NO;
             break;
         }
     }
@@ -157,6 +182,10 @@
             [_shortcutCell drawWithFrame:CGRectOffset(frame, 0.0, 1.0) inView:self];
             break;
         }
+        case MASShortcutViewAppearanceFlat: {
+            [_shortcutCell drawWithFrame:frame inView:self];
+            break;
+        }
     }
 }
 
@@ -208,6 +237,7 @@
     switch (self.appearance) {
         case MASShortcutViewAppearanceTexturedRect: hintButtonWidth += 2.0; break;
         case MASShortcutViewAppearanceRounded: hintButtonWidth += 3.0; break;
+        case MASShortcutViewAppearanceFlat: hintButtonWidth -= 8.0 - (_shortcutCell.font.pointSize - BUTTON_FONT_SIZE); break;
         default: break;
     }
     CGRectDivide(self.bounds, &hintRect, &shortcutRect, hintButtonWidth, CGRectMaxXEdge);
@@ -354,7 +384,7 @@ void *kUserDataHint = &kUserDataHint;
                 weakSelf.recording = NO;
                 event = nil;
             }
-            else if (shortcut.keyCode == kVK_Escape) {
+            else if (shortcut.keyCode == kVK_Escape && !shortcut.modifierFlags) {
                 // Cancel recording
                 weakSelf.recording = NO;
                 event = nil;
@@ -375,9 +405,13 @@ void *kUserDataHint = &kUserDataHint;
                             [weakSelf activateEventMonitoring:NO];
                             NSString *format = NSLocalizedString(@"The key combination %@ cannot be used",
                                                                  @"Title for alert when shortcut is already used");
-                            NSRunCriticalAlertPanel([NSString stringWithFormat:format, shortcut], error.localizedDescription,
-                                                    NSLocalizedString(@"OK", @"Alert button when shortcut is already used"),
-                                                    nil, nil);
+                            NSAlert *alert = [[NSAlert alloc] init];
+                            alert.alertStyle = NSCriticalAlertStyle;
+                            alert.informativeText = [NSString stringWithFormat:format, shortcut];
+                            alert.messageText = error.localizedDescription;
+                            [alert addButtonWithTitle:NSLocalizedString(@"OK", @"Alert button when shortcut is already used")];
+                            
+                            [alert runModal];
                             weakSelf.shortcutPlaceholder = nil;
                             [weakSelf activateResignObserver:YES];
                             [weakSelf activateEventMonitoring:YES];

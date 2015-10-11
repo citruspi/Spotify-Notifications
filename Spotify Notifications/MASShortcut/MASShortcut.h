@@ -1,4 +1,5 @@
 #import <Carbon/Carbon.h>
+#import <AppKit/AppKit.h>
 
 #define MASShortcutChar(char) [NSString stringWithFormat:@"%C", (unsigned short)(char)]
 #define MASShortcutClear(flags) (flags & (NSControlKeyMask | NSShiftKeyMask | NSAlternateKeyMask | NSCommandKeyMask))
@@ -30,7 +31,7 @@ enum {
 	kMASShortcutGlyphSoutheastArrow = 0x2198,
 } MASShortcutGlyph;
 
-@interface MASShortcut : NSObject <NSCoding>
+@interface MASShortcut : NSObject <NSSecureCoding>
 
 @property (nonatomic) NSUInteger keyCode;
 @property (nonatomic) NSUInteger modifierFlags;

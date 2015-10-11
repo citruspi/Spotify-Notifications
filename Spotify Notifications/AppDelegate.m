@@ -45,7 +45,7 @@
 
 - (void)setupGlobalShortcutForNotifications {
 
-    NSString *const kPreferenceGlobalShortcut = @"ShowCurrentTrack";
+    static NSString *const kPreferenceGlobalShortcut = @"ShowCurrentTrack";
     _shortcutView.associatedUserDefaultsKey = kPreferenceGlobalShortcut;
 
     [MASShortcut registerGlobalShortcutWithUserDefaultsKey:kPreferenceGlobalShortcut handler:^{

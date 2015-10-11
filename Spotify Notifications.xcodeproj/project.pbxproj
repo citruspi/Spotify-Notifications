@@ -54,7 +54,7 @@
 		04A77BB4170FC75200A50173 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		04A77BB5170FC75200A50173 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		04A77BB8170FC75300A50173 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
-		04A77BBF170FC7CF00A50173 /* icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = icon.icns; path = ../icon.icns; sourceTree = "<group>"; };
+		04A77BBF170FC7CF00A50173 /* icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = icon.icns; sourceTree = "<group>"; };
 		04A77BC1170FC7E600A50173 /* Spotify Notifications.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Spotify Notifications.entitlements"; sourceTree = "<group>"; };
 		04A77BC217104FEE00A50173 /* status_bar_colour.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = status_bar_colour.tiff; sourceTree = "<group>"; };
 		04AC9052187234A70017E55A /* SNXTrack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNXTrack.h; sourceTree = "<group>"; };
@@ -87,7 +87,7 @@
 				04C5E40B1813445600956039 /* GBLaunchAtLogin.h */,
 				04C5E40C1813445600956039 /* GBLaunchAtLogin.m */,
 			);
-			name = GBLaunchAtLogin;
+			path = GBLaunchAtLogin;
 			sourceTree = "<group>";
 		};
 		049BCBF418170FBC00743860 /* Status Bar Images */ = {
@@ -98,7 +98,7 @@
 				04A77BC217104FEE00A50173 /* status_bar_colour.tiff */,
 				0481818817E8626400E25950 /* status_bar_colour@2x.tiff */,
 			);
-			name = "Status Bar Images";
+			path = "Status Bar Images";
 			sourceTree = "<group>";
 		};
 		049BCC14181710D500743860 /* MASShortcut */ = {
@@ -115,7 +115,7 @@
 				049BCC0D181710CE00743860 /* MASShortcutView+UserDefaults.h */,
 				049BCC0E181710CE00743860 /* MASShortcutView+UserDefaults.m */,
 			);
-			name = MASShortcut;
+			path = MASShortcut;
 			sourceTree = "<group>";
 		};
 		04A77B96170FC75200A50173 = {

@@ -13,6 +13,11 @@ NSString *const MASShortcutModifierFlags = @"ModifierFlags";
 
 #pragma mark -
 
++ (BOOL)supportsSecureCoding
+{
+    return YES;
+}
+
 - (void)encodeWithCoder:(NSCoder *)coder
 {
     [coder encodeInteger:(self.keyCode != NSNotFound ? (NSInteger)self.keyCode : - 1) forKey:MASShortcutKeyCode];
@@ -189,7 +194,7 @@ NSString *const MASShortcutModifierFlags = @"ModifierFlags";
             UniCharCount length = 0;
             UniChar  chars[256] = { 0 };
             UInt32 deadKeyState = 0;
-            error = UCKeyTranslate(layoutData, self.keyCode, kUCKeyActionDisplay, 0, // No modifiers
+            error = UCKeyTranslate(layoutData, (UInt16)self.keyCode, kUCKeyActionDisplay, 0, // No modifiers
                                    LMGetKbdType(), kUCKeyTranslateNoDeadKeysMask, &deadKeyState,
                                    sizeof(chars) / sizeof(UniChar), &length, chars);
             keystroke = ((error == noErr) && length ? [NSString stringWithCharacters:chars length:length] : @"");
@@ -315,6 +320,7 @@ BOOL MASShortcutAllowsAnyHotkeyWithOptionModifier = NO;
 - (BOOL)isTakenError:(NSError **)outError
 {
 	CFArrayRef globalHotKeys;
+	BOOL isTaken = NO;
 	if (CopySymbolicHotKeys(&globalHotKeys) == noErr) {
 
         // Enumerate all global hotkeys and check if any of them matches current shortcut
@@ -322,9 +328,11 @@ BOOL MASShortcutAllowsAnyHotkeyWithOptionModifier = NO;
             CFDictionaryRef hotKeyInfo = CFArrayGetValueAtIndex(globalHotKeys, i);
             CFNumberRef code = CFDictionaryGetValue(hotKeyInfo, kHISymbolicHotKeyCode);
             CFNumberRef flags = CFDictionaryGetValue(hotKeyInfo, kHISymbolicHotKeyModifiers);
+            CFNumberRef enabled = CFDictionaryGetValue(hotKeyInfo, kHISymbolicHotKeyEnabled);
 
             if (([(__bridge NSNumber *)code unsignedIntegerValue] == self.keyCode) &&
-                ([(__bridge NSNumber *)flags unsignedIntegerValue] == self.carbonFlags)) {
+                ([(__bridge NSNumber *)flags unsignedIntegerValue] == self.carbonFlags) &&
+                ([(__bridge NSNumber *)enabled boolValue])) {
 
                 if (outError) {
                     NSString *description = NSLocalizedString(@"This combination cannot be used because it is already used by a system-wide "
@@ -334,12 +342,13 @@ BOOL MASShortcutAllowsAnyHotkeyWithOptionModifier = NO;
                     NSDictionary *info = [NSDictionary dictionaryWithObject:description forKey:NSLocalizedDescriptionKey];
                     *outError = [NSError errorWithDomain:NSCocoaErrorDomain code:0 userInfo:info];
                 }
-                return YES;
+                isTaken = YES;
+                break;
             }
         }
         CFRelease(globalHotKeys);
     }
-    return [self isKeyEquivalent:self.keyCodeStringForKeyEquivalent flags:self.modifierFlags takenInMenu:[NSApp mainMenu] error:outError];
+    return (isTaken || [self isKeyEquivalent:self.keyCodeStringForKeyEquivalent flags:self.modifierFlags takenInMenu:[NSApp mainMenu] error:outError]);
 }
 
 @end

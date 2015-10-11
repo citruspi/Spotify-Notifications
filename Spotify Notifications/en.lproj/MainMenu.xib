@@ -654,7 +654,7 @@
                 <outlet property="albumArtToggle" destination="aBa-Hw-XwR" id="4BW-a9-ysb"/>
                 <outlet property="openLastFMMenu" destination="SZW-Od-Gwx" id="Lsx-Qa-lnL"/>
                 <outlet property="openPreferences" destination="61H-gV-eIG" id="6Ub-JI-ndP"/>
-                <outlet property="playerStatusMenuItem" destination="ac7-hp-JP8" id="Yrb-S9-Tvx"/>
+                <outlet property="openSpotifyMenuItem" destination="ac7-hp-JP8" id="DVL-ln-Aph"/>
                 <outlet property="prefsWindow" destination="XjB-tk-5rO" id="Tzy-oQ-5C5"/>
                 <outlet property="shortcutView" destination="zbi-2N-Pgf" id="H7h-c9-67G"/>
                 <outlet property="startupToggle" destination="whs-lL-9F4" id="JXe-Ki-Rth"/>
@@ -664,8 +664,11 @@
         <customObject id="420" customClass="NSFontManager"/>
         <menu id="536">
             <items>
-                <menuItem title="Not Playing" enabled="NO" id="ac7-hp-JP8">
+                <menuItem title="Open Spotify" id="ac7-hp-JP8">
                     <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="openSpotify:" target="494" id="sis-Yi-Idj"/>
+                    </connections>
                 </menuItem>
                 <menuItem title="Last.fm" enabled="NO" id="SZW-Od-Gwx">
                     <menu key="submenu" title="Last.fm" id="a8M-Lg-29f">

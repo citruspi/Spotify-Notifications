@@ -35,7 +35,6 @@
     
     if (!userNotificationContentImagePropertyAvailable) _albumArtToggle.enabled = NO;
     
-    
     if ([NSUserDefaults.standardUserDefaults boolForKey:kLaunchAtLoginKey]) {
         [GBLaunchAtLogin addAppAsLoginItem];
         
@@ -81,23 +80,21 @@
     return YES;
 }
 
+- (IBAction)openSpotify:(NSMenuItem*)sender {
+    [NSWorkspace.sharedWorkspace launchApplication:@"Spotify"];
+}
+
 - (IBAction)showLastFM:(NSMenuItem*)sender {
-
+    
     //Artist - we always need at least this
-    NSString *urlText = [NSString stringWithFormat:@"http://last.fm/music/%@", track.artist];
-
-    if (sender.tag == 1) {
-        //Album
-        urlText = [urlText stringByAppendingFormat:@"/%@", track.album];
-        
-    } else if (sender.tag == 2) {
-        //Track
-        urlText = [urlText stringByAppendingFormat:@"/%@/%@", track.album, track.title];
-    }
-
-    urlText = [urlText stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-
-    [NSWorkspace.sharedWorkspace openURL:[NSURL URLWithString:urlText]];
+    NSMutableString *urlText = [NSMutableString new];
+    [urlText appendFormat:@"http://last.fm/music/%@/", track.artist];
+    
+    if (sender.tag >= 1) [urlText appendFormat:@"%@/", track.album];
+    if (sender.tag == 2) [urlText appendFormat:@"%@/", track.title];
+    
+    NSString *url = [urlText stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    [NSWorkspace.sharedWorkspace openURL:[NSURL URLWithString:url]];
 }
 
 - (BOOL)userNotificationCenter:(NSUserNotificationCenter *)center shouldPresentNotification:(NSUserNotification *)notification {
@@ -109,7 +106,7 @@
     NSUserNotificationActivationType actionType = notification.activationType;
     
     if (actionType == NSUserNotificationActivationTypeContentsClicked) {
-        [NSWorkspace.sharedWorkspace launchApplication:@"Spotify"];
+        [self openSpotify:nil];
         
     } else if (actionType == NSUserNotificationActivationTypeActionButtonClicked) {
         
@@ -169,7 +166,7 @@
     
     if ([playerState isEqualToString:@"Playing"]) {
         
-        _playerStatusMenuItem.title = playerState;
+        _openSpotifyMenuItem.title = @"Open Spotify (Playing)";
         
         NSRunningApplication *frontmostApplication = NSWorkspace.sharedWorkspace.frontmostApplication;
         
@@ -203,7 +200,8 @@
                [NSUserDefaults.standardUserDefaults boolForKey:kPlayPauseNotificationsKey] &&
                [playerState isEqualToString:@"Paused"]) {
         
-        _playerStatusMenuItem.title = @"Not Playing";
+        _openSpotifyMenuItem.title = @"Open Spotify (Paused)";
+        
         [NSUserNotificationCenter.defaultUserNotificationCenter removeAllDeliveredNotifications];
     }
 

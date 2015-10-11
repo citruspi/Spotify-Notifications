@@ -19,7 +19,7 @@
 @property (strong, nonatomic) NSStatusItem *statusBar;
 @property (strong, nonatomic) IBOutlet NSMenu *statusMenu;
 
-@property (strong, nonatomic) IBOutlet NSMenuItem *playerStatusMenuItem;
+@property (strong, nonatomic) IBOutlet NSMenuItem *openSpotifyMenuItem;
 @property (strong, nonatomic) IBOutlet NSMenuItem *openLastFMMenu;
 @property (strong, nonatomic) IBOutlet NSMenuItem *openPreferences;
 
@@ -31,6 +31,7 @@
 @property (weak, nonatomic) IBOutlet MASShortcutView *shortcutView;
 
 
+- (IBAction)openSpotify:(NSMenuItem*)sender;
 - (IBAction)showLastFM:(NSMenuItem*)sender;
 - (IBAction)showPreferences:(NSMenuItem*)sender;
 

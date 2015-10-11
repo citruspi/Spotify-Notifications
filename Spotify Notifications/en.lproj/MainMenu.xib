@@ -652,11 +652,9 @@
         <customObject id="494" customClass="AppDelegate">
             <connections>
                 <outlet property="albumArtToggle" destination="aBa-Hw-XwR" id="4BW-a9-ysb"/>
-                <outlet property="openLastFMAlbum" destination="pXK-QR-zej" id="Ffb-qH-xxx"/>
-                <outlet property="openLastFMArtist" destination="0cf-J0-9nm" id="ODO-h9-pTC"/>
                 <outlet property="openLastFMMenu" destination="SZW-Od-Gwx" id="Lsx-Qa-lnL"/>
-                <outlet property="openLastFMTrack" destination="SnO-7a-Y77" id="zsZ-Pi-b5C"/>
                 <outlet property="openPreferences" destination="61H-gV-eIG" id="6Ub-JI-ndP"/>
+                <outlet property="playerStatusMenuItem" destination="ac7-hp-JP8" id="Yrb-S9-Tvx"/>
                 <outlet property="prefsWindow" destination="XjB-tk-5rO" id="Tzy-oQ-5C5"/>
                 <outlet property="shortcutView" destination="zbi-2N-Pgf" id="H7h-c9-67G"/>
                 <outlet property="startupToggle" destination="whs-lL-9F4" id="JXe-Ki-Rth"/>
@@ -666,10 +664,8 @@
         <customObject id="420" customClass="NSFontManager"/>
         <menu id="536">
             <items>
-                <menuItem title="Preferences…" keyEquivalent="," id="61H-gV-eIG">
-                    <connections>
-                        <action selector="showPreferences:" target="494" id="XKB-Ii-DPd"/>
-                    </connections>
+                <menuItem title="Not Playing" enabled="NO" id="ac7-hp-JP8">
+                    <modifierMask key="keyEquivalentModifierMask"/>
                 </menuItem>
                 <menuItem title="Last.fm" enabled="NO" id="SZW-Od-Gwx">
                     <menu key="submenu" title="Last.fm" id="a8M-Lg-29f">
@@ -694,6 +690,12 @@
                             </menuItem>
                         </items>
                     </menu>
+                </menuItem>
+                <menuItem isSeparatorItem="YES" id="FQd-uL-eGH"/>
+                <menuItem title="Preferences…" keyEquivalent="," id="61H-gV-eIG">
+                    <connections>
+                        <action selector="showPreferences:" target="494" id="XKB-Ii-DPd"/>
+                    </connections>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="nhp-3K-Bn8"/>
                 <menuItem title="Quit" keyEquivalent="q" id="539">

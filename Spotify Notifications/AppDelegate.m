@@ -88,11 +88,11 @@
 
     if (sender.tag == 1) {
         //Album
-        urlText = [urlText stringByAppendingString:[NSString stringWithFormat:@"/%@", track.album]];
+        urlText = [urlText stringByAppendingFormat:@"/%@", track.album];
         
     } else if (sender.tag == 2) {
         //Track
-        urlText = [urlText stringByAppendingString:[NSString stringWithFormat:@"/%@/%@", track.album, track.title]];
+        urlText = [urlText stringByAppendingFormat:@"/%@/%@", track.album, track.title];
     }
 
     urlText = [urlText stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
@@ -116,9 +116,7 @@
         @try {
             NSAppleScript *script = [[NSAppleScript alloc] initWithSource:@"tell application \"Spotify\" to next track"];
             [script executeAndReturnError:NULL];
-        } @catch (NSException *exception) {
-            //Oh well
-        }
+        } @catch (NSException *exception) {}
     }
 }
 
@@ -132,9 +130,10 @@
     if (album.length > 0) notification.subtitle = album;
     if (artist.length > 0) notification.informativeText = artist;
     
-    if (userNotificationContentImagePropertyAvailable &&
-        [NSUserDefaults.standardUserDefaults boolForKey:kNotificationIncludeAlbumArtKey]) {
-        
+    BOOL includeAlbumArt = (userNotificationContentImagePropertyAvailable &&
+                           [NSUserDefaults.standardUserDefaults boolForKey:kNotificationIncludeAlbumArtKey]);
+    
+    if (includeAlbumArt) {
         [track fetchAlbumArt];
         notification.contentImage = track.albumArt;
     }
@@ -143,15 +142,22 @@
         notification.soundName = @"Pop";
     
     notification.hasActionButton = YES;
-    notification.actionButtonTitle = @"Skip Song";
+    notification.actionButtonTitle = @"Skip";
     
-    //Hacky solution to force showing buttons even if "Banner" alert style is chosen by user
-    //Private API at the moment – remove if publishing to Mac App Store for example
+    
+    //Private APIs – remove if publishing to Mac App Store for example
     @try {
+        //Force showing buttons even if "Banner" alert style is chosen by user
         [notification setValue:@YES forKey:@"_showsButtons"];
-    } @catch (NSException *exception) {
-        //Oh well
-    }
+        
+        //Show album art on the left side of the notification (where app icon normally is),
+        //like iTunes does
+        if (includeAlbumArt && track.albumArt.isValid) {
+            [notification setValue:track.albumArt forKey:@"_identityImage"];
+            notification.contentImage = nil;
+        }
+        
+    } @catch (NSException *exception) {}
     
     return notification;
 }
@@ -159,19 +165,21 @@
 - (void)eventOccurred:(NSNotification *)notification {
     NSDictionary *information = notification.userInfo;
 
-    NSString *playerState = [information objectForKey: @"Player State"];
+    NSString *playerState = information[@"Player State"];
     
     if ([playerState isEqualToString:@"Playing"]) {
+        
+        _playerStatusMenuItem.title = playerState;
         
         NSRunningApplication *frontmostApplication = NSWorkspace.sharedWorkspace.frontmostApplication;
         
         if ([frontmostApplication.bundleIdentifier isEqualToString:SpotifyBundleID] &&
             [NSUserDefaults.standardUserDefaults boolForKey:kDisableWhenSpotifyHasFocusKey]) return;
 
-        track.artist = [information objectForKey:@"Artist"];
-        track.album = [information objectForKey:@"Album"];
-        track.title = [information objectForKey:@"Name"];
-        track.trackID = [information objectForKey:@"Track ID"];
+        track.artist = information[@"Artist"];
+        track.album = information[@"Album"];
+        track.title = information[@"Name"];
+        track.trackID = information[@"Track ID"];
 
         if (!_openLastFMMenu.isEnabled && [track.artist isNotEqualTo:NULL])
             [_openLastFMMenu setEnabled:YES];
@@ -194,6 +202,8 @@
     } else if ([NSUserDefaults.standardUserDefaults boolForKey:kShowOnlyCurrentSongKey] &&
                [NSUserDefaults.standardUserDefaults boolForKey:kPlayPauseNotificationsKey] &&
                [playerState isEqualToString:@"Paused"]) {
+        
+        _playerStatusMenuItem.title = @"Not Playing";
         [NSUserNotificationCenter.defaultUserNotificationCenter removeAllDeliveredNotifications];
     }
 

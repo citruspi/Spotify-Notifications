@@ -27,7 +27,7 @@
         if (metaD) {
             NSError *error;
             NSDictionary *meta = [NSJSONSerialization JSONObjectWithData:metaD options:NSJSONReadingAllowFragments error:&error];
-            NSURL *artReq = [NSURL URLWithString:[meta objectForKey:@"thumbnail_url"]];
+            NSURL *artReq = [NSURL URLWithString:meta[@"thumbnail_url"]];
             NSData *artD = [NSData dataWithContentsOfURL:artReq];
             
             if (artD) _albumArt = [[NSImage alloc] initWithData:artD];

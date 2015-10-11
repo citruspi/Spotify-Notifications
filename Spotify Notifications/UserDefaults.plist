@@ -9,7 +9,7 @@
 	<key>onlycurrentsong</key>
 	<true/>
 	<key>notificationSound</key>
-	<true/>
+	<false/>
 	<key>includeAlbumArt</key>
 	<true/>
 	<key>disableWhenSpotifyHasFocus</key>

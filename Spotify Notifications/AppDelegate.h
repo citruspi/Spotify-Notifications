@@ -19,11 +19,9 @@
 @property (strong, nonatomic) NSStatusItem *statusBar;
 @property (strong, nonatomic) IBOutlet NSMenu *statusMenu;
 
-@property (strong, nonatomic) IBOutlet NSMenuItem *openPreferences;
+@property (strong, nonatomic) IBOutlet NSMenuItem *playerStatusMenuItem;
 @property (strong, nonatomic) IBOutlet NSMenuItem *openLastFMMenu;
-@property (strong, nonatomic) IBOutlet NSMenuItem *openLastFMArtist;
-@property (strong, nonatomic) IBOutlet NSMenuItem *openLastFMAlbum;
-@property (strong, nonatomic) IBOutlet NSMenuItem *openLastFMTrack;
+@property (strong, nonatomic) IBOutlet NSMenuItem *openPreferences;
 
 //Preferences
 @property (assign) IBOutlet NSWindow *prefsWindow;

@@ -3,13 +3,9 @@
 //  Spotify Notifications
 //
 
-#import "SharedKeys.h"
 #import "AppDelegate.h"
+#import "SharedKeys.h"
 #import "GBLaunchAtLogin.h"
-#import "MASShortcutView.h"
-#import "MASShortcutView+UserDefaults.h"
-#import "MASShortcut+UserDefaults.h"
-#import "MASShortcut+Monitoring.h"
 #import "SNXTrack.h"
 
 @implementation AppDelegate
@@ -47,30 +43,26 @@
 
     static NSString *const kPreferenceGlobalShortcut = @"ShowCurrentTrack";
     _shortcutView.associatedUserDefaultsKey = kPreferenceGlobalShortcut;
-
-    [MASShortcut registerGlobalShortcutWithUserDefaultsKey:kPreferenceGlobalShortcut handler:^{
-
-        NSUserNotification *notification = [self userNotificationForCurrentTrack];
-
-        if (track.title.length == 0) {
-
-            notification.title = @"No Song Playing";
-
-            if ([NSUserDefaults.standardUserDefaults boolForKey:kNotificationSoundKey])
-                notification.soundName = @"Pop";
-            
-            if ([NSUserDefaults.standardUserDefaults boolForKey:kShowOnlyCurrentSongKey])
-                [NSUserNotificationCenter.defaultUserNotificationCenter removeAllDeliveredNotifications];
-            
-        } else {
-            
-            if ([NSUserDefaults.standardUserDefaults boolForKey:kShowOnlyCurrentSongKey])
-                [NSUserNotificationCenter.defaultUserNotificationCenter removeAllDeliveredNotifications];
-            
-            [NSUserNotificationCenter.defaultUserNotificationCenter deliverNotification:notification];
-        }
-        
-    }];
+    
+    [MASShortcutBinder.sharedBinder
+     bindShortcutWithDefaultsKey:kPreferenceGlobalShortcut
+     toAction:^{
+         
+         NSUserNotification *notification = [self userNotificationForCurrentTrack];
+         
+         if (track.title.length == 0) {
+             
+             notification.title = @"No Song Playing";
+             
+             if ([NSUserDefaults.standardUserDefaults boolForKey:kNotificationSoundKey])
+                 notification.soundName = @"Pop";
+         }
+         
+         if ([NSUserDefaults.standardUserDefaults boolForKey:kShowOnlyCurrentSongKey])
+             [NSUserNotificationCenter.defaultUserNotificationCenter removeAllDeliveredNotifications];
+         
+         [NSUserNotificationCenter.defaultUserNotificationCenter deliverNotification:notification];
+     }];
 }
 
 - (BOOL)applicationShouldHandleReopen:(NSApplication *)sender hasVisibleWindows:(BOOL)flag {

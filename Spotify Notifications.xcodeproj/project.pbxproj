@@ -9,11 +9,6 @@
 /* Begin PBXBuildFile section */
 		0481818917E8626400E25950 /* status_bar_colour@2x.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 0481818817E8626400E25950 /* status_bar_colour@2x.tiff */; };
 		049BCBF218170F5E00743860 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 049BCBF118170F5E00743860 /* Carbon.framework */; };
-		049BCC0F181710CE00743860 /* MASShortcut.m in Sources */ = {isa = PBXBuildFile; fileRef = 049BCC06181710CE00743860 /* MASShortcut.m */; };
-		049BCC10181710CE00743860 /* MASShortcut+Monitoring.m in Sources */ = {isa = PBXBuildFile; fileRef = 049BCC08181710CE00743860 /* MASShortcut+Monitoring.m */; };
-		049BCC11181710CE00743860 /* MASShortcut+UserDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = 049BCC0A181710CE00743860 /* MASShortcut+UserDefaults.m */; };
-		049BCC12181710CE00743860 /* MASShortcutView.m in Sources */ = {isa = PBXBuildFile; fileRef = 049BCC0C181710CE00743860 /* MASShortcutView.m */; };
-		049BCC13181710CE00743860 /* MASShortcutView+UserDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = 049BCC0E181710CE00743860 /* MASShortcutView+UserDefaults.m */; };
 		04A77BA3170FC75200A50173 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04A77BA2170FC75200A50173 /* Cocoa.framework */; };
 		04A77BAD170FC75200A50173 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 04A77BAB170FC75200A50173 /* InfoPlist.strings */; };
 		04A77BAF170FC75200A50173 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A77BAE170FC75200A50173 /* main.m */; };
@@ -25,23 +20,29 @@
 		04C5E40718133BB000956039 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04C5E40618133BB000956039 /* Images.xcassets */; };
 		04C5E40D1813445600956039 /* GBLaunchAtLogin.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C5E40C1813445600956039 /* GBLaunchAtLogin.m */; };
 		961C56761BC93CFF00E0BF5A /* UserDefaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = 961C56751BC93CFF00E0BF5A /* UserDefaults.plist */; settings = {ASSET_TAGS = (); }; };
+		9654440F1BCB046D0023135E /* MASShortcut.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9654440D1BCB022A0023135E /* MASShortcut.framework */; };
+		965444101BCB046D0023135E /* MASShortcut.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9654440D1BCB022A0023135E /* MASShortcut.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		AEAFCD771712CD1200F61F8D /* status_bar_black.tiff in Resources */ = {isa = PBXBuildFile; fileRef = AEAFCD751712CD1200F61F8D /* status_bar_black.tiff */; };
 		AEAFCD7C1712D50B00F61F8D /* status_bar_black@2x.tiff in Resources */ = {isa = PBXBuildFile; fileRef = AEAFCD7B1712D50B00F61F8D /* status_bar_black@2x.tiff */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		965444111BCB046D0023135E /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				965444101BCB046D0023135E /* MASShortcut.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		0481818817E8626400E25950 /* status_bar_colour@2x.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = "status_bar_colour@2x.tiff"; sourceTree = "<group>"; };
 		049BCBF118170F5E00743860 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
-		049BCC05181710CE00743860 /* MASShortcut.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASShortcut.h; sourceTree = "<group>"; };
-		049BCC06181710CE00743860 /* MASShortcut.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MASShortcut.m; sourceTree = "<group>"; };
-		049BCC07181710CE00743860 /* MASShortcut+Monitoring.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MASShortcut+Monitoring.h"; sourceTree = "<group>"; };
-		049BCC08181710CE00743860 /* MASShortcut+Monitoring.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MASShortcut+Monitoring.m"; sourceTree = "<group>"; };
-		049BCC09181710CE00743860 /* MASShortcut+UserDefaults.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MASShortcut+UserDefaults.h"; sourceTree = "<group>"; };
-		049BCC0A181710CE00743860 /* MASShortcut+UserDefaults.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MASShortcut+UserDefaults.m"; sourceTree = "<group>"; };
-		049BCC0B181710CE00743860 /* MASShortcutView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASShortcutView.h; sourceTree = "<group>"; };
-		049BCC0C181710CE00743860 /* MASShortcutView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MASShortcutView.m; sourceTree = "<group>"; };
-		049BCC0D181710CE00743860 /* MASShortcutView+UserDefaults.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MASShortcutView+UserDefaults.h"; sourceTree = "<group>"; };
-		049BCC0E181710CE00743860 /* MASShortcutView+UserDefaults.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MASShortcutView+UserDefaults.m"; sourceTree = "<group>"; };
 		04A77B9F170FC75200A50173 /* Spotify Notifications.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Spotify Notifications.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		04A77BA2170FC75200A50173 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		04A77BA5170FC75200A50173 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -63,6 +64,7 @@
 		04C5E40B1813445600956039 /* GBLaunchAtLogin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GBLaunchAtLogin.h; sourceTree = "<group>"; };
 		04C5E40C1813445600956039 /* GBLaunchAtLogin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GBLaunchAtLogin.m; sourceTree = "<group>"; };
 		961C56751BC93CFF00E0BF5A /* UserDefaults.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = UserDefaults.plist; sourceTree = "<group>"; };
+		9654440D1BCB022A0023135E /* MASShortcut.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MASShortcut.framework; sourceTree = "<group>"; };
 		96E3BC1E1BC91F160023C504 /* SharedKeys.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SharedKeys.h; sourceTree = "<group>"; };
 		AEAFCD751712CD1200F61F8D /* status_bar_black.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = status_bar_black.tiff; sourceTree = "<group>"; };
 		AEAFCD7B1712D50B00F61F8D /* status_bar_black@2x.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = "status_bar_black@2x.tiff"; sourceTree = "<group>"; };
@@ -73,6 +75,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9654440F1BCB046D0023135E /* MASShortcut.framework in Frameworks */,
 				049BCBF218170F5E00743860 /* Carbon.framework in Frameworks */,
 				04A77BA3170FC75200A50173 /* Cocoa.framework in Frameworks */,
 			);
@@ -99,23 +102,6 @@
 				0481818817E8626400E25950 /* status_bar_colour@2x.tiff */,
 			);
 			path = "Status Bar Images";
-			sourceTree = "<group>";
-		};
-		049BCC14181710D500743860 /* MASShortcut */ = {
-			isa = PBXGroup;
-			children = (
-				049BCC05181710CE00743860 /* MASShortcut.h */,
-				049BCC06181710CE00743860 /* MASShortcut.m */,
-				049BCC07181710CE00743860 /* MASShortcut+Monitoring.h */,
-				049BCC08181710CE00743860 /* MASShortcut+Monitoring.m */,
-				049BCC09181710CE00743860 /* MASShortcut+UserDefaults.h */,
-				049BCC0A181710CE00743860 /* MASShortcut+UserDefaults.m */,
-				049BCC0B181710CE00743860 /* MASShortcutView.h */,
-				049BCC0C181710CE00743860 /* MASShortcutView.m */,
-				049BCC0D181710CE00743860 /* MASShortcutView+UserDefaults.h */,
-				049BCC0E181710CE00743860 /* MASShortcutView+UserDefaults.m */,
-			);
-			path = MASShortcut;
 			sourceTree = "<group>";
 		};
 		04A77B96170FC75200A50173 = {
@@ -160,7 +146,7 @@
 			children = (
 				049BCBF318170F8E00743860 /* GBLaunchAtLogin */,
 				049BCBF418170FBC00743860 /* Status Bar Images */,
-				049BCC14181710D500743860 /* MASShortcut */,
+				9654440D1BCB022A0023135E /* MASShortcut.framework */,
 				04A77BC1170FC7E600A50173 /* Spotify Notifications.entitlements */,
 				96E3BC1E1BC91F160023C504 /* SharedKeys.h */,
 				04A77BB4170FC75200A50173 /* AppDelegate.h */,
@@ -197,6 +183,7 @@
 				04A77B9B170FC75200A50173 /* Sources */,
 				04A77B9C170FC75200A50173 /* Frameworks */,
 				04A77B9D170FC75200A50173 /* Resources */,
+				965444111BCB046D0023135E /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -268,12 +255,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				04AC9054187234A70017E55A /* SNXTrack.m in Sources */,
-				049BCC11181710CE00743860 /* MASShortcut+UserDefaults.m in Sources */,
-				049BCC10181710CE00743860 /* MASShortcut+Monitoring.m in Sources */,
 				04A77BAF170FC75200A50173 /* main.m in Sources */,
-				049BCC13181710CE00743860 /* MASShortcutView+UserDefaults.m in Sources */,
-				049BCC0F181710CE00743860 /* MASShortcut.m in Sources */,
-				049BCC12181710CE00743860 /* MASShortcutView.m in Sources */,
 				04A77BB6170FC75200A50173 /* AppDelegate.m in Sources */,
 				04C5E40D1813445600956039 /* GBLaunchAtLogin.m in Sources */,
 			);
@@ -366,9 +348,15 @@
 				CODE_SIGN_IDENTITY = "Developer ID Application";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "";
 				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Spotify",
+					Notifications,
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Spotify Notifications/Spotify Notifications-Prefix.pch";
 				INFOPLIST_FILE = "Spotify Notifications/Spotify Notifications-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				PRODUCT_BUNDLE_IDENTIFIER = "io.citruspi.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -384,9 +372,15 @@
 				CODE_SIGN_IDENTITY = "Developer ID Application";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "";
 				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Spotify",
+					Notifications,
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Spotify Notifications/Spotify Notifications-Prefix.pch";
 				INFOPLIST_FILE = "Spotify Notifications/Spotify Notifications-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				PRODUCT_BUNDLE_IDENTIFIER = "io.citruspi.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";

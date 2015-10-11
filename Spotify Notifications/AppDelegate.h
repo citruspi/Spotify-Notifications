@@ -4,8 +4,9 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import <MASShortcut/Shortcut.h>
 
-@class MASShortcutView, SNXTrack;
+@class SNXTrack;
 
 @interface AppDelegate : NSObject <NSApplicationDelegate, NSUserNotificationCenterDelegate, NSWindowDelegate> {
     
@@ -28,8 +29,7 @@
 
 @property (strong, nonatomic) IBOutlet NSButton *albumArtToggle;
 @property (strong, nonatomic) IBOutlet NSButton *startupToggle;
-@property (weak, nonatomic) IBOutlet MASShortcutView *shortcutView;
-
+@property (weak, nonatomic)   IBOutlet MASShortcutView *shortcutView;
 
 - (IBAction)openSpotify:(NSMenuItem*)sender;
 - (IBAction)showLastFM:(NSMenuItem*)sender;

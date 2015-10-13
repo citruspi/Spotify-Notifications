@@ -3,6 +3,7 @@
 //  Spotify Notifications
 
 #define SpotifyBundleID @"com.spotify.client"
+#define SpotifyNotificationName @"com.spotify.client.PlaybackStateChanged"
 
 #define kNotificationsKey @"notifications"
 #define kPlayPauseNotificationsKey @"playpausenotifs"

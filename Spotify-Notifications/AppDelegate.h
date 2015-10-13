@@ -6,14 +6,16 @@
 #import <Cocoa/Cocoa.h>
 #import <MASShortcut/Shortcut.h>
 
-@class SNXTrack;
+@class SpotifyApplication, SpotifyTrack;
 
 @interface AppDelegate : NSObject <NSApplicationDelegate, NSUserNotificationCenterDelegate, NSWindowDelegate> {
     
     BOOL userNotificationContentImagePropertyAvailable;
     
-    SNXTrack *track;
-    NSString *previousTrack;
+    SpotifyApplication *spotify;
+    
+    SpotifyTrack *currentTrack;
+    SpotifyTrack *previousTrack;
 }
 
 //Status Bar

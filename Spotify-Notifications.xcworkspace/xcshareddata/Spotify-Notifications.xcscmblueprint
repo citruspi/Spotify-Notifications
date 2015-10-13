@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "BB3EACD426816BE8F889F949CB3474A7B8024ED9",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "BB3EACD426816BE8F889F949CB3474A7B8024ED9" : 0,
+    "BB3C4AE3EC7E6771B5CB3DC143FB7B67396AE556" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "649B8D49-87B3-4FBC-9B3B-C6DEEC1EEA16",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "BB3EACD426816BE8F889F949CB3474A7B8024ED9" : "Spotify-Notifications\/",
+    "BB3C4AE3EC7E6771B5CB3DC143FB7B67396AE556" : "Spotify-Notifications\/Spotify%20Notifications\/MASShortcut\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "Spotify-Notifications",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "Spotify-Notifications.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/shpakovski\/MASShortcut.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "BB3C4AE3EC7E6771B5CB3DC143FB7B67396AE556"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/sebj\/Spotify-Notifications.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "BB3EACD426816BE8F889F949CB3474A7B8024ED9"
+    }
+  ]
+}

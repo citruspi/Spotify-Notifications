@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:Spotify Notifications.xcodeproj">
+      location = "group:Spotify-Notifications/MASShortcut/MASShortcut.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:Spotify-Notifications.xcodeproj">
    </FileRef>
 </Workspace>

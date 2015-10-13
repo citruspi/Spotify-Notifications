@@ -3,25 +3,26 @@
 //  Spotify Notifications
 //
 
+#import <ScriptingBridge/ScriptingBridge.h>
+#import "Spotify.h"
 #import "AppDelegate.h"
 #import "SharedKeys.h"
 #import "GBLaunchAtLogin.h"
-#import "SNXTrack.h"
 
 @implementation AppDelegate
 
 - (void)applicationDidFinishLaunching:(NSNotification *)notification {
     
+    //Register default preferences values
     [NSUserDefaults.standardUserDefaults registerDefaults:[NSDictionary dictionaryWithContentsOfFile:[NSBundle.mainBundle pathForResource:@"UserDefaults" ofType:@"plist"]]];
     
-    userNotificationContentImagePropertyAvailable = (NSAppKitVersionNumber >= NSAppKitVersionNumber10_9);
-    track = [SNXTrack new];
-    previousTrack = @"";
+    spotify =  [SBApplication applicationWithBundleIdentifier:@"com.spotify.client"];
 
     [NSUserNotificationCenter.defaultUserNotificationCenter setDelegate:self];
-
+    
+    //Observe Spotify player state changes
     [NSDistributedNotificationCenter.defaultCenter addObserver:self
-                                                        selector:@selector(eventOccurred:)
+                                                        selector:@selector(spotifyPlayerStateChanged:)
                                                             name:@"com.spotify.client.PlaybackStateChanged"
                                                           object:nil
                                               suspensionBehavior:NSNotificationSuspensionBehaviorDeliverImmediately];
@@ -29,13 +30,24 @@
     [self setIcon];
     [self setupGlobalShortcutForNotifications];
     
+    //User notification content images on 10.9+
+    userNotificationContentImagePropertyAvailable = (NSAppKitVersionNumber >= NSAppKitVersionNumber10_9);
     if (!userNotificationContentImagePropertyAvailable) _albumArtToggle.enabled = NO;
     
+    //Add/remove login item as necessary
     if ([NSUserDefaults.standardUserDefaults boolForKey:kLaunchAtLoginKey]) {
         [GBLaunchAtLogin addAppAsLoginItem];
         
     } else {
         [GBLaunchAtLogin removeAppFromLoginItems];
+    }
+    
+    //Check in case user opened application but Spotify already playing
+    if (spotify.playerState == SpotifyEPlSPlaying) {
+        currentTrack = spotify.currentTrack;
+        
+        NSUserNotification *notification = [self userNotificationForCurrentTrack];
+        [self deliverUserNotification:notification Force:YES];
     }
 }
 
@@ -50,7 +62,7 @@
          
          NSUserNotification *notification = [self userNotificationForCurrentTrack];
          
-         if (track.title.length == 0) {
+         if (currentTrack.name.length == 0) {
              
              notification.title = @"No Song Playing";
              
@@ -58,10 +70,7 @@
                  notification.soundName = @"Pop";
          }
          
-         if ([NSUserDefaults.standardUserDefaults boolForKey:kShowOnlyCurrentSongKey])
-             [NSUserNotificationCenter.defaultUserNotificationCenter removeAllDeliveredNotifications];
-         
-         [NSUserNotificationCenter.defaultUserNotificationCenter deliverNotification:notification];
+         [self deliverUserNotification:notification Force:YES];
      }];
 }
 
@@ -73,17 +82,17 @@
 }
 
 - (IBAction)openSpotify:(NSMenuItem*)sender {
-    [NSWorkspace.sharedWorkspace launchApplication:@"Spotify"];
+    [spotify activate];
 }
 
 - (IBAction)showLastFM:(NSMenuItem*)sender {
     
     //Artist - we always need at least this
     NSMutableString *urlText = [NSMutableString new];
-    [urlText appendFormat:@"http://last.fm/music/%@/", track.artist];
+    [urlText appendFormat:@"http://last.fm/music/%@/", currentTrack.artist];
     
-    if (sender.tag >= 1) [urlText appendFormat:@"%@/", track.album];
-    if (sender.tag == 2) [urlText appendFormat:@"%@/", track.title];
+    if (sender.tag >= 1) [urlText appendFormat:@"%@/", currentTrack.album];
+    if (sender.tag == 2) [urlText appendFormat:@"%@/", currentTrack.name];
     
     NSString *url = [urlText stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     [NSWorkspace.sharedWorkspace openURL:[NSURL URLWithString:url]];
@@ -98,21 +107,41 @@
     NSUserNotificationActivationType actionType = notification.activationType;
     
     if (actionType == NSUserNotificationActivationTypeContentsClicked) {
-        [self openSpotify:nil];
+        [spotify activate];
         
     } else if (actionType == NSUserNotificationActivationTypeActionButtonClicked) {
-        
-        @try {
-            NSAppleScript *script = [[NSAppleScript alloc] initWithSource:@"tell application \"Spotify\" to next track"];
-            [script executeAndReturnError:NULL];
-        } @catch (NSException *exception) {}
+        [spotify nextTrack];
     }
 }
 
+- (NSImage*)albumArtForTrack:(SpotifyTrack*)track {
+    if (track.id) {
+        // Accessing embed.spotify.com over HTTPS appears to cause an error with App Transport Security.
+        // It logs an (kCFStreamErrorDomainSSL, -9802) error which appears to deal with Perfect Forward
+        // Secrecy. We need to enable NSAllowsArbitraryLoads for NSAppTransportSecurity. I attempted to use
+        // NSTemporaryExceptionRequiresForwardSecrecy but it continued to cause an error.
+        // Because of the error connecting to the Spotify server, without enabling NSAllowsArbitraryLoads
+        // users lack artwork.
+        NSString *metaLoc = [NSString stringWithFormat:@"https://embed.spotify.com/oembed/?url=%@",track.id];
+        NSURL *metaReq = [NSURL URLWithString:metaLoc];
+        NSData *metaD = [NSData dataWithContentsOfURL:metaReq];
+        
+        if (metaD) {
+            NSError *error;
+            NSDictionary *meta = [NSJSONSerialization JSONObjectWithData:metaD options:NSJSONReadingAllowFragments error:&error];
+            NSURL *artReq = [NSURL URLWithString:meta[@"thumbnail_url"]];
+            NSData *artD = [NSData dataWithContentsOfURL:artReq];
+            
+            if (artD) return [[NSImage alloc] initWithData:artD];
+        }
+    }
+    return nil;
+}
+
 - (NSUserNotification*)userNotificationForCurrentTrack {
-    NSString *title = track.title;
-    NSString *album = track.album;
-    NSString *artist = track.artist;
+    NSString *title = spotify.currentTrack.name;
+    NSString *album = spotify.currentTrack.album;
+    NSString *artist = spotify.currentTrack.artist;
     
     NSUserNotification *notification = [NSUserNotification new];
     notification.title = (title.length > 0)? title : @"No Song Playing";
@@ -122,10 +151,7 @@
     BOOL includeAlbumArt = (userNotificationContentImagePropertyAvailable &&
                            [NSUserDefaults.standardUserDefaults boolForKey:kNotificationIncludeAlbumArtKey]);
     
-    if (includeAlbumArt) {
-        [track fetchAlbumArt];
-        notification.contentImage = track.albumArt;
-    }
+    if (includeAlbumArt) notification.contentImage = [self albumArtForTrack:currentTrack];
     
     if ([NSUserDefaults.standardUserDefaults boolForKey:kNotificationSoundKey])
         notification.soundName = @"Pop";
@@ -141,8 +167,8 @@
         
         //Show album art on the left side of the notification (where app icon normally is),
         //like iTunes does
-        if (includeAlbumArt && track.albumArt.isValid) {
-            [notification setValue:track.albumArt forKey:@"_identityImage"];
+        if (includeAlbumArt && notification.contentImage.isValid) {
+            [notification setValue:notification.contentImage forKey:@"_identityImage"];
             notification.contentImage = nil;
         }
         
@@ -151,48 +177,47 @@
     return notification;
 }
 
-- (void)eventOccurred:(NSNotification *)notification {
-    NSDictionary *information = notification.userInfo;
-
-    NSString *playerState = information[@"Player State"];
+- (void)deliverUserNotification:(NSUserNotification*)notification Force:(BOOL)force {
+    if (spotify.frontmost
+        && [NSUserDefaults.standardUserDefaults boolForKey:kDisableWhenSpotifyHasFocusKey]) return;
     
-    if ([playerState isEqualToString:@"Playing"]) {
+    BOOL deliver = force;
+    
+    //If notifications enabled, and current track isn't the same as the previous track
+    if ([NSUserDefaults.standardUserDefaults boolForKey:kNotificationsKey] &&
+        (![previousTrack.id isEqualToString:currentTrack.id] || [NSUserDefaults.standardUserDefaults boolForKey:kPlayPauseNotificationsKey])) {
+        
+        //If only showing notification for current song, remove all other notifications..
+        if ([NSUserDefaults.standardUserDefaults boolForKey:kShowOnlyCurrentSongKey])
+            [NSUserNotificationCenter.defaultUserNotificationCenter removeAllDeliveredNotifications];
+        
+        //..then deliver this one
+        deliver = YES;
+    }
+    
+    if (deliver) [NSUserNotificationCenter.defaultUserNotificationCenter deliverNotification:notification];
+}
+
+- (void)spotifyPlayerStateChanged:(NSNotification *)notification {
+    
+    if (spotify.playerState == SpotifyEPlSPlaying) {
         
         _openSpotifyMenuItem.title = @"Open Spotify (Playing)";
-        
-        NSRunningApplication *frontmostApplication = NSWorkspace.sharedWorkspace.frontmostApplication;
-        
-        if ([frontmostApplication.bundleIdentifier isEqualToString:SpotifyBundleID] &&
-            [NSUserDefaults.standardUserDefaults boolForKey:kDisableWhenSpotifyHasFocusKey]) return;
 
-        track.artist = information[@"Artist"];
-        track.album = information[@"Album"];
-        track.title = information[@"Name"];
-        track.trackID = information[@"Track ID"];
-
-        if (!_openLastFMMenu.isEnabled && [track.artist isNotEqualTo:NULL])
+        if (!_openLastFMMenu.isEnabled && [currentTrack.artist isNotEqualTo:NULL])
             [_openLastFMMenu setEnabled:YES];
         
-        if ([NSUserDefaults.standardUserDefaults boolForKey:kNotificationsKey] &&
-            (![previousTrack isEqualToString:track.trackID] || [NSUserDefaults.standardUserDefaults boolForKey:kPlayPauseNotificationsKey]) ) {
-
-            previousTrack = track.trackID;
-            track.albumArt = nil;
-            
-            NSUserNotification *notification = [self userNotificationForCurrentTrack];
-            
-            if ([NSUserDefaults.standardUserDefaults boolForKey:kShowOnlyCurrentSongKey])
-                [NSUserNotificationCenter.defaultUserNotificationCenter removeAllDeliveredNotifications];
-            
-            [NSUserNotificationCenter.defaultUserNotificationCenter deliverNotification:notification];
-
-        }
+        NSUserNotification *userNotification = [self userNotificationForCurrentTrack];
+        [self deliverUserNotification:userNotification Force:NO];
         
-    } else if ([NSUserDefaults.standardUserDefaults boolForKey:kShowOnlyCurrentSongKey] &&
-               [NSUserDefaults.standardUserDefaults boolForKey:kPlayPauseNotificationsKey] &&
-               [playerState isEqualToString:@"Paused"]) {
+        previousTrack = currentTrack;
+        currentTrack = spotify.currentTrack;
         
-        _openSpotifyMenuItem.title = @"Open Spotify (Paused)";
+    } else if ([NSUserDefaults.standardUserDefaults boolForKey:kShowOnlyCurrentSongKey]
+               && [NSUserDefaults.standardUserDefaults boolForKey:kPlayPauseNotificationsKey]
+               && (spotify.playerState == SpotifyEPlSPaused || spotify.playerState == SpotifyEPlSStopped)) {
+        
+        _openSpotifyMenuItem.title = @"Open Spotify (Not Playing)";
         
         [NSUserNotificationCenter.defaultUserNotificationCenter removeAllDeliveredNotifications];
     }

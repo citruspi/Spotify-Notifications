@@ -19,11 +19,43 @@
 		04C5E40718133BB000956039 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04C5E40618133BB000956039 /* Images.xcassets */; };
 		04C5E40D1813445600956039 /* GBLaunchAtLogin.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C5E40C1813445600956039 /* GBLaunchAtLogin.m */; };
 		961C56761BC93CFF00E0BF5A /* UserDefaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = 961C56751BC93CFF00E0BF5A /* UserDefaults.plist */; settings = {ASSET_TAGS = (); }; };
-		96694FAB1BCD3989009CAFC8 /* MASShortcut.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96694FAA1BCD3989009CAFC8 /* MASShortcut.framework */; };
 		96694FAE1BCD39D5009CAFC8 /* ScriptingBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96694FAD1BCD39D5009CAFC8 /* ScriptingBridge.framework */; };
+		967E38471BCD480D001335BA /* MASShortcut.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 967E38401BCD47F5001335BA /* MASShortcut.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		967E38481BCD4839001335BA /* MASShortcut.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 967E38401BCD47F5001335BA /* MASShortcut.framework */; };
 		AEAFCD771712CD1200F61F8D /* status_bar_black.tiff in Resources */ = {isa = PBXBuildFile; fileRef = AEAFCD751712CD1200F61F8D /* status_bar_black.tiff */; };
 		AEAFCD7C1712D50B00F61F8D /* status_bar_black@2x.tiff in Resources */ = {isa = PBXBuildFile; fileRef = AEAFCD7B1712D50B00F61F8D /* status_bar_black@2x.tiff */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		967E383F1BCD47F5001335BA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 967E38391BCD47F5001335BA /* MASShortcut.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 0D827CD31990D4420010B8EF;
+			remoteInfo = MASShortcut;
+		};
+		967E38411BCD47F5001335BA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 967E38391BCD47F5001335BA /* MASShortcut.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 0D827D8319910AFF0010B8EF;
+			remoteInfo = MASShortcutTests;
+		};
+		967E38431BCD47F5001335BA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 967E38391BCD47F5001335BA /* MASShortcut.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 0D827D371990D5E70010B8EF;
+			remoteInfo = Demo;
+		};
+		967E38451BCD4807001335BA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 967E38391BCD47F5001335BA /* MASShortcut.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 0D827CD21990D4420010B8EF;
+			remoteInfo = MASShortcut;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		96B17FAB1BCC218500F1C2D5 /* CopyFiles */ = {
@@ -32,6 +64,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				967E38471BCD480D001335BA /* MASShortcut.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -59,9 +92,9 @@
 		04C5E40B1813445600956039 /* GBLaunchAtLogin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GBLaunchAtLogin.h; sourceTree = "<group>"; };
 		04C5E40C1813445600956039 /* GBLaunchAtLogin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GBLaunchAtLogin.m; sourceTree = "<group>"; };
 		961C56751BC93CFF00E0BF5A /* UserDefaults.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = UserDefaults.plist; sourceTree = "<group>"; };
-		96694FAA1BCD3989009CAFC8 /* MASShortcut.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MASShortcut.framework; path = "../../Library/Developer/Xcode/DerivedData/Spotify-Notifications-fesiswvzxnnukthdpqixiyfdpiqx/Build/Products/Debug/MASShortcut.framework"; sourceTree = "<group>"; };
 		96694FAC1BCD39BC009CAFC8 /* Spotify.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Spotify.h; sourceTree = "<group>"; };
 		96694FAD1BCD39D5009CAFC8 /* ScriptingBridge.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ScriptingBridge.framework; path = System/Library/Frameworks/ScriptingBridge.framework; sourceTree = SDKROOT; };
+		967E38391BCD47F5001335BA /* MASShortcut.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = MASShortcut.xcodeproj; path = "Spotify-Notifications/MASShortcut/MASShortcut.xcodeproj"; sourceTree = "<group>"; };
 		96E3BC1E1BC91F160023C504 /* SharedKeys.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SharedKeys.h; sourceTree = "<group>"; };
 		AEAFCD751712CD1200F61F8D /* status_bar_black.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = status_bar_black.tiff; sourceTree = "<group>"; };
 		AEAFCD7B1712D50B00F61F8D /* status_bar_black@2x.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = "status_bar_black@2x.tiff"; sourceTree = "<group>"; };
@@ -72,8 +105,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				967E38481BCD4839001335BA /* MASShortcut.framework in Frameworks */,
 				96694FAE1BCD39D5009CAFC8 /* ScriptingBridge.framework in Frameworks */,
-				96694FAB1BCD3989009CAFC8 /* MASShortcut.framework in Frameworks */,
 				049BCBF218170F5E00743860 /* Carbon.framework in Frameworks */,
 				04A77BA3170FC75200A50173 /* Cocoa.framework in Frameworks */,
 			);
@@ -105,6 +138,7 @@
 		04A77B96170FC75200A50173 = {
 			isa = PBXGroup;
 			children = (
+				967E38391BCD47F5001335BA /* MASShortcut.xcodeproj */,
 				04A77BA8170FC75200A50173 /* Spotify Notifications */,
 				04A77BA1170FC75200A50173 /* Frameworks */,
 				04A77BA0170FC75200A50173 /* Products */,
@@ -123,7 +157,6 @@
 			isa = PBXGroup;
 			children = (
 				96694FAD1BCD39D5009CAFC8 /* ScriptingBridge.framework */,
-				96694FAA1BCD3989009CAFC8 /* MASShortcut.framework */,
 				049BCBF118170F5E00743860 /* Carbon.framework */,
 				04A77BA2170FC75200A50173 /* Cocoa.framework */,
 				04A77BA4170FC75200A50173 /* Other Frameworks */,
@@ -172,6 +205,16 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		967E383A1BCD47F5001335BA /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				967E38401BCD47F5001335BA /* MASShortcut.framework */,
+				967E38421BCD47F5001335BA /* MASShortcutTests.xctest */,
+				967E38441BCD47F5001335BA /* Demo.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -187,6 +230,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				967E38461BCD4807001335BA /* PBXTargetDependency */,
 			);
 			name = "Spotify Notifications";
 			productName = "Spotify Notifications";
@@ -228,12 +272,42 @@
 			mainGroup = 04A77B96170FC75200A50173;
 			productRefGroup = 04A77BA0170FC75200A50173 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 967E383A1BCD47F5001335BA /* Products */;
+					ProjectRef = 967E38391BCD47F5001335BA /* MASShortcut.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				04A77B9E170FC75200A50173 /* Spotify Notifications */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		967E38401BCD47F5001335BA /* MASShortcut.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = MASShortcut.framework;
+			remoteRef = 967E383F1BCD47F5001335BA /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		967E38421BCD47F5001335BA /* MASShortcutTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = MASShortcutTests.xctest;
+			remoteRef = 967E38411BCD47F5001335BA /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		967E38441BCD47F5001335BA /* Demo.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = Demo.app;
+			remoteRef = 967E38431BCD47F5001335BA /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		04A77B9D170FC75200A50173 /* Resources */ = {
@@ -266,6 +340,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		967E38461BCD4807001335BA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = MASShortcut;
+			targetProxy = 967E38451BCD4807001335BA /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		04A77BAB170FC75200A50173 /* InfoPlist.strings */ = {
@@ -355,9 +437,11 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Spotify-Notifications",
+					"$(PROJECT_DIR)/Spotify-Notifications/MASShortcut/**",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Spotify-Notifications/Spotify Notifications-Prefix.pch";
+				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/Spotify-Notifications/MASShortcut/**";
 				INFOPLIST_FILE = "Spotify-Notifications/Spotify Notifications-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
@@ -378,9 +462,11 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Spotify-Notifications",
+					"$(PROJECT_DIR)/Spotify-Notifications/MASShortcut/**",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Spotify-Notifications/Spotify Notifications-Prefix.pch";
+				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/Spotify-Notifications/MASShortcut/**";
 				INFOPLIST_FILE = "Spotify-Notifications/Spotify Notifications-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.7;

@@ -257,20 +257,21 @@
     
     NSInteger iconSelection = [NSUserDefaults.standardUserDefaults integerForKey:kIconSelectionKey];
     
-    if (iconSelection == 0 || iconSelection == 1) {
-        
+    if (iconSelection == 2 && _statusBar) {
         _statusBar = nil;
-        _statusBar = [NSStatusBar.systemStatusBar statusItemWithLength:NSSquareStatusItemLength];
+        
+    } else if (iconSelection == 0 || iconSelection == 1) {
         
         NSString *imageName = (iconSelection == 0)? @"status_bar_colour.tiff" : @"status_bar_black.tiff";
-        _statusBar.image = [NSImage imageNamed: imageName];
+        if (!_statusBar) {
+            _statusBar = [NSStatusBar.systemStatusBar statusItemWithLength:NSSquareStatusItemLength];
+            _statusBar.menu = _statusMenu;
+            _statusBar.highlightMode = YES;
+        }
         
-        _statusBar.menu = _statusMenu;
-        _statusBar.image.template = YES;
-        _statusBar.highlightMode = YES;
+        if (![_statusBar.image.name isEqualToString:imageName]) _statusBar.image = [NSImage imageNamed:imageName];
         
-    } else if (iconSelection == 2) {
-        _statusBar = nil;
+        _statusBar.image.template = (iconSelection == 1);
     }
 }
 

@@ -14,7 +14,6 @@
 		04A77BAF170FC75200A50173 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A77BAE170FC75200A50173 /* main.m */; };
 		04A77BB6170FC75200A50173 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A77BB5170FC75200A50173 /* AppDelegate.m */; };
 		04A77BB9170FC75300A50173 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04A77BB7170FC75300A50173 /* MainMenu.xib */; };
-		04A77BC0170FC7CF00A50173 /* icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 04A77BBF170FC7CF00A50173 /* icon.icns */; };
 		04A77BC317104FEE00A50173 /* status_bar_colour.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 04A77BC217104FEE00A50173 /* status_bar_colour.tiff */; };
 		04C5E40718133BB000956039 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04C5E40618133BB000956039 /* Images.xcassets */; };
 		04C5E40D1813445600956039 /* GBLaunchAtLogin.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C5E40C1813445600956039 /* GBLaunchAtLogin.m */; };
@@ -85,7 +84,6 @@
 		04A77BB4170FC75200A50173 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		04A77BB5170FC75200A50173 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		04A77BB8170FC75300A50173 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
-		04A77BBF170FC7CF00A50173 /* icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = icon.icns; sourceTree = "<group>"; };
 		04A77BC1170FC7E600A50173 /* Spotify Notifications.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Spotify Notifications.entitlements"; sourceTree = "<group>"; };
 		04A77BC217104FEE00A50173 /* status_bar_colour.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = status_bar_colour.tiff; sourceTree = "<group>"; };
 		04C5E40618133BB000956039 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -196,7 +194,6 @@
 			isa = PBXGroup;
 			children = (
 				961C56751BC93CFF00E0BF5A /* UserDefaults.plist */,
-				04A77BBF170FC7CF00A50173 /* icon.icns */,
 				04A77BAA170FC75200A50173 /* Spotify Notifications-Info.plist */,
 				04A77BAB170FC75200A50173 /* InfoPlist.strings */,
 				04A77BAE170FC75200A50173 /* main.m */,
@@ -318,7 +315,6 @@
 				04A77BAD170FC75200A50173 /* InfoPlist.strings in Resources */,
 				04A77BB9170FC75300A50173 /* MainMenu.xib in Resources */,
 				0481818917E8626400E25950 /* status_bar_colour@2x.tiff in Resources */,
-				04A77BC0170FC7CF00A50173 /* icon.icns in Resources */,
 				04A77BC317104FEE00A50173 /* status_bar_colour.tiff in Resources */,
 				AEAFCD771712CD1200F61F8D /* status_bar_black.tiff in Resources */,
 				961C56761BC93CFF00E0BF5A /* UserDefaults.plist in Resources */,

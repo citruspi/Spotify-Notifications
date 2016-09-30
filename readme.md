@@ -2,10 +2,10 @@
 
 [![Build Status](https://travis-ci.org/citruspi/Spotify-Notifications.png?branch=master)](https://travis-ci.org/citruspi/Spotify-Notifications)
 
-Spotify Notifications does nothing more than display a notification when
+Spotify Notifications does nothing more than display a notification when:
 
-- a song goes from "paused" to "playing" _(optional)_
-- a new song is played
+- A song goes from "paused" to "playing" _(optional)_
+- A new song is played
 
 ## Contributing
 
@@ -13,7 +13,7 @@ Pull requests are more than welcome!
 
 In your pull request, include a __separate__ commit adding yourself to `contributors.md`.
 
-## License
+## Licenses
 
 ### Spotify Notifications
 

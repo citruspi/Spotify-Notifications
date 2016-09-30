@@ -1,0 +1,3 @@
+[submodule "Spotify-Notifications/MASShortcut"]
+	path = Spotify-Notifications/MASShortcut
+	url = https://github.com/shpakovski/MASShortcut.git

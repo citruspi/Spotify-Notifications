@@ -79,8 +79,8 @@
 }
 
 - (BOOL)applicationShouldHandleReopen:(NSApplication *)sender hasVisibleWindows:(BOOL)flag {
-    // This makes it so you can open the preferences by re-opening the app
-    // This way you can get to the preferences even when the status item is hidden
+    // Allow opening preferences by re-opening the app
+    // This allows accessing preferences even when the status item is hidden
     if (!flag) [self showPreferences:nil];
     return YES;
 }
@@ -120,19 +120,12 @@
 
 - (NSImage*)albumArtForTrack:(SpotifyTrack*)track {
     if (track.id) {
-        // Accessing embed.spotify.com over HTTPS appears to cause an error with App Transport Security.
-        // It logs an (kCFStreamErrorDomainSSL, -9802) error which appears to deal with Perfect Forward
-        // Secrecy. We need to enable NSAllowsArbitraryLoads for NSAppTransportSecurity. I attempted to use
-        // NSTemporaryExceptionRequiresForwardSecrecy but it continued to cause an error.
-        // Because of the error connecting to the Spotify server, without enabling NSAllowsArbitraryLoads
-        // users lack artwork.
         NSString *metaLoc = [NSString stringWithFormat:@"https://embed.spotify.com/oembed/?url=%@",track.id];
         NSURL *metaReq = [NSURL URLWithString:metaLoc];
         NSData *metaD = [NSData dataWithContentsOfURL:metaReq];
         
         if (metaD) {
-            NSError *error;
-            NSDictionary *meta = [NSJSONSerialization JSONObjectWithData:metaD options:NSJSONReadingAllowFragments error:&error];
+            NSDictionary *meta = [NSJSONSerialization JSONObjectWithData:metaD options:NSJSONReadingAllowFragments error:NULL];
             NSURL *artReq = [NSURL URLWithString:meta[@"thumbnail_url"]];
             NSData *artD = [NSData dataWithContentsOfURL:artReq];
             
@@ -168,7 +161,7 @@
         notification.actionButtonTitle = @"Skip";
         
         
-        //Private APIs – remove if publishing to Mac App Store for example
+        //Private APIs – remove if publishing to Mac App Store
         @try {
             //Force showing buttons even if "Banner" alert style is chosen by user
             [notification setValue:@YES forKey:@"_showsButtons"];
@@ -205,7 +198,8 @@
         deliver = YES;
     }
     
-    if (spotify.isRunning && deliver) [NSUserNotificationCenter.defaultUserNotificationCenter deliverNotification:notification];
+    if (spotify.isRunning && deliver)
+        [NSUserNotificationCenter.defaultUserNotificationCenter deliverNotification:notification];
 }
 
 - (void)notPlaying {

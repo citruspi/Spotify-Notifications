@@ -7,7 +7,7 @@
 #import "Spotify.h"
 #import "AppDelegate.h"
 #import "SharedKeys.h"
-#import "GBLaunchAtLogin.h"
+#import "LaunchAtLogin.h"
 
 @implementation AppDelegate
 
@@ -34,13 +34,7 @@
     userNotificationContentImagePropertyAvailable = (NSAppKitVersionNumber >= NSAppKitVersionNumber10_9);
     if (!userNotificationContentImagePropertyAvailable) _albumArtToggle.enabled = NO;
     
-    //Add/remove login item as necessary
-    if ([NSUserDefaults.standardUserDefaults boolForKey:kLaunchAtLoginKey]) {
-        [GBLaunchAtLogin addAppAsLoginItem];
-        
-    } else {
-        [GBLaunchAtLogin removeAppFromLoginItems];
-    }
+    [LaunchAtLogin setAppIsLoginItem:[NSUserDefaults.standardUserDefaults boolForKey:kLaunchAtLoginKey]];
     
     //Check in case user opened application but Spotify already playing
     if (spotify.isRunning && spotify.playerState == SpotifyEPlSPlaying) {
@@ -275,15 +269,9 @@
 
 - (IBAction)toggleStartup:(NSButton *)sender {
     
-    [NSUserDefaults.standardUserDefaults setBool:sender.state forKey:kLaunchAtLoginKey];
-
-    if ([NSUserDefaults.standardUserDefaults boolForKey:kLaunchAtLoginKey]) {
-        [GBLaunchAtLogin addAppAsLoginItem];
-        
-    } else {
-        [GBLaunchAtLogin removeAppFromLoginItems];
-    }
-
+    BOOL launchAtLogin = sender.state;
+    [NSUserDefaults.standardUserDefaults setBool:launchAtLogin forKey:kLaunchAtLoginKey];
+    [LaunchAtLogin setAppIsLoginItem:launchAtLogin];
 }
 
 #pragma mark - Preferences Info Buttons

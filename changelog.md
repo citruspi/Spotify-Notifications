@@ -1,3 +1,16 @@
+### Unreleased
+
+- Now use higher resolution album artwork without the Spotify logo in the corner
+- Renamed 'Black' icon style to 'Auto (Black/White)'
+
+### 0.6.0 (October 05, 2016)
+
+- Code refactor (implemented by [Seb Jachec](https://github.com/sebj))
+- Revamped preferences UI (implemented by [Seb Jachec](https://github.com/sebj))
+- Fixed broken keyboard shortcut (implemented by [Seb Jachec](https://github.com/sebj))
+- Added the ability to skip songs via the notification (implemented by [Seb Jachec](https://github.com/sebj))
+- Added a menu bar item to open Spotify (implemented by [Seb Jachec](https://github.com/sebj))
+
 ### 0.5.2 (October 07, 2015)
 
 - Changed the icons to use Spotify's new artwork (AGAIN!) (implemented by [randybruder](https://github.com/randybruder))

@@ -114,19 +114,14 @@
 
 - (NSImage*)albumArtForTrack:(SpotifyTrack*)track {
     if (track.id) {
-        NSString *metaLoc = [NSString stringWithFormat:@"https://embed.spotify.com/oembed/?url=%@",track.id];
-        NSURL *metaReq = [NSURL URLWithString:metaLoc];
-        NSData *metaD = [NSData dataWithContentsOfURL:metaReq];
+        //Looks hacky, but appears to work
+        NSString *artworkUrl = [track.artworkUrl stringByReplacingOccurrencesOfString:@"http:" withString:@"https:"];
+        NSData *artD = [NSData dataWithContentsOfURL:[NSURL URLWithString:artworkUrl]];
         
-        if (metaD) {
-            NSDictionary *meta = [NSJSONSerialization JSONObjectWithData:metaD options:NSJSONReadingAllowFragments error:NULL];
-            NSURL *artReq = [NSURL URLWithString:meta[@"thumbnail_url"]];
-            NSData *artD = [NSData dataWithContentsOfURL:artReq];
-            
-            if (artD) return [[NSImage alloc] initWithData:artD];
-        }
+        if (artD) return [[NSImage alloc] initWithData:artD];
     }
-    return nil;
+    
+    return  nil;
 }
 
 - (NSUserNotification*)userNotificationForCurrentTrack {

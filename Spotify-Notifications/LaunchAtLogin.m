@@ -8,12 +8,12 @@
 @implementation LaunchAtLogin
 
 + (void)setAppIsLoginItem:(BOOL)value {
-    NSString *appPath = NSBundle.mainBundle.bundlePath;
-    
     //Reference to the shared file list
     LSSharedFileListRef loginItems = LSSharedFileListCreate(NULL, kLSSharedFileListSessionLoginItems, NULL);
     
     if (loginItems) {
+        
+        NSString *appPath = NSBundle.mainBundle.bundlePath;
         
         //Path to application (e.g. /Applications/test.app)
         CFURLRef url = (__bridge CFURLRef)[NSURL fileURLWithPath:appPath];
@@ -46,8 +46,6 @@
         
         CFRelease(loginItems);
     }
-    
-    
 }
 
 @end

@@ -1,0 +1,37 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "BB3EACD426816BE8F889F949CB3474A7B8024ED9",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "BB3EACD426816BE8F889F949CB3474A7B8024ED9" : 9223372036854775807,
+    "BB3C4AE3EC7E6771B5CB3DC143FB7B67396AE556" : 9223372036854775807,
+    "12BA9D8DA29B88018B60DA9E21E5575119C895CB" : 9223372036854775807
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "E43AF830-B7B6-4297-B241-5D09431C9DAA",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "BB3EACD426816BE8F889F949CB3474A7B8024ED9" : "Spotify-Notifications\/",
+    "BB3C4AE3EC7E6771B5CB3DC143FB7B67396AE556" : "Spotify-Notifications\/Spotify%20Notifications\/MASShortcut\/",
+    "12BA9D8DA29B88018B60DA9E21E5575119C895CB" : "Spotify-Notifications\/Spotify%20Notifications\/NSBundle-LoginItem\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "Spotify Notifications",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "Spotify Notifications.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/nklizhe\/NSBundle-LoginItem.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "12BA9D8DA29B88018B60DA9E21E5575119C895CB"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/shpakovski\/MASShortcut.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "BB3C4AE3EC7E6771B5CB3DC143FB7B67396AE556"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/citruspi\/Spotify-Notifications.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "BB3EACD426816BE8F889F949CB3474A7B8024ED9"
+    }
+  ]
+}

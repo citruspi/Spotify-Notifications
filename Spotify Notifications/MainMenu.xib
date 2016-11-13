@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11542"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="NSApplication">
+            <connections>
+                <outlet property="delegate" destination="Vzs-eh-ieH" id="Ze0-nx-QSa"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
+        <window title="Spotify Notifications Preferences" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" restorable="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="Ce7-mk-gne">
+            <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
+            <rect key="contentRect" x="131" y="165" width="414" height="366"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1080"/>
+            <view key="contentView" id="OOs-8Y-fCf">
+                <rect key="frame" x="0.0" y="0.0" width="414" height="366"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dPp-pS-RNy">
+                        <rect key="frame" x="18" y="330" width="99" height="18"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <buttonCell key="cell" type="check" title="Notifications" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="hxO-df-dbs">
+                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <binding destination="exF-TU-ycB" name="value" keyPath="values.notifications" id="zms-Bb-6Qs"/>
+                        </connections>
+                    </button>
+                    <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8hW-fS-gQ1">
+                        <rect key="frame" x="38" y="299" width="147" height="18"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <buttonCell key="cell" type="check" title="Notify on play/pause" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="mv2-9N-LWf">
+                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <binding destination="exF-TU-ycB" name="enabled" keyPath="values.notifications" id="0Hu-7H-Q2w">
+                                <dictionary key="options">
+                                    <bool key="NSRaisesForNotApplicableKeys" value="NO"/>
+                                </dictionary>
+                            </binding>
+                            <binding destination="exF-TU-ycB" name="value" keyPath="values.playpausenotifs" id="jtv-gX-X54"/>
+                        </connections>
+                    </button>
+                    <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KJb-Tw-Pfv">
+                        <rect key="frame" x="38" y="274" width="165" height="18"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <buttonCell key="cell" type="check" title="Show only current song" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="AVR-Ce-i96">
+                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <binding destination="exF-TU-ycB" name="enabled" keyPath="values.notifications" id="QXH-SF-DCA">
+                                <dictionary key="options">
+                                    <bool key="NSRaisesForNotApplicableKeys" value="NO"/>
+                                </dictionary>
+                            </binding>
+                            <binding destination="exF-TU-ycB" name="value" keyPath="values.onlycurrentsong" id="oJD-Dh-btA"/>
+                        </connections>
+                    </button>
+                    <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5Wb-qC-HWI">
+                        <rect key="frame" x="38" y="249" width="165" height="18"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <buttonCell key="cell" type="check" title="Sound" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="q1K-WV-Ym6">
+                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <binding destination="exF-TU-ycB" name="enabled" keyPath="values.notifications" id="Cf5-La-BRF">
+                                <dictionary key="options">
+                                    <bool key="NSRaisesForNotApplicableKeys" value="NO"/>
+                                </dictionary>
+                            </binding>
+                            <binding destination="exF-TU-ycB" name="value" keyPath="values.notificationSound" id="Ixp-8g-kVw"/>
+                        </connections>
+                    </button>
+                    <box verticalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="0E9-Ne-iqv">
+                        <rect key="frame" x="12" y="321" width="390" height="5"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    </box>
+                    <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kuI-wH-SFa">
+                        <rect key="frame" x="38" y="224" width="165" height="18"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <buttonCell key="cell" type="check" title="Include album art" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="Ej5-1b-ppY">
+                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <binding destination="exF-TU-ycB" name="enabled" keyPath="values.notifications" id="sP0-My-Mmc">
+                                <dictionary key="options">
+                                    <bool key="NSRaisesForNotApplicableKeys" value="NO"/>
+                                </dictionary>
+                            </binding>
+                            <binding destination="exF-TU-ycB" name="value" keyPath="values.includeAlbumArt" id="Dlk-y3-Ne4"/>
+                        </connections>
+                    </button>
+                    <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HOX-XC-AM6">
+                        <rect key="frame" x="38" y="199" width="212" height="18"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <buttonCell key="cell" type="check" title="Disable when Spotify has focus" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="3JA-OW-rv4">
+                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <binding destination="exF-TU-ycB" name="enabled" keyPath="values.notifications" id="QWR-CT-ADV">
+                                <dictionary key="options">
+                                    <bool key="NSRaisesForNotApplicableKeys" value="NO"/>
+                                </dictionary>
+                            </binding>
+                            <binding destination="exF-TU-ycB" name="value" keyPath="values.disableWhenSpotifyHasFocus" id="siW-Jc-C0X"/>
+                        </connections>
+                    </button>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MB5-8d-tb3">
+                        <rect key="frame" x="38" y="109" width="94" height="17"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Menu bar icon:" id="lZT-XS-xTf">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uj3-oq-EB4">
+                        <rect key="frame" x="10" y="166" width="52" height="17"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="General" id="QLe-zO-oiF">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fQF-M4-Og8">
+                        <rect key="frame" x="136" y="103" width="152" height="26"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="oKY-he-SGK">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="menu"/>
+                            <menu key="menu" title="OtherViews" id="wpB-2i-Lxo">
+                                <items>
+                                    <menuItem title="Coloured" tag="1" id="3hT-m7-YGC">
+                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                    </menuItem>
+                                    <menuItem title="Auto (Black/White)" tag="2" id="dyB-6v-g5j">
+                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                    </menuItem>
+                                    <menuItem title="None" tag="3" id="tWK-xc-rUT">
+                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                    </menuItem>
+                                </items>
+                            </menu>
+                        </popUpButtonCell>
+                        <connections>
+                            <action selector="toggleIcons:" target="Vzs-eh-ieH" id="dpY-fs-gZq"/>
+                            <binding destination="exF-TU-ycB" name="selectedIndex" keyPath="values.iconSelection" id="XsE-Iq-mGw"/>
+                        </connections>
+                    </popUpButton>
+                    <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Mft-X6-BgK">
+                        <rect key="frame" x="38" y="133" width="176" height="18"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <buttonCell key="cell" type="check" title="Launch at system startup" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="80P-xf-9em">
+                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="toggleStartup:" target="Vzs-eh-ieH" id="2Ip-oV-d8L"/>
+                        </connections>
+                    </button>
+                    <box verticalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="vM2-lz-maP">
+                        <rect key="frame" x="12" y="155" width="390" height="5"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    </box>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0dy-1J-Us6">
+                        <rect key="frame" x="38" y="83" width="167" height="17"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Show current song hotkey:" id="k0X-fk-pse">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yyJ-Ey-kPd" customClass="MASShortcutView">
+                        <rect key="frame" x="211" y="82" width="165" height="19"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    </customView>
+                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eVl-qi-hsI">
+                        <rect key="frame" x="6" y="13" width="99" height="32"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <buttonCell key="cell" type="push" title="Website" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="wah-8b-HXK">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="showHome:" target="Vzs-eh-ieH" id="wTL-re-ltC"/>
+                        </connections>
+                    </button>
+                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TZN-3k-7oI">
+                        <rect key="frame" x="201" y="13" width="117" height="32"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <buttonCell key="cell" type="push" title="Contributors" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="FJp-nx-v5z">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="showContributors:" target="Vzs-eh-ieH" id="eD6-LD-CGn"/>
+                        </connections>
+                    </button>
+                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="moN-cm-bzr">
+                        <rect key="frame" x="318" y="13" width="82" height="32"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <buttonCell key="cell" type="push" title="Quit" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="NjC-Ca-Gkf">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="terminate:" target="-1" id="X2R-mv-sa9"/>
+                        </connections>
+                    </button>
+                    <box verticalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="g79-IA-4jj">
+                        <rect key="frame" x="12" y="52" width="382" height="5"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    </box>
+                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9uJ-GV-JQ2">
+                        <rect key="frame" x="105" y="13" width="96" height="32"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <buttonCell key="cell" type="push" title="Source" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="6gz-80-GF7">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="showSource:" target="Vzs-eh-ieH" id="Ntw-jN-Ehh"/>
+                        </connections>
+                    </button>
+                </subviews>
+            </view>
+            <point key="canvasLocation" x="286" y="454"/>
+        </window>
+        <customObject id="Vzs-eh-ieH" customClass="AppDelegate" customModule="Spotify_Notifications" customModuleProvider="target">
+            <connections>
+                <outlet property="albumArtToggle" destination="kuI-wH-SFa" id="6Vh-QR-3lB"/>
+                <outlet property="openLastFMMenu" destination="eNw-Pj-zpb" id="Khx-6s-0MY"/>
+                <outlet property="openPreferences" destination="DVU-PG-Y90" id="aty-7B-QMI"/>
+                <outlet property="openSpotifyMenuItem" destination="H0U-uU-iCL" id="xbd-Bx-K4y"/>
+                <outlet property="preferencesWindow" destination="Ce7-mk-gne" id="8l4-k5-VRi"/>
+                <outlet property="shortcutView" destination="yyJ-Ey-kPd" id="duE-1Q-nfx"/>
+                <outlet property="startupToggle" destination="Mft-X6-BgK" id="gx7-5X-a9P"/>
+                <outlet property="statusMenu" destination="3W1-BV-C8O" id="OQj-qs-xZT"/>
+            </connections>
+        </customObject>
+        <menu id="3W1-BV-C8O">
+            <items>
+                <menuItem title="Open Spotify" id="H0U-uU-iCL">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="openSpotify:" target="Vzs-eh-ieH" id="ggN-Nz-hSn"/>
+                    </connections>
+                </menuItem>
+                <menuItem title="Last.fm" enabled="NO" id="eNw-Pj-zpb">
+                    <menu key="submenu" title="Last.fm" id="hk8-Ky-RH8">
+                        <items>
+                            <menuItem title="Artist" enabled="NO" id="dc4-Xr-yfC">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="showLastFM:" target="Vzs-eh-ieH" id="NzT-PK-TUU"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Album" tag="1" enabled="NO" id="7Hq-FG-56d">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="showLastFM:" target="Vzs-eh-ieH" id="uks-xB-zhZ"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Track" tag="2" enabled="NO" id="vkx-iw-sH5">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="showLastFM:" target="Vzs-eh-ieH" id="5sq-gr-dBz"/>
+                                </connections>
+                            </menuItem>
+                        </items>
+                    </menu>
+                </menuItem>
+                <menuItem isSeparatorItem="YES" id="ikH-Mn-rhF"/>
+                <menuItem title="Preferences…" keyEquivalent="," id="DVU-PG-Y90">
+                    <connections>
+                        <action selector="showPreferences:" target="Vzs-eh-ieH" id="IZa-rb-LGJ"/>
+                    </connections>
+                </menuItem>
+                <menuItem isSeparatorItem="YES" id="UOF-v0-61B"/>
+                <menuItem title="Quit" keyEquivalent="q" id="H8O-bk-sAH">
+                    <connections>
+                        <action selector="terminate:" target="-1" id="UtV-CQ-FEA"/>
+                    </connections>
+                </menuItem>
+            </items>
+            <point key="canvasLocation" x="-65" y="394"/>
+        </menu>
+        <userDefaultsController representsSharedInstance="YES" id="exF-TU-ycB"/>
+    </objects>
+</document>

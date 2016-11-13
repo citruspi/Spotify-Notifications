@@ -9,9 +9,6 @@ Spotify Notifications does nothing more than display a notification when:
 
 ## Building
 
-Spotify Notifications uses [CocoaPods](http://cocoapods.org) which in turn
-requires Ruby and Ruby Gems.
-
 ```
 $ git clone https://github.com/citruspi/Spotify-Notifications.git
 $ cd Spotify-Notifications

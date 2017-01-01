@@ -24,9 +24,6 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
     
     //Preferences
     @IBOutlet var preferencesWindow: NSWindow!
-    
-    @IBOutlet var albumArtToggle: NSButton!
-    @IBOutlet var startupToggle: NSButton!
     @IBOutlet var shortcutView: MASShortcutView!
     
 

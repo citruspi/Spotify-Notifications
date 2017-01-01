@@ -27,20 +27,24 @@ class LaunchAtLogin: NSObject {
             
             if loginItemsRef != nil {
                 
-                let loginItems: NSArray = LSSharedFileListCopySnapshot(loginItemsRef, nil).takeRetainedValue() as NSArray
+                let loginItems = LSSharedFileListCopySnapshot(loginItemsRef, nil).takeRetainedValue() as NSArray
                 
                 if loginItems.count > 0 {
                     let lastItemRef: LSSharedFileListItem = loginItems.lastObject as! LSSharedFileListItem
                     
                     for i in 0 ..< loginItems.count {
                         
-                        let currentItemRef: LSSharedFileListItem = loginItems.object(at: i) as! LSSharedFileListItem
+                        let currentItemObj = loginItems.object(at: i)
+                        let currentItemRef: LSSharedFileListItem = currentItemObj as! LSSharedFileListItem
                         
-                        let currentItemUrlRef: NSURL = LSSharedFileListItemCopyResolvedURL(currentItemRef, 0, nil).takeRetainedValue()
-                        
-                        if currentItemUrlRef.isEqual(appUrl) {
-                            return (currentItemRef, lastItemRef)
+                        if let currentItemUrlRef = LSSharedFileListItemCopyResolvedURL(currentItemRef, 0, nil) {
+                            let currentItemUrl: NSURL = currentItemUrlRef.takeRetainedValue()
+                            
+                            if currentItemUrl.isEqual(appUrl) {
+                                return (currentItemRef, lastItemRef)
+                            }
                         }
+                        
                     }
                     //The application was not found in the startup list
                     return (nil, lastItemRef)

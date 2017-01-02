@@ -81,7 +81,6 @@
 		9661505C1DD7B43700F2F335 /* LaunchAtLogin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchAtLogin.swift; sourceTree = "<group>"; };
 		9698AFC91DD7924100544466 /* MASShortcut.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = MASShortcut.xcodeproj; path = "Spotify Notifications/MASShortcut/MASShortcut.xcodeproj"; sourceTree = "<group>"; };
 		969A18151DD7E04600757BC3 /* MainMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainMenu.xib; sourceTree = "<group>"; };
-		969C08E81E1A8053003C5107 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
 		96A16C9A1DD7E360007ED3A9 /* UserDefaults.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = UserDefaults.plist; sourceTree = "<group>"; };
 		96A16CA61DD7E3B5007ED3A9 /* status_bar_black.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = status_bar_black.tiff; sourceTree = "<group>"; };
 		96A16CA71DD7E3B5007ED3A9 /* status_bar_black@2x.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = "status_bar_black@2x.tiff"; sourceTree = "<group>"; };
@@ -154,7 +153,6 @@
 		968B7063D7B6C7F6862E77CB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				969C08E81E1A8053003C5107 /* IOKit.framework */,
 				96B3DA451DD791AC0081B59D /* Carbon.framework */,
 				96B3DA431DD791A80081B59D /* Cocoa.framework */,
 				96B3DA411DD791A10081B59D /* ScriptingBridge.framework */,

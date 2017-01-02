@@ -8,8 +8,6 @@
 
 import Cocoa
 import ScriptingBridge
-import MASShortcut
-
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDelegate {
@@ -20,12 +18,8 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
     
     @IBOutlet var openSpotifyMenuItem: NSMenuItem!
     @IBOutlet var openLastFMMenu: NSMenuItem!
-    @IBOutlet var openPreferences: NSMenuItem!
     
-    //Preferences
-    @IBOutlet var preferencesWindow: NSWindow!
-    @IBOutlet var shortcutView: MASShortcutView!
-    
+    @IBOutlet var aboutPrefsController: AboutPreferencesController!
 
     var previousTrack: SpotifyTrack?
     var currentTrack: SpotifyTrack?
@@ -49,18 +43,23 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
         DistributedNotificationCenter.default().addObserver(self, selector: #selector(spotifyPlaybackStateChanged(_:)), name: notificationName, object: nil)
         
         setIcon()
-        setupGlobalShortcutForNotifications()
         
         LaunchAtLogin.setAppIsLoginItem(UserDefaults.standard.bool(forKey: Constants.LaunchAtLoginKey))
         
-        if spotify.running && spotify.playerState == .playing {
-            currentTrack = spotify.currentTrack
+        if spotify.running {
+            let playerState = spotify.playerState
             
-            let notification = userNotificationForCurrentTrack()
-            deliverUserNotification(notification, force: true)
+            if playerState == .playing || playerState == .paused {
+                currentTrack = spotify.currentTrack
+                
+                if let current = currentTrack {
+                    updateLastFMMenu(currentTrack: current)
+                }
+            }
             
-            if let current = currentTrack {
-                updateLastFMMenu(currentTrack: current)
+            if playerState == .playing {
+                let notification = userNotificationForCurrentTrack()
+                deliverUserNotification(notification, force: true)
             }
         }
     }
@@ -69,26 +68,20 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
         DistributedNotificationCenter.default().removeObserver(self)
     }
     
-    func setupGlobalShortcutForNotifications() {
+    func showNotificationForCurrentTrack() {
+        let notification = self.userNotificationForCurrentTrack()
+        if UserDefaults.standard.bool(forKey: Constants.NotificationSoundKey) {
+            notification.soundName = "Pop"
+        }
         
-        shortcutView.associatedUserDefaultsKey = Constants.PreferenceGlobalShortcut;
-        
-        MASShortcutBinder.shared().bindShortcut(withDefaultsKey: Constants.PreferenceGlobalShortcut, toAction: (() -> Void)! {
-            
-            let notification = self.userNotificationForCurrentTrack()
-            if UserDefaults.standard.bool(forKey: Constants.NotificationSoundKey) {
-                notification.soundName = "Pop"
-            }
-            
-            self.deliverUserNotification(notification, force: true)
-        })
+        self.deliverUserNotification(notification, force: true)
     }
     
     func applicationShouldHandleReopen(_ sender: NSApplication, hasVisibleWindows flag: Bool) -> Bool {
         //Allow opening preferences by re-opening the app
         //This allows accessing preferences even when the status item is hidden
         if !flag {
-            showPreferences(nil)
+            aboutPrefsController.showPreferencesWindow(nil)
         }
         
         return true;
@@ -98,7 +91,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
         spotify.activate()
     }
     
-    @IBAction func showLastFM(_ sender: NSMenuItem) {
+    @IBAction func openLastFM(_ sender: NSMenuItem) {
         
         if let track = currentTrack {
             //Artist - we always need at least this
@@ -128,10 +121,10 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
     func userNotificationCenter(_ center: NSUserNotificationCenter, didActivate notification: NSUserNotification) {
         let actionType = notification.activationType
         
-        if (actionType == .contentsClicked) {
+        if actionType == .contentsClicked {
             spotify.activate()
             
-        } else if (actionType == .actionButtonClicked && spotify.playerState == .playing) {
+        } else if actionType == .actionButtonClicked && spotify.playerState == .playing {
             spotify.nextTrack!()
         }
     }
@@ -183,7 +176,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
                 
                 //Show album art on the left side of the notification (where app icon normally is),
                 //like iTunes does
-                if (notification.contentImage?.isValid)! {
+                if notification.contentImage?.isValid ?? false {
                     notification.setValue(notification.contentImage, forKey: "_identityImage")
                     notification.contentImage = nil;
                 }
@@ -246,10 +239,10 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
             notPlaying()
             return //To stop us from checking accessing spotify (spotify.playerState below)..
             //..and then causing it to re-open
-        }
-        
-        if spotify.playerState == .playing {
+            
+        } else if spotify.playerState == .playing {
             openSpotifyMenuItem.title = "Open Spotify (Playing)"
+            
             
             if let current = currentTrack {
                 
@@ -265,20 +258,13 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
         }
     }
     
-    //MARK: - Preferences
-    
-    @IBAction func showPreferences(_ sender: NSMenuItem?) {
-        preferencesWindow.makeKeyAndOrderFront(nil)
-        NSApp.activate(ignoringOtherApps: true)
-    }
-    
     func setIcon() {
         let iconSelection = UserDefaults.standard.integer(forKey: Constants.IconSelectionKey)
         
         if iconSelection == 2 && statusItem != nil {
             statusItem = nil
             
-        } else if iconSelection == 0 || iconSelection ==  1{
+        } else if iconSelection < 2 {
             let imageName = iconSelection == 0 ? "status_bar_colour" : "status_bar_black"
             if statusItem == nil {
                 statusItem = NSStatusBar.system().statusItem(withLength: NSSquareStatusItemLength)
@@ -293,29 +279,4 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
             statusItem!.image?.isTemplate = (iconSelection == 1)
         }
     }
-    
-    @IBAction func toggleIcons(_ sender: AnyObject) {
-        setIcon()
-    }
-    
-    @IBAction func toggleStartup(_ sender: NSButton) {
-        let launchAtLogin = (sender.state == 1)
-        UserDefaults.standard.set(launchAtLogin, forKey: Constants.LaunchAtLoginKey)
-        LaunchAtLogin.setAppIsLoginItem(launchAtLogin)
-    }
-    
-    //MARK: - Preferences Info Buttons
-    
-    @IBAction func showHome(_ sender: AnyObject) {
-        NSWorkspace.shared().open(URL(string: "http://spotify-notifications.citruspi.io")!)
-    }
-    
-    @IBAction func showSource(_ sender: AnyObject) {
-        NSWorkspace.shared().open(URL(string: "https://github.com/citruspi/Spotify-Notifications")!)
-    }
-    
-    @IBAction func showContributors(_ sender: AnyObject) {
-        NSWorkspace.shared().open(URL(string: "https://github.com/citruspi/Spotify-Notifications/graphs/contributors")!)
-    }
-
 }

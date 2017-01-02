@@ -13,16 +13,16 @@
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
-        <window title="Spotify Notifications Preferences" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" restorable="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="Ce7-mk-gne">
+        <window title="Spotify Notifications Preferences" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" restorable="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" tabbingMode="disallowed" id="Ce7-mk-gne">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
-            <rect key="contentRect" x="131" y="165" width="414" height="366"/>
+            <rect key="contentRect" x="131" y="165" width="414" height="308"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1028"/>
             <view key="contentView" id="OOs-8Y-fCf">
-                <rect key="frame" x="0.0" y="0.0" width="414" height="366"/>
+                <rect key="frame" x="0.0" y="0.0" width="414" height="308"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dPp-pS-RNy">
-                        <rect key="frame" x="18" y="202" width="99" height="18"/>
+                        <rect key="frame" x="18" y="151" width="99" height="18"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="check" title="Notifications" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="hxO-df-dbs">
                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -33,9 +33,9 @@
                         </connections>
                     </button>
                     <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8hW-fS-gQ1">
-                        <rect key="frame" x="38" y="171" width="147" height="18"/>
+                        <rect key="frame" x="38" y="120" width="109" height="18"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <buttonCell key="cell" type="check" title="Notify on play/pause" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="mv2-9N-LWf">
+                        <buttonCell key="cell" type="check" title="On play/pause" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="mv2-9N-LWf">
                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
@@ -49,9 +49,9 @@
                         </connections>
                     </button>
                     <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KJb-Tw-Pfv">
-                        <rect key="frame" x="38" y="146" width="165" height="18"/>
+                        <rect key="frame" x="38" y="95" width="151" height="18"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <buttonCell key="cell" type="check" title="Show only current song" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="AVR-Ce-i96">
+                        <buttonCell key="cell" type="check" title="Only for current song" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="AVR-Ce-i96">
                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
@@ -65,9 +65,9 @@
                         </connections>
                     </button>
                     <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5Wb-qC-HWI">
-                        <rect key="frame" x="38" y="121" width="165" height="18"/>
+                        <rect key="frame" x="38" y="70" width="165" height="18"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <buttonCell key="cell" type="check" title="Sound" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="q1K-WV-Ym6">
+                        <buttonCell key="cell" type="check" title="Play sound" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="q1K-WV-Ym6">
                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
@@ -81,11 +81,11 @@
                         </connections>
                     </button>
                     <box verticalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="0E9-Ne-iqv">
-                        <rect key="frame" x="12" y="193" width="390" height="5"/>
+                        <rect key="frame" x="12" y="142" width="390" height="5"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     </box>
                     <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kuI-wH-SFa">
-                        <rect key="frame" x="38" y="96" width="165" height="18"/>
+                        <rect key="frame" x="38" y="45" width="165" height="18"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="check" title="Include album art" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="Ej5-1b-ppY">
                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -101,9 +101,9 @@
                         </connections>
                     </button>
                     <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HOX-XC-AM6">
-                        <rect key="frame" x="38" y="71" width="212" height="18"/>
+                        <rect key="frame" x="38" y="20" width="232" height="18"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <buttonCell key="cell" type="check" title="Disable when Spotify has focus" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="3JA-OW-rv4">
+                        <buttonCell key="cell" type="check" title="Only when Spotify is not frontmost" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="3JA-OW-rv4">
                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
@@ -116,56 +116,8 @@
                             </binding>
                         </connections>
                     </button>
-                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eVl-qi-hsI">
-                        <rect key="frame" x="6" y="13" width="99" height="32"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <buttonCell key="cell" type="push" title="Website" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="wah-8b-HXK">
-                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="system"/>
-                        </buttonCell>
-                        <connections>
-                            <action selector="showHome:" target="Vzs-eh-ieH" id="wTL-re-ltC"/>
-                        </connections>
-                    </button>
-                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TZN-3k-7oI">
-                        <rect key="frame" x="201" y="13" width="117" height="32"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <buttonCell key="cell" type="push" title="Contributors" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="FJp-nx-v5z">
-                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="system"/>
-                        </buttonCell>
-                        <connections>
-                            <action selector="showContributors:" target="Vzs-eh-ieH" id="eD6-LD-CGn"/>
-                        </connections>
-                    </button>
-                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="moN-cm-bzr">
-                        <rect key="frame" x="318" y="13" width="82" height="32"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <buttonCell key="cell" type="push" title="Quit" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="NjC-Ca-Gkf">
-                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="system"/>
-                        </buttonCell>
-                        <connections>
-                            <action selector="terminate:" target="-1" id="X2R-mv-sa9"/>
-                        </connections>
-                    </button>
-                    <box verticalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="g79-IA-4jj">
-                        <rect key="frame" x="12" y="52" width="382" height="5"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    </box>
-                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9uJ-GV-JQ2">
-                        <rect key="frame" x="105" y="13" width="96" height="32"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <buttonCell key="cell" type="push" title="Source" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="6gz-80-GF7">
-                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="system"/>
-                        </buttonCell>
-                        <connections>
-                            <action selector="showSource:" target="Vzs-eh-ieH" id="Ntw-jN-Ehh"/>
-                        </connections>
-                    </button>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UiV-9q-d4q">
-                        <rect key="frame" x="38" y="272" width="94" height="17"/>
+                        <rect key="frame" x="38" y="221" width="94" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Menu bar icon:" id="ijX-mL-cos">
                             <font key="font" metaFont="system"/>
@@ -174,7 +126,7 @@
                         </textFieldCell>
                     </textField>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pks-AK-zcL">
-                        <rect key="frame" x="10" y="329" width="52" height="17"/>
+                        <rect key="frame" x="10" y="278" width="52" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="General" id="R1D-jC-UhW">
                             <font key="font" metaFont="system"/>
@@ -182,43 +134,15 @@
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jzc-fO-1UB">
-                        <rect key="frame" x="38" y="296" width="176" height="18"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <buttonCell key="cell" type="check" title="Launch at system startup" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="2Es-4j-hrK">
-                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                            <font key="font" metaFont="system"/>
-                        </buttonCell>
-                        <connections>
-                            <action selector="toggleStartup:" target="Vzs-eh-ieH" id="brE-qy-O16"/>
-                        </connections>
-                    </button>
-                    <box verticalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="CmE-3V-xfE">
-                        <rect key="frame" x="12" y="318" width="390" height="5"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    </box>
-                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dlp-8N-ytT">
-                        <rect key="frame" x="38" y="246" width="177" height="17"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Show current song shortcut:" id="j0C-1z-VT8">
-                            <font key="font" metaFont="system"/>
-                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                        </textFieldCell>
-                    </textField>
-                    <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RZq-Qb-4Qp" customClass="MASShortcutView">
-                        <rect key="frame" x="221" y="244" width="165" height="19"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    </customView>
                     <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Urs-l3-hnM">
-                        <rect key="frame" x="136" y="266" width="152" height="26"/>
+                        <rect key="frame" x="136" y="215" width="152" height="26"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <popUpButtonCell key="cell" type="push" title="Coloured" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="border" tag="1" imageScaling="proportionallyDown" inset="2" id="7JV-SH-dhl">
+                        <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="7JV-SH-dhl">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="menu"/>
                             <menu key="menu" title="OtherViews" id="h3b-kb-jyF">
                                 <items>
-                                    <menuItem title="Coloured" state="on" tag="1" id="MU8-cN-12o">
+                                    <menuItem title="Coloured" tag="1" id="MU8-cN-12o">
                                         <modifierMask key="keyEquivalentModifierMask"/>
                                     </menuItem>
                                     <menuItem title="Auto (Black/White)" tag="2" id="szY-XU-ggs">
@@ -231,22 +155,56 @@
                             </menu>
                         </popUpButtonCell>
                         <connections>
-                            <action selector="toggleIcons:" target="Vzs-eh-ieH" id="EZs-PL-eE4"/>
+                            <action selector="toggleIcons:" target="mhY-ds-brE" id="1gB-ly-EQZ"/>
                             <binding destination="exF-TU-ycB" name="selectedIndex" keyPath="values.iconSelection" id="7of-IZ-eXW"/>
                         </connections>
                     </popUpButton>
+                    <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jzc-fO-1UB">
+                        <rect key="frame" x="38" y="245" width="176" height="18"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <buttonCell key="cell" type="check" title="Launch at system startup" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="2Es-4j-hrK">
+                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="toggleStartup:" target="mhY-ds-brE" id="MOP-gw-lt0"/>
+                        </connections>
+                    </button>
+                    <box verticalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="CmE-3V-xfE">
+                        <rect key="frame" x="12" y="267" width="390" height="5"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    </box>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dlp-8N-ytT">
+                        <rect key="frame" x="38" y="195" width="122" height="17"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Show current song:" id="j0C-1z-VT8">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RZq-Qb-4Qp" customClass="MASShortcutView">
+                        <rect key="frame" x="166" y="189" width="165" height="19"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    </customView>
                 </subviews>
             </view>
-            <point key="canvasLocation" x="286" y="454"/>
+            <point key="canvasLocation" x="286" y="425"/>
         </window>
         <customObject id="Vzs-eh-ieH" customClass="AppDelegate" customModule="Spotify_Notifications" customModuleProvider="target">
             <connections>
+                <outlet property="aboutPrefsController" destination="mhY-ds-brE" id="4Nx-Bx-ihy"/>
                 <outlet property="openLastFMMenu" destination="eNw-Pj-zpb" id="Khx-6s-0MY"/>
-                <outlet property="openPreferences" destination="DVU-PG-Y90" id="aty-7B-QMI"/>
                 <outlet property="openSpotifyMenuItem" destination="H0U-uU-iCL" id="xbd-Bx-K4y"/>
-                <outlet property="preferencesWindow" destination="Ce7-mk-gne" id="8l4-k5-VRi"/>
-                <outlet property="shortcutView" destination="RZq-Qb-4Qp" id="Yxg-nX-jwC"/>
                 <outlet property="statusMenu" destination="3W1-BV-C8O" id="OQj-qs-xZT"/>
+            </connections>
+        </customObject>
+        <customObject id="mhY-ds-brE" customClass="AboutPreferencesController" customModule="Spotify_Notifications" customModuleProvider="target">
+            <connections>
+                <outlet property="aboutWindow" destination="CN4-CK-550" id="Y3S-t5-aYB"/>
+                <outlet property="appDelegate" destination="Vzs-eh-ieH" id="lj7-bb-mVA"/>
+                <outlet property="preferencesWindow" destination="Ce7-mk-gne" id="bsg-b6-kBu"/>
+                <outlet property="shortcutView" destination="RZq-Qb-4Qp" id="AaG-Er-omS"/>
             </connections>
         </customObject>
         <menu id="3W1-BV-C8O">
@@ -263,19 +221,19 @@
                             <menuItem title="Artist" enabled="NO" id="dc4-Xr-yfC">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
-                                    <action selector="showLastFM:" target="Vzs-eh-ieH" id="NzT-PK-TUU"/>
+                                    <action selector="openLastFM:" target="Vzs-eh-ieH" id="feZ-lZ-gLi"/>
                                 </connections>
                             </menuItem>
                             <menuItem title="Album" tag="1" enabled="NO" id="7Hq-FG-56d">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
-                                    <action selector="showLastFM:" target="Vzs-eh-ieH" id="uks-xB-zhZ"/>
+                                    <action selector="openLastFM:" target="Vzs-eh-ieH" id="bYQ-UW-5sy"/>
                                 </connections>
                             </menuItem>
                             <menuItem title="Track" tag="2" enabled="NO" id="vkx-iw-sH5">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
-                                    <action selector="showLastFM:" target="Vzs-eh-ieH" id="5sq-gr-dBz"/>
+                                    <action selector="openLastFM:" target="Vzs-eh-ieH" id="it9-JS-qs7"/>
                                 </connections>
                             </menuItem>
                         </items>
@@ -284,10 +242,17 @@
                 <menuItem isSeparatorItem="YES" id="ikH-Mn-rhF"/>
                 <menuItem title="Preferences…" keyEquivalent="," id="DVU-PG-Y90">
                     <connections>
-                        <action selector="showPreferences:" target="Vzs-eh-ieH" id="IZa-rb-LGJ"/>
+                        <action selector="showPreferencesWindow:" target="mhY-ds-brE" id="Lh4-tl-HRG"/>
                     </connections>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="UOF-v0-61B"/>
+                <menuItem title="About" id="egY-u3-0Vj">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="showAboutWindow:" target="mhY-ds-brE" id="pwC-zp-ElP"/>
+                    </connections>
+                </menuItem>
+                <menuItem isSeparatorItem="YES" id="LXY-l6-6B0"/>
                 <menuItem title="Quit" keyEquivalent="q" id="H8O-bk-sAH">
                     <connections>
                         <action selector="terminate:" target="-1" id="UtV-CQ-FEA"/>
@@ -297,5 +262,334 @@
             <point key="canvasLocation" x="-65" y="394"/>
         </menu>
         <userDefaultsController representsSharedInstance="YES" id="exF-TU-ycB"/>
+        <window title="About Spotify Notifications" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" restorable="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" tabbingMode="disallowed" id="CN4-CK-550">
+            <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
+            <rect key="contentRect" x="163" y="199" width="516" height="296"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1028"/>
+            <view key="contentView" id="SM0-FJ-HzV">
+                <rect key="frame" x="0.0" y="0.0" width="516" height="296"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Nmt-Ao-CjP">
+                        <rect key="frame" x="14" y="227" width="64" height="64"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyUpOrDown" image="AppIcon" id="pR0-af-reR"/>
+                    </imageView>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="NO" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m2m-Ke-jTH">
+                        <rect key="frame" x="84" y="257" width="220" height="29"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" allowsUndo="NO" sendsActionOnEndEditing="YES" title="Spotify Notifications" id="is5-IX-rbe">
+                            <font key="font" metaFont="system" size="24"/>
+                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="NO" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eBI-BV-UDM">
+                        <rect key="frame" x="84" y="232" width="82" height="17"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" allowsUndo="NO" sendsActionOnEndEditing="YES" title="Version 0.6.0" id="mUP-7h-rhM">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <scrollView fixedFrame="YES" borderType="none" horizontalLineScroll="0.0" horizontalPageScroll="0.0" verticalLineScroll="0.0" verticalPageScroll="0.0" hasHorizontalScroller="NO" hasVerticalScroller="NO" usesPredominantAxisScrolling="NO" horizontalScrollElasticity="none" verticalScrollElasticity="none" translatesAutoresizingMaskIntoConstraints="NO" id="LeA-TD-kfN">
+                        <rect key="frame" x="20" y="10" width="476" height="204"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                        <clipView key="contentView" ambiguous="YES" drawsBackground="NO" copiesOnScroll="NO" id="Pob-ST-RKJ">
+                            <rect key="frame" x="0.0" y="0.0" width="476" height="204"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <subviews>
+                                <textView ambiguous="YES" editable="NO" drawsBackground="NO" importsGraphics="NO" allowsCharacterPickerTouchBarItem="NO" allowsNonContiguousLayout="YES" textCompletion="NO" id="Fcx-gs-I5F">
+                                    <rect key="frame" x="0.0" y="0.0" width="456" height="204"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.49803999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <size key="minSize" width="456" height="204"/>
+                                    <size key="maxSize" width="498" height="10000000"/>
+                                    <attributedString key="textStorage">
+                                        <fragment content="Source code is dedicated to the public domain, ">
+                                            <attributes>
+                                                <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="0.49803999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <font key="NSFont" size="12" name="HelveticaNeue"/>
+                                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
+                                                    <tabStops>
+                                                        <textTab alignment="left" location="28.299999237060547">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="56.650001525878906">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="85">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="113.34999847412109">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="141.69999694824219">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="170.05000305175781">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="198.39999389648438">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="226.75">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="255.10000610351562">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="283.45001220703125">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="311.79998779296875">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="340.14999389648438">
+                                                            <options/>
+                                                        </textTab>
+                                                    </tabStops>
+                                                </paragraphStyle>
+                                            </attributes>
+                                        </fragment>
+                                        <fragment content="available on Github">
+                                            <attributes>
+                                                <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="0.49803999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <font key="NSFont" size="12" name="HelveticaNeue"/>
+                                                <url key="NSLink" string="https://github.com/citruspi/Spotify-Notifications"/>
+                                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
+                                                    <tabStops>
+                                                        <textTab alignment="left" location="28.299999237060547">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="56.650001525878906">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="85">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="113.34999847412109">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="141.69999694824219">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="170.05000305175781">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="198.39999389648438">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="226.75">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="255.10000610351562">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="283.45001220703125">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="311.79998779296875">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="340.14999389648438">
+                                                            <options/>
+                                                        </textTab>
+                                                    </tabStops>
+                                                </paragraphStyle>
+                                            </attributes>
+                                        </fragment>
+                                        <fragment>
+                                            <string key="content">.
+
+Spotify Notifications uses </string>
+                                            <attributes>
+                                                <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="0.49803999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <font key="NSFont" size="12" name="HelveticaNeue"/>
+                                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
+                                                    <tabStops>
+                                                        <textTab alignment="left" location="28.299999237060547">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="56.650001525878906">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="85">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="113.34999847412109">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="141.69999694824219">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="170.05000305175781">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="198.39999389648438">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="226.75">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="255.10000610351562">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="283.45001220703125">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="311.79998779296875">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="340.14999389648438">
+                                                            <options/>
+                                                        </textTab>
+                                                    </tabStops>
+                                                </paragraphStyle>
+                                            </attributes>
+                                        </fragment>
+                                        <fragment content="MASShortcut">
+                                            <attributes>
+                                                <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="0.49803999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <font key="NSFont" size="12" name="HelveticaNeue"/>
+                                                <url key="NSLink" string="https://github.com/shpakovski/MASShortcut/"/>
+                                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
+                                                    <tabStops>
+                                                        <textTab alignment="left" location="28.299999237060547">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="56.650001525878906">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="85">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="113.34999847412109">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="141.69999694824219">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="170.05000305175781">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="198.39999389648438">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="226.75">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="255.10000610351562">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="283.45001220703125">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="311.79998779296875">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="340.14999389648438">
+                                                            <options/>
+                                                        </textTab>
+                                                    </tabStops>
+                                                </paragraphStyle>
+                                            </attributes>
+                                        </fragment>
+                                        <fragment>
+                                            <mutableString key="content">, licensed under the 2-clause BSD license.
+
+Spotify artwork and icon is owned by Spotify AB Inc.
+
+Created by Mihir Singth with the help of the following contributors:
+
+Anuj Das (Anuj Das)							Jonathan Tien (Jonathan Tien)
+Daniel Fortunato (danfortunato)					Joseba Mendivil (josebama)
+Hadi Michael (HadiMichael)					Kent Sutherland (ksuther)
+Harlan Haskins (Harlan Haskins)				Randall Bruder (randybruder)
+James Snee (jamessnee)						Raphael Jasjukaitis (raphaa)
+John "Seg" Seggerson (TheSeg)				Seb Jachec (sebj)</mutableString>
+                                            <attributes>
+                                                <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="0.49803999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <font key="NSFont" size="12" name="HelveticaNeue"/>
+                                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
+                                                    <tabStops>
+                                                        <textTab alignment="left" location="28.299999237060547">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="56.650001525878906">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="85">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="113.34999847412109">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="141.69999694824219">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="170.05000305175781">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="198.39999389648438">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="226.75">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="255.10000610351562">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="283.45001220703125">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="311.79998779296875">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="340.14999389648438">
+                                                            <options/>
+                                                        </textTab>
+                                                    </tabStops>
+                                                </paragraphStyle>
+                                            </attributes>
+                                        </fragment>
+                                    </attributedString>
+                                    <color key="insertionPointColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                </textView>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <edgeInsets key="contentInsets" left="-5" right="0.0" top="0.0" bottom="0.0"/>
+                        </clipView>
+                        <edgeInsets key="contentInsets" left="0.0" right="0.0" top="0.0" bottom="0.0"/>
+                        <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="YES" id="aN1-Rx-vr2">
+                            <rect key="frame" x="-100" y="-100" width="87" height="18"/>
+                            <autoresizingMask key="autoresizingMask"/>
+                        </scroller>
+                        <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="c1w-Zu-MSy">
+                            <rect key="frame" x="-100" y="-100" width="16" height="198"/>
+                            <autoresizingMask key="autoresizingMask"/>
+                        </scroller>
+                    </scrollView>
+                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uHw-zO-hKu">
+                        <rect key="frame" x="310" y="260" width="17" height="18"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <buttonCell key="cell" type="inline" bezelStyle="inline" image="NSFollowLinkFreestandingTemplate" imagePosition="overlaps" alignment="center" inset="2" id="Tyx-R6-eNz">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="smallSystemBold"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="openWebsite:" target="mhY-ds-brE" id="S3O-bC-7ef"/>
+                        </connections>
+                    </button>
+                </subviews>
+            </view>
+            <point key="canvasLocation" x="889" y="414"/>
+        </window>
     </objects>
+    <resources>
+        <image name="AppIcon" width="128" height="128"/>
+        <image name="NSFollowLinkFreestandingTemplate" width="14" height="14"/>
+    </resources>
 </document>

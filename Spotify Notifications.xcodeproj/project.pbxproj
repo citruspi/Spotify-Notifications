@@ -23,6 +23,7 @@
 		96B3DA421DD791A10081B59D /* ScriptingBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96B3DA411DD791A10081B59D /* ScriptingBridge.framework */; };
 		96B3DA441DD791A80081B59D /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96B3DA431DD791A80081B59D /* Cocoa.framework */; };
 		96B3DA461DD791AC0081B59D /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96B3DA451DD791AC0081B59D /* Carbon.framework */; };
+		96F5000C1E19D3D10015E802 /* AboutPreferencesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F5000B1E19D3D10015E802 /* AboutPreferencesController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,13 +74,14 @@
 /* Begin PBXFileReference section */
 		21DE32F21A5E00D7009FB228 /* Spotify Notifications.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Spotify Notifications.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		21DE32F61A5E00D7009FB228 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		21DE32F71A5E00D7009FB228 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		21DE32F71A5E00D7009FB228 /* AppDelegate.swift */ = {isa = PBXFileReference; indentWidth = 3; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		21DE32FB1A5E00D7009FB228 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		962A8E941DD7BDEE005F12BE /* Spotify.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Spotify.swift; sourceTree = "<group>"; };
 		962A8E991DD7C105005F12BE /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		9661505C1DD7B43700F2F335 /* LaunchAtLogin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchAtLogin.swift; sourceTree = "<group>"; };
 		9698AFC91DD7924100544466 /* MASShortcut.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = MASShortcut.xcodeproj; path = "Spotify Notifications/MASShortcut/MASShortcut.xcodeproj"; sourceTree = "<group>"; };
 		969A18151DD7E04600757BC3 /* MainMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainMenu.xib; sourceTree = "<group>"; };
+		969C08E81E1A8053003C5107 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
 		96A16C9A1DD7E360007ED3A9 /* UserDefaults.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = UserDefaults.plist; sourceTree = "<group>"; };
 		96A16CA61DD7E3B5007ED3A9 /* status_bar_black.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = status_bar_black.tiff; sourceTree = "<group>"; };
 		96A16CA71DD7E3B5007ED3A9 /* status_bar_black@2x.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = "status_bar_black@2x.tiff"; sourceTree = "<group>"; };
@@ -88,6 +90,7 @@
 		96B3DA411DD791A10081B59D /* ScriptingBridge.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ScriptingBridge.framework; path = System/Library/Frameworks/ScriptingBridge.framework; sourceTree = SDKROOT; };
 		96B3DA431DD791A80081B59D /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		96B3DA451DD791AC0081B59D /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
+		96F5000B1E19D3D10015E802 /* AboutPreferencesController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutPreferencesController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,8 +132,9 @@
 				96A16CA51DD7E3B5007ED3A9 /* Status Bar Images */,
 				962A8E941DD7BDEE005F12BE /* Spotify.swift */,
 				962A8E991DD7C105005F12BE /* Constants.swift */,
-				9661505C1DD7B43700F2F335 /* LaunchAtLogin.swift */,
 				21DE32F71A5E00D7009FB228 /* AppDelegate.swift */,
+				96F5000B1E19D3D10015E802 /* AboutPreferencesController.swift */,
+				9661505C1DD7B43700F2F335 /* LaunchAtLogin.swift */,
 				969A18151DD7E04600757BC3 /* MainMenu.xib */,
 				21DE32FB1A5E00D7009FB228 /* Images.xcassets */,
 				21DE32F51A5E00D7009FB228 /* Supporting Files */,
@@ -150,6 +154,7 @@
 		968B7063D7B6C7F6862E77CB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				969C08E81E1A8053003C5107 /* IOKit.framework */,
 				96B3DA451DD791AC0081B59D /* Carbon.framework */,
 				96B3DA431DD791A80081B59D /* Cocoa.framework */,
 				96B3DA411DD791A10081B59D /* ScriptingBridge.framework */,
@@ -286,6 +291,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9661505D1DD7B43700F2F335 /* LaunchAtLogin.swift in Sources */,
+				96F5000C1E19D3D10015E802 /* AboutPreferencesController.swift in Sources */,
 				962A8E961DD7BDEE005F12BE /* Spotify.swift in Sources */,
 				21DE32F81A5E00D7009FB228 /* AppDelegate.swift in Sources */,
 				962A8E9A1DD7C105005F12BE /* Constants.swift in Sources */,

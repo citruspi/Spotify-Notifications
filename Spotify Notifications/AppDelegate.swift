@@ -21,10 +21,13 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
     
     @IBOutlet var aboutPrefsController: AboutPreferencesController!
 
-    var previousTrack: SpotifyTrack?
+    lazy var previousTrack: SpotifyTrack? = nil
     var currentTrack: SpotifyTrack?
     
     var spotify: SpotifyApplication!
+    
+    let urlSession = URLSession(configuration: .default)
+    var albumArtTask: URLSessionDataTask?
 
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
@@ -58,23 +61,17 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
             }
             
             if playerState == .playing {
-                let notification = userNotificationForCurrentTrack()
-                deliverUserNotification(notification, force: true)
+                showCurrentTrackNotification(forceDelivery: true)
             }
         }
     }
     
     func applicationWillTerminate(_ notification: Notification) {
-        DistributedNotificationCenter.default().removeObserver(self)
-    }
-    
-    func showNotificationForCurrentTrack() {
-        let notification = self.userNotificationForCurrentTrack()
-        if UserDefaults.standard.bool(forKey: Constants.NotificationSoundKey) {
-            notification.soundName = "Pop"
+        if albumArtTask != nil {
+            albumArtTask?.cancel()
         }
         
-        self.deliverUserNotification(notification, force: true)
+        DistributedNotificationCenter.default().removeObserver(self)
     }
     
     func applicationShouldHandleReopen(_ sender: NSApplication, hasVisibleWindows flag: Bool) -> Bool {
@@ -85,6 +82,65 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
         }
         
         return true;
+    }
+    
+    //MARK: - Spotify State
+    
+    func notPlaying() {
+        openSpotifyMenuItem.title = "Open Spotify (Not Playing)"
+        
+        NSUserNotificationCenter.default.removeAllDeliveredNotifications()
+    }
+    
+    func spotifyPlaybackStateChanged(_ notification: NSNotification) {
+        if notification.userInfo?["Player State"] as! String != "Playing" {
+            notPlaying()
+            return //To stop us from checking accessing spotify (spotify.playerState below)..
+            //..and then causing it to re-open
+            
+        } else if spotify.playerState == .playing {
+            openSpotifyMenuItem.title = "Open Spotify (Playing)"
+            
+            previousTrack = currentTrack
+            currentTrack = spotify.currentTrack
+            
+            //If track has different album art to previous, and album art task ongoing
+            if previousTrack != nil && previousTrack!.album! != currentTrack!.album! && albumArtTask != nil {
+                albumArtTask?.cancel()
+            }
+            
+            updateLastFMMenu(currentTrack: currentTrack!)
+            
+            showCurrentTrackNotification(forceDelivery: false)
+        }
+    }
+    
+    //MARK: - UI
+    func updateLastFMMenu(currentTrack: SpotifyTrack) {
+        openLastFMMenu.isEnabled = (currentTrack.artist != nil)
+    }
+    
+    func setIcon() {
+        let iconSelection = UserDefaults.standard.integer(forKey: Constants.IconSelectionKey)
+        
+        if iconSelection == 2 && statusItem != nil {
+            statusItem = nil
+            
+        } else if iconSelection < 2 {
+            if statusItem == nil {
+                statusItem = NSStatusBar.system().statusItem(withLength: NSSquareStatusItemLength)
+                statusItem!.menu = statusMenu
+                statusItem!.highlightMode = true
+            }
+            
+            let imageName = iconSelection == 0 ? "status_bar_colour" : "status_bar_black"
+            
+            if statusItem!.image?.name() != imageName {
+                statusItem!.image = NSImage(named: imageName)
+            }
+            
+            statusItem!.image?.isTemplate = (iconSelection == 1)
+        }
     }
     
     @IBAction func openSpotify(_ sender: NSMenuItem) {
@@ -114,6 +170,8 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
         }
     }
     
+    //MARK: - Notifications
+    
     func userNotificationCenter(_ center: NSUserNotificationCenter, shouldPresent notification: NSUserNotification) -> Bool {
         return true
     }
@@ -129,65 +187,81 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
         }
     }
     
-    func albumArtForTrack(_ track: SpotifyTrack) -> NSImage? {
-        //Looks hacky, but appears to work
-        if let artworkUrl = track.artworkUrl {
-            let artworkUrlHTTPS = artworkUrl.replacingOccurrences(of: "http:", with: "https:")
+    func getAlbumArtForTrack(_ track: SpotifyTrack, completionHandler: @escaping (SpotifyTrack, NSImage?) -> ()) {
+        if let url = track.artworkUrl {
+            let urlHTTPS = url.replacingOccurrences(of: "http:", with: "https:")
             
-            do {
-                let artData = try Data.init(contentsOf: URL(string: artworkUrlHTTPS)!)
-                return NSImage.init(data: artData)
-            } catch { }
+            albumArtTask = urlSession.dataTask(with: URL(string: urlHTTPS)!) { data, response, error in
+                if data != nil, let image = NSImage.init(data: data!), error == nil {
+                    completionHandler(track, image)
+                } else {
+                    completionHandler(track, nil)
+                }
+            }
+            albumArtTask?.resume()
+            
+        } else {
+            completionHandler(track, nil)
         }
-        
-        return nil
     }
     
-    func userNotificationForCurrentTrack() -> NSUserNotification {
+    func showCurrentTrackNotification(forceDelivery: Bool) {
         
         let notification = NSUserNotification()
         notification.title = "No Song Playing"
         
         if let track = currentTrack {
             
-            if (track.spotifyUrl?.hasPrefix("spotify:ad"))! || track.name?.characters.count == 0 {
-                return notification
-            }
-            
-            notification.title = track.name!;
-            notification.subtitle = track.album!
-            notification.informativeText = track.artist!
-            
-            if UserDefaults.standard.bool(forKey: Constants.NotificationIncludeAlbumArtKey) {
-                notification.contentImage = albumArtForTrack(track)
-            }
-            
             if UserDefaults.standard.bool(forKey: Constants.NotificationSoundKey) {
                 notification.soundName = "Pop"
             }
             
+            if (track.spotifyUrl?.hasPrefix("spotify:ad"))! || track.name?.characters.count == 0 {
+                deliverNotification(notification, force: forceDelivery)
+                return
+            }
+            
+            notification.title = track.name!
+            notification.subtitle = track.album!
+            notification.informativeText = track.artist!
+            
             notification.hasActionButton = true
             notification.actionButtonTitle = "Skip"
             
-            //Private APIs – remove if publishing to Mac App Store
-            do {
-                //Force showing buttons even if "Banner" alert style is chosen by user
-                notification.setValue(true, forKey: "_showsButtons")
+            if UserDefaults.standard.bool(forKey: Constants.NotificationIncludeAlbumArtKey) {
                 
-                //Show album art on the left side of the notification (where app icon normally is),
-                //like iTunes does
-                if notification.contentImage?.isValid ?? false {
-                    notification.setValue(notification.contentImage, forKey: "_identityImage")
-                    notification.contentImage = nil;
-                }
+                getAlbumArtForTrack(track, completionHandler: { (albumArtTrack, image) in
+                    
+                    //Check album art matches up to current song
+                    //(in case of network error/etc)
+                    if track.id!() == albumArtTrack.id!() && image != nil {
+                        notification.contentImage = image
+                        
+                        //Private APIs – remove if publishing to Mac App Store:
+                        
+                        //Force showing buttons even if "Banner" alert style chosen by user
+                        notification.setValue(true, forKey: "_showsButtons")
+                        
+                        //Show album art on the left side of the notification (where app icon normally is),
+                        //like iTunes does
+                        if notification.contentImage?.isValid ?? false {
+                            notification.setValue(notification.contentImage, forKey: "_identityImage")
+                            notification.contentImage = nil;
+                        }
+                    }
+                    
+                     self.deliverNotification(notification, force: forceDelivery)
+                })
                 
-            } catch {}
+            } else {
+                deliverNotification(notification, force: forceDelivery)
+            }
         }
         
-        return notification
     }
     
-    func deliverUserNotification(_ notification: NSUserNotification, force: Bool) {
+    
+    func deliverNotification(_ notification: NSUserNotification, force: Bool) {
         let frontmost = NSWorkspace.shared().frontmostApplication?.bundleIdentifier == Constants.SpotifyBundleID
         
         if frontmost && UserDefaults.standard.bool(forKey: Constants.DisableWhenSpotifyHasFocusKey) {
@@ -217,69 +291,10 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
             }
         }
         
-        if spotify.running && deliver {
+        if deliver {
             NSUserNotificationCenter.default.deliver(notification)
         }
-    }
-    
-    func updateLastFMMenu(currentTrack: SpotifyTrack) {
-        if !openLastFMMenu.isEnabled && currentTrack.artist != nil {
-            openLastFMMenu.isEnabled = true
-        }
-    }
-    
-    func notPlaying() {
-        openSpotifyMenuItem.title = "Open Spotify (Not Playing)"
         
-        NSUserNotificationCenter.default.removeAllDeliveredNotifications()
-    }
-    
-    func spotifyPlaybackStateChanged(_ notification: NSNotification) {
-        if notification.userInfo?["Player State"] as! String != "Playing" {
-            notPlaying()
-            return //To stop us from checking accessing spotify (spotify.playerState below)..
-            //..and then causing it to re-open
-            
-        } else if spotify.playerState == .playing {
-            openSpotifyMenuItem.title = "Open Spotify (Playing)"
-            
-            if currentTrack == nil {
-                currentTrack = spotify.currentTrack
-            }
-            
-            if let current = currentTrack {
-                
-                updateLastFMMenu(currentTrack: current)
-                
-                if let previous = previousTrack, previous.id!() != current.id!() {
-                    previousTrack = current
-                    currentTrack = spotify.currentTrack
-                }
-            }
-            
-            deliverUserNotification(userNotificationForCurrentTrack(), force: false)
-        }
-    }
-    
-    func setIcon() {
-        let iconSelection = UserDefaults.standard.integer(forKey: Constants.IconSelectionKey)
-        
-        if iconSelection == 2 && statusItem != nil {
-            statusItem = nil
-            
-        } else if iconSelection < 2 {
-            let imageName = iconSelection == 0 ? "status_bar_colour" : "status_bar_black"
-            if statusItem == nil {
-                statusItem = NSStatusBar.system().statusItem(withLength: NSSquareStatusItemLength)
-                statusItem!.menu = statusMenu
-                statusItem!.highlightMode = true
-            }
-            
-            if statusItem!.image?.name() != imageName {
-                statusItem!.image = NSImage(named: imageName)
-            }
-            
-            statusItem!.image?.isTemplate = (iconSelection == 1)
-        }
+        albumArtTask = nil
     }
 }

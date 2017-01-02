@@ -19,7 +19,6 @@ class AboutPreferencesController : NSObject {
     @IBOutlet var shortcutView: MASShortcutView!
     
     override func awakeFromNib() {
-        
         setupPreferencesWindow()
         setupAboutWindow()
     }
@@ -29,7 +28,7 @@ class AboutPreferencesController : NSObject {
         shortcutView.associatedUserDefaultsKey = Constants.PreferenceGlobalShortcut;
         
         MASShortcutBinder.shared().bindShortcut(withDefaultsKey: Constants.PreferenceGlobalShortcut, toAction: (() -> Void)! {
-            self.appDelegate.showNotificationForCurrentTrack()
+            self.appDelegate.showCurrentTrackNotification(forceDelivery: true)
         })
     }
     
@@ -53,6 +52,7 @@ class AboutPreferencesController : NSObject {
         aboutWindow.backgroundColor = NSColor.white
         aboutWindow.titlebarAppearsTransparent = true
         aboutWindow.titleVisibility = .hidden
+        aboutWindow.styleMask.insert(.fullSizeContentView)
     }
     
     @IBAction func showAboutWindow(_ sender: AnyObject) {

@@ -264,19 +264,19 @@
         <userDefaultsController representsSharedInstance="YES" id="exF-TU-ycB"/>
         <window title="About Spotify Notifications" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" restorable="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" tabbingMode="disallowed" id="CN4-CK-550">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
-            <rect key="contentRect" x="163" y="199" width="516" height="296"/>
+            <rect key="contentRect" x="163" y="199" width="516" height="321"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1028"/>
             <view key="contentView" id="SM0-FJ-HzV">
-                <rect key="frame" x="0.0" y="0.0" width="516" height="296"/>
+                <rect key="frame" x="0.0" y="0.0" width="516" height="321"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Nmt-Ao-CjP">
-                        <rect key="frame" x="14" y="227" width="64" height="64"/>
+                        <rect key="frame" x="14" y="232" width="64" height="64"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyUpOrDown" image="AppIcon" id="pR0-af-reR"/>
                     </imageView>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="NO" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m2m-Ke-jTH">
-                        <rect key="frame" x="84" y="257" width="220" height="29"/>
+                        <rect key="frame" x="84" y="262" width="220" height="29"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" allowsUndo="NO" sendsActionOnEndEditing="YES" title="Spotify Notifications" id="is5-IX-rbe">
                             <font key="font" metaFont="system" size="24"/>
@@ -285,7 +285,7 @@
                         </textFieldCell>
                     </textField>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="NO" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eBI-BV-UDM">
-                        <rect key="frame" x="84" y="232" width="82" height="17"/>
+                        <rect key="frame" x="84" y="237" width="82" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" allowsUndo="NO" sendsActionOnEndEditing="YES" title="Version 0.6.0" id="mUP-7h-rhM">
                             <font key="font" metaFont="system"/>
@@ -294,7 +294,7 @@
                         </textFieldCell>
                     </textField>
                     <scrollView fixedFrame="YES" borderType="none" horizontalLineScroll="0.0" horizontalPageScroll="0.0" verticalLineScroll="0.0" verticalPageScroll="0.0" hasHorizontalScroller="NO" hasVerticalScroller="NO" usesPredominantAxisScrolling="NO" horizontalScrollElasticity="none" verticalScrollElasticity="none" translatesAutoresizingMaskIntoConstraints="NO" id="LeA-TD-kfN">
-                        <rect key="frame" x="20" y="10" width="476" height="204"/>
+                        <rect key="frame" x="20" y="15" width="476" height="204"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                         <clipView key="contentView" ambiguous="YES" drawsBackground="NO" copiesOnScroll="NO" id="Pob-ST-RKJ">
                             <rect key="frame" x="0.0" y="0.0" width="476" height="204"/>
@@ -573,7 +573,7 @@ John "Seg" Seggerson (TheSeg)				Seb Jachec (sebj)</mutableString>
                         </scroller>
                     </scrollView>
                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uHw-zO-hKu">
-                        <rect key="frame" x="310" y="260" width="17" height="18"/>
+                        <rect key="frame" x="310" y="265" width="17" height="18"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="inline" bezelStyle="inline" image="NSFollowLinkFreestandingTemplate" imagePosition="overlaps" alignment="center" inset="2" id="Tyx-R6-eNz">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>

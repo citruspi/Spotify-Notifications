@@ -243,6 +243,9 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
         } else if spotify.playerState == .playing {
             openSpotifyMenuItem.title = "Open Spotify (Playing)"
             
+            if currentTrack == nil {
+                currentTrack = spotify.currentTrack
+            }
             
             if let current = currentTrack {
                 

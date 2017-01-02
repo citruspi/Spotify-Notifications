@@ -4,15 +4,17 @@
 
   },
   "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
-    "BB3EACD426816BE8F889F949CB3474A7B8024ED9" : 9223372036854775807,
     "BB3C4AE3EC7E6771B5CB3DC143FB7B67396AE556" : 9223372036854775807,
-    "12BA9D8DA29B88018B60DA9E21E5575119C895CB" : 9223372036854775807
+    "BB3EACD426816BE8F889F949CB3474A7B8024ED9" : 9223372036854775807,
+    "12BA9D8DA29B88018B60DA9E21E5575119C895CB" : 9223372036854775807,
+    "BE6F11D2B0F7EBDD3A2A4B2F7B7F7393B556F9B2" : 9223372036854775807
   },
   "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "E43AF830-B7B6-4297-B241-5D09431C9DAA",
   "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
-    "BB3EACD426816BE8F889F949CB3474A7B8024ED9" : "Spotify-Notifications\/",
     "BB3C4AE3EC7E6771B5CB3DC143FB7B67396AE556" : "Spotify-Notifications\/Spotify%20Notifications\/MASShortcut\/",
-    "12BA9D8DA29B88018B60DA9E21E5575119C895CB" : "Spotify-Notifications\/Spotify%20Notifications\/NSBundle-LoginItem\/"
+    "BB3EACD426816BE8F889F949CB3474A7B8024ED9" : "Spotify-Notifications\/",
+    "12BA9D8DA29B88018B60DA9E21E5575119C895CB" : "Spotify-Notifications\/Spotify%20Notifications\/NSBundle-LoginItem\/",
+    "BE6F11D2B0F7EBDD3A2A4B2F7B7F7393B556F9B2" : "Spotify-Notifications\/Spotify%20Notifications\/Reachability.swift\/"
   },
   "DVTSourceControlWorkspaceBlueprintNameKey" : "Spotify Notifications",
   "DVTSourceControlWorkspaceBlueprintVersion" : 204,
@@ -32,6 +34,11 @@
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/citruspi\/Spotify-Notifications.git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "BB3EACD426816BE8F889F949CB3474A7B8024ED9"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/ashleymills\/Reachability.swift.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "BE6F11D2B0F7EBDD3A2A4B2F7B7F7393B556F9B2"
     }
   ]
 }

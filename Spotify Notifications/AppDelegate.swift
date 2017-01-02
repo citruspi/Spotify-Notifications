@@ -21,15 +21,21 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
     
     @IBOutlet var aboutPrefsController: AboutPreferencesController!
 
-    lazy var previousTrack: SpotifyTrack? = nil
+    var previousTrack: SpotifyTrack?
     var currentTrack: SpotifyTrack?
     
     var spotify: SpotifyApplication!
     
-    let urlSession = URLSession(configuration: .default)
+    lazy var urlSession: URLSession = {
+        let config = URLSessionConfiguration.default
+        config.requestCachePolicy = .returnCacheDataElseLoad
+        
+        let session = URLSession(configuration: config)
+        return session
+    }()
+    
     var albumArtTask: URLSessionDataTask?
 
-    
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         
         //Register default preferences values
@@ -43,7 +49,10 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
         
         //Observe Spotify player state changes
         let notificationName = Notification.Name(Constants.SpotifyNotificationName)
-        DistributedNotificationCenter.default().addObserver(self, selector: #selector(spotifyPlaybackStateChanged(_:)), name: notificationName, object: nil)
+        DistributedNotificationCenter.default().addObserver(self,
+                                                            selector: #selector(spotifyPlaybackStateChanged),
+                                                            name: notificationName,
+                                                            object: nil)
         
         setIcon()
         
@@ -228,6 +237,9 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
             notification.hasActionButton = true
             notification.actionButtonTitle = "Skip"
             
+            //Private API: Force showing buttons even if "Banner" alert style chosen by user
+            notification.setValue(true, forKey: "_showsButtons")
+            
             if UserDefaults.standard.bool(forKey: Constants.NotificationIncludeAlbumArtKey) {
                 
                 getAlbumArtForTrack(track, completionHandler: { (albumArtTrack, image) in
@@ -237,20 +249,15 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
                     if track.id!() == albumArtTrack.id!() && image != nil {
                         notification.contentImage = image
                         
-                        //Private APIs – remove if publishing to Mac App Store:
-                        
-                        //Force showing buttons even if "Banner" alert style chosen by user
-                        notification.setValue(true, forKey: "_showsButtons")
-                        
-                        //Show album art on the left side of the notification (where app icon normally is),
-                        //like iTunes does
+                        //Private API: Show album art on the left side of the notification
+                        //(where app icon normally is) like iTunes does
                         if notification.contentImage?.isValid ?? false {
                             notification.setValue(notification.contentImage, forKey: "_identityImage")
                             notification.contentImage = nil;
                         }
                     }
                     
-                     self.deliverNotification(notification, force: forceDelivery)
+                    self.deliverNotification(notification, force: forceDelivery)
                 })
                 
             } else {

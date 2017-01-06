@@ -26,6 +26,7 @@ class AboutPreferencesController : NSObject {
     //MARK: - Preferences
     private func setupPreferencesWindow() {
         shortcutView.associatedUserDefaultsKey = Constants.PreferenceGlobalShortcut;
+        shortcutView.style = .texturedRect
         
         MASShortcutBinder.shared().bindShortcut(withDefaultsKey: Constants.PreferenceGlobalShortcut, toAction: (() -> Void)! {
             self.appDelegate.showCurrentTrackNotification(forceDelivery: true)

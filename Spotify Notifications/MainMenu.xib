@@ -15,10 +15,10 @@
         <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
         <window title="Spotify Notifications Preferences" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" restorable="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" tabbingMode="disallowed" id="Ce7-mk-gne">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
-            <rect key="contentRect" x="131" y="165" width="388" height="306"/>
+            <rect key="contentRect" x="131" y="165" width="361" height="306"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1028"/>
             <view key="contentView" id="OOs-8Y-fCf">
-                <rect key="frame" x="0.0" y="0.0" width="388" height="306"/>
+                <rect key="frame" x="0.0" y="0.0" width="361" height="306"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UiV-9q-d4q">
@@ -40,7 +40,7 @@
                         </textFieldCell>
                     </textField>
                     <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Urs-l3-hnM">
-                        <rect key="frame" x="136" y="208" width="165" height="26"/>
+                        <rect key="frame" x="136" y="208" width="155" height="26"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="7JV-SH-dhl">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -76,7 +76,7 @@
                         </connections>
                     </button>
                     <box verticalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="CmE-3V-xfE">
-                        <rect key="frame" x="12" y="265" width="390" height="104"/>
+                        <rect key="frame" x="12" y="265" width="337" height="5"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     </box>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dlp-8N-ytT">
@@ -88,14 +88,6 @@
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RZq-Qb-4Qp" customClass="MASShortcutView">
-                        <rect key="frame" x="166" y="182" width="165" height="19"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    </customView>
-                    <box verticalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="0E9-Ne-iqv">
-                        <rect key="frame" x="12" y="222" width="364" height="91"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    </box>
                     <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dPp-pS-RNy">
                         <rect key="frame" x="18" y="149" width="143" height="18"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -188,12 +180,16 @@
                         </connections>
                     </button>
                     <box verticalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="gWp-Er-RU3">
-                        <rect key="frame" x="12" y="97" width="364" height="91"/>
+                        <rect key="frame" x="12" y="139" width="337" height="5"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     </box>
+                    <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RZq-Qb-4Qp" customClass="MASShortcutView">
+                        <rect key="frame" x="166" y="178" width="155" height="25"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    </customView>
                 </subviews>
             </view>
-            <point key="canvasLocation" x="286" y="424"/>
+            <point key="canvasLocation" x="328" y="406"/>
         </window>
         <customObject id="Vzs-eh-ieH" customClass="AppDelegate" customModule="Spotify_Notifications" customModuleProvider="target">
             <connections>

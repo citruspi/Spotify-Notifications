@@ -305,24 +305,23 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
     
     func show(notification: NSUserNotification, forceDelivery: Bool) {
         let frontmost = NSWorkspace.shared().frontmostApplication?.bundleIdentifier == Constants.SpotifyBundleID
-        
         if frontmost && UserDefaults.standard.bool(forKey: Constants.DisableWhenSpotifyHasFocusKey) {
             return
         }
         
         var shouldDeliver = forceDelivery
         
-        if let current = currentTrack, !shouldDeliver {
+        if !shouldDeliver {
             
             var isNewTrack = false
-            if let previous = previousTrack {
+            if let current = currentTrack, let previous = previousTrack {
                 isNewTrack = previous.id!() != current.id!()
             }
             
-            
-            let notificationsEnabled = UserDefaults.standard.bool(forKey: Constants.NotificationsKey)
-            
-            if isNewTrack || notificationsEnabled {
+            //Deliver if notifications enabled AND (track is different OR same but play/pause notifs enabled)
+            if UserDefaults.standard.bool(forKey: Constants.NotificationsKey)
+                && (isNewTrack || UserDefaults.standard.bool(forKey: Constants.PlayPauseNotificationsKey)) {
+                
                 //If only showing notification for current song, remove all other notifications..
                 if UserDefaults.standard.bool(forKey: Constants.ShowOnlyCurrentSongKey) {
                     NSUserNotificationCenter.default.removeAllDeliveredNotifications()

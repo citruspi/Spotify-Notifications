@@ -15,10 +15,10 @@
         <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
         <window title="Spotify Notifications Preferences" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" restorable="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" tabbingMode="disallowed" id="Ce7-mk-gne">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
-            <rect key="contentRect" x="131" y="165" width="414" height="306"/>
+            <rect key="contentRect" x="131" y="165" width="388" height="306"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1028"/>
             <view key="contentView" id="OOs-8Y-fCf">
-                <rect key="frame" x="0.0" y="0.0" width="414" height="306"/>
+                <rect key="frame" x="0.0" y="0.0" width="388" height="306"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UiV-9q-d4q">
@@ -40,7 +40,7 @@
                         </textFieldCell>
                     </textField>
                     <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Urs-l3-hnM">
-                        <rect key="frame" x="136" y="208" width="152" height="26"/>
+                        <rect key="frame" x="136" y="208" width="165" height="26"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="7JV-SH-dhl">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -93,11 +93,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     </customView>
                     <box verticalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="0E9-Ne-iqv">
-                        <rect key="frame" x="12" y="222" width="390" height="91"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    </box>
-                    <box verticalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="Vwo-tg-y2b">
-                        <rect key="frame" x="12" y="97" width="390" height="91"/>
+                        <rect key="frame" x="12" y="222" width="364" height="91"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     </box>
                     <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dPp-pS-RNy">
@@ -112,9 +108,9 @@
                         </connections>
                     </button>
                     <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8hW-fS-gQ1">
-                        <rect key="frame" x="38" y="118" width="109" height="18"/>
+                        <rect key="frame" x="38" y="118" width="147" height="18"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <buttonCell key="cell" type="check" title="On play/pause" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="mv2-9N-LWf">
+                        <buttonCell key="cell" type="check" title="Notify on play/pause" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="mv2-9N-LWf">
                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
@@ -128,9 +124,9 @@
                         </connections>
                     </button>
                     <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KJb-Tw-Pfv">
-                        <rect key="frame" x="38" y="93" width="151" height="18"/>
+                        <rect key="frame" x="38" y="93" width="165" height="18"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <buttonCell key="cell" type="check" title="Only for current song" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="AVR-Ce-i96">
+                        <buttonCell key="cell" type="check" title="Show only current song" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="AVR-Ce-i96">
                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
@@ -144,9 +140,9 @@
                         </connections>
                     </button>
                     <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5Wb-qC-HWI">
-                        <rect key="frame" x="38" y="43" width="61" height="18"/>
+                        <rect key="frame" x="38" y="43" width="89" height="18"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <buttonCell key="cell" type="check" title="Sound" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="q1K-WV-Ym6">
+                        <buttonCell key="cell" type="check" title="Play sound" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="q1K-WV-Ym6">
                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
@@ -160,9 +156,9 @@
                         </connections>
                     </button>
                     <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kuI-wH-SFa">
-                        <rect key="frame" x="38" y="18" width="82" height="18"/>
+                        <rect key="frame" x="38" y="18" width="157" height="18"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <buttonCell key="cell" type="check" title="Album art" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="Ej5-1b-ppY">
+                        <buttonCell key="cell" type="check" title="Include album artwork" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="Ej5-1b-ppY">
                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
@@ -176,9 +172,9 @@
                         </connections>
                     </button>
                     <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HOX-XC-AM6">
-                        <rect key="frame" x="38" y="68" width="232" height="18"/>
+                        <rect key="frame" x="38" y="68" width="267" height="18"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <buttonCell key="cell" type="check" title="Only when Spotify is not frontmost" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="3JA-OW-rv4">
+                        <buttonCell key="cell" type="check" title="Show only when Spotify is not frontmost" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="3JA-OW-rv4">
                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
@@ -191,6 +187,10 @@
                             </binding>
                         </connections>
                     </button>
+                    <box verticalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="gWp-Er-RU3">
+                        <rect key="frame" x="12" y="97" width="364" height="91"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    </box>
                 </subviews>
             </view>
             <point key="canvasLocation" x="286" y="424"/>

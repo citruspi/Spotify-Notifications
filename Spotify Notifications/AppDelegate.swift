@@ -54,7 +54,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
                                                             name: notificationName,
                                                             object: nil)
         
-        setIcon()
+        updateStatusIcon()
         
         LaunchAtLogin.setAppIsLoginItem(UserDefaults.standard.bool(forKey: Constants.LaunchAtLoginKey))
         
@@ -63,10 +63,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
             
             if playerState == .playing || playerState == .paused {
                 currentTrack = spotify.currentTrack
-                
-                if let current = currentTrack {
-                    updateLastFMMenu(currentTrack: current)
-                }
+                setLastFMMenuEnabled(true)
             }
             
             if playerState == .playing {
@@ -98,16 +95,19 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
     func notPlaying() {
         openSpotifyMenuItem.title = "Open Spotify (Not Playing)"
         
+        setLastFMMenuEnabled(false)
+        
         NSUserNotificationCenter.default.removeAllDeliveredNotifications()
     }
     
     func spotifyPlaybackStateChanged(_ notification: NSNotification) {
-        if notification.userInfo?["Player State"] as! String != "Playing" {
+        if notification.userInfo?["Player State"] as! String == "Stopped" {
             notPlaying()
             return //To stop us from checking accessing spotify (spotify.playerState below)..
             //..and then causing it to re-open
-            
-        } else if spotify.playerState == .playing {
+        }
+        
+        if spotify.playerState == .playing {
             openSpotifyMenuItem.title = "Open Spotify (Playing)"
             
             previousTrack = currentTrack
@@ -118,18 +118,22 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
                 albumArtTask?.cancel()
             }
             
-            updateLastFMMenu(currentTrack: currentTrack!)
+            setLastFMMenuEnabled(true)
             
             showCurrentTrackNotification(forceDelivery: false)
+            
+        } else if UserDefaults.standard.bool(forKey: Constants.ShowOnlyCurrentSongKey)
+            && (spotify.playerState == .paused || spotify.playerState == .stopped) {
+            notPlaying()
         }
     }
     
     //MARK: - UI
-    func updateLastFMMenu(currentTrack: SpotifyTrack) {
-        openLastFMMenu.isEnabled = (currentTrack.artist != nil)
+    func setLastFMMenuEnabled(_ enabled: Bool) {
+        openLastFMMenu.isEnabled = enabled
     }
     
-    func setIcon() {
+    func updateStatusIcon() {
         let iconSelection = UserDefaults.standard.integer(forKey: Constants.IconSelectionKey)
         
         if iconSelection == 2 && statusItem != nil {
@@ -196,22 +200,48 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
         }
     }
     
-    func getAlbumArtForTrack(_ track: SpotifyTrack, completionHandler: @escaping (SpotifyTrack, NSImage?) -> ()) {
+    func getAlbumArt(track: SpotifyTrack, completionHandler: @escaping (SpotifyTrack, NSImage?) -> ()) {
         if let url = track.artworkUrl {
             let urlHTTPS = url.replacingOccurrences(of: "http:", with: "https:")
             
-            albumArtTask = urlSession.dataTask(with: URL(string: urlHTTPS)!) { data, response, error in
-                if data != nil, let image = NSImage.init(data: data!), error == nil {
-                    completionHandler(track, image)
-                } else {
-                    completionHandler(track, nil)
+            if let finalURL = URL(string: urlHTTPS) {
+                albumArtTask = urlSession.dataTask(with: finalURL) { data, response, error in
+                    if data != nil, let image = NSImage.init(data: data!), error == nil {
+                        completionHandler(track, image)
+                    } else {
+                        completionHandler(track, nil)
+                    }
                 }
+                albumArtTask?.resume()
             }
-            albumArtTask?.resume()
             
         } else {
             completionHandler(track, nil)
         }
+    }
+    
+    func getFeaturedArtists(trackName: String) -> (Range<String.Index>, [String])? {
+        
+        if let startRange = trackName.range(of: "(feat. ") {
+            
+            let chars = trackName.characters
+            
+            if let endRange = trackName.range(of: ")", range: startRange.upperBound..<chars.endIndex) {
+                
+                let artists = trackName.substring(with: startRange.upperBound..<endRange.lowerBound)
+                let artistsFormatted = NSMutableString(string: artists)
+                
+                for toReplace in [" & ", " and "] {
+                    artistsFormatted.replaceOccurrences(of: toReplace, with: ", ", range: NSRange(location: 0, length: artistsFormatted.length))
+                }
+                
+                let artistsRange = trackName.range(of: "(feat. "+artists+")")
+                
+                return (artistsRange!, artistsFormatted.components(separatedBy: ", "))
+            }
+        }
+        
+        return nil
     }
     
     func showCurrentTrackNotification(forceDelivery: Bool) {
@@ -219,65 +249,70 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
         let notification = NSUserNotification()
         notification.title = "No Song Playing"
         
-        if let track = currentTrack {
-            
-            if UserDefaults.standard.bool(forKey: Constants.NotificationSoundKey) {
-                notification.soundName = "Pop"
-            }
-            
-            if (track.spotifyUrl?.hasPrefix("spotify:ad"))! || track.name?.characters.count == 0 {
-                deliverNotification(notification, force: forceDelivery)
-                return
-            }
-            
-            notification.title = track.name!
-            notification.subtitle = track.album!
-            notification.informativeText = track.artist!
-            
-            notification.hasActionButton = true
-            notification.actionButtonTitle = "Skip"
-            
-            //Private API: Force showing buttons even if "Banner" alert style chosen by user
-            notification.setValue(true, forKey: "_showsButtons")
-            
-            if UserDefaults.standard.bool(forKey: Constants.NotificationIncludeAlbumArtKey) {
-                
-                getAlbumArtForTrack(track, completionHandler: { (albumArtTrack, image) in
-                    
-                    //Check album art matches up to current song
-                    //(in case of network error/etc)
-                    if track.id!() == albumArtTrack.id!() && image != nil {
-                        notification.contentImage = image
-                        
-                        //Private API: Show album art on the left side of the notification
-                        //(where app icon normally is) like iTunes does
-                        if notification.contentImage?.isValid ?? false {
-                            notification.setValue(notification.contentImage, forKey: "_identityImage")
-                            notification.contentImage = nil;
-                        }
-                    }
-                    
-                    self.deliverNotification(notification, force: forceDelivery)
-                })
-                
-            } else {
-                deliverNotification(notification, force: forceDelivery)
-            }
+        let track = spotify.currentTrack!
+        
+        if UserDefaults.standard.bool(forKey: Constants.NotificationSoundKey) {
+            notification.soundName = "Pop"
         }
         
+        if (track.spotifyUrl?.hasPrefix("spotify:ad"))! {
+            show(notification: notification, forceDelivery: forceDelivery)
+            return
+        }
+        
+        var trackName = track.name!
+        
+        var artists = track.artist!
+        if let ftArtistsData = getFeaturedArtists(trackName: trackName) {
+            //trackName = trackName.replacingCharacters(in: ftArtistsData.0, with: "")
+            artists += ", " + ftArtistsData.1.joined(separator: ", ")
+        }
+        
+        notification.title = trackName
+        notification.subtitle = String(format: "%@ — %@", artists, track.album!)
+        
+        notification.hasActionButton = true
+        notification.actionButtonTitle = "Skip"
+        
+        //Private API: Force showing buttons even if "Banner" alert style chosen by user
+        notification.setValue(true, forKey: "_showsButtons")
+        
+        if UserDefaults.standard.bool(forKey: Constants.NotificationIncludeAlbumArtKey) {
+            
+            getAlbumArt(track: track, completionHandler: { (albumArtTrack, image) in
+                
+                //Check album art matches up to current song
+                //(in case of network error/etc)
+                if track.id!() == albumArtTrack.id!() && image != nil {
+                    notification.contentImage = image
+                    
+                    //Private API: Show album art on the left side of the notification
+                    //(where app icon normally is) like iTunes does
+                    if notification.contentImage?.isValid ?? false {
+                        notification.setValue(notification.contentImage, forKey: "_identityImage")
+                        notification.contentImage = nil;
+                    }
+                }
+                
+                self.show(notification: notification, forceDelivery: forceDelivery)
+            })
+            
+        } else {
+            show(notification: notification, forceDelivery: forceDelivery)
+        }
     }
     
     
-    func deliverNotification(_ notification: NSUserNotification, force: Bool) {
+    func show(notification: NSUserNotification, forceDelivery: Bool) {
         let frontmost = NSWorkspace.shared().frontmostApplication?.bundleIdentifier == Constants.SpotifyBundleID
         
         if frontmost && UserDefaults.standard.bool(forKey: Constants.DisableWhenSpotifyHasFocusKey) {
             return
         }
         
-        var deliver = force
+        var shouldDeliver = forceDelivery
         
-        if let current = currentTrack, !deliver {
+        if let current = currentTrack, !shouldDeliver {
             
             var isNewTrack = false
             if let previous = previousTrack {
@@ -294,14 +329,14 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
                 }
                 
                 //..then make sure this one is delivered
-                deliver = true;
+                shouldDeliver = true;
             }
         }
         
-        if deliver {
+        if shouldDeliver {
+            albumArtTask = nil
             NSUserNotificationCenter.default.deliver(notification)
         }
-        
-        albumArtTask = nil
     }
+    
 }

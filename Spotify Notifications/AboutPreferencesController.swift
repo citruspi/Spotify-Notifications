@@ -38,7 +38,7 @@ class AboutPreferencesController : NSObject {
     }
     
     @IBAction func toggleIcons(_ sender: AnyObject) {
-        appDelegate.setIcon()
+        appDelegate.updateStatusIcon()
     }
     
     @IBAction func toggleStartup(_ sender: NSButton) {
